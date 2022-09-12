@@ -6,7 +6,7 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 20:13:30 by shogura           #+#    #+#              #
-#    Updated: 2022/09/10 18:25:28 by shogura          ###   ########.fr        #
+#    Updated: 2022/09/12 15:22:18 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror
 LDFLAGS	=	-Lmlx -lmlx_Darwin -Llibft
 XFLAGS	=	-L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
-NAME	=	miniRT
+NAME	=	cub3D
 SRCDIR	=	src
 OBJDIR	=	obj
 INCDIR	=	inc

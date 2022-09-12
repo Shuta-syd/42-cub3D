@@ -1,0 +1,7 @@
+miniRT
+obj
+libft/libft.a
+libft/*.o
+libft/gnl/*.o
+.vscode
+.DS_Store

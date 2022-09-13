@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/13 16:07:46 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/13 19:12:31 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ typedef struct s_vector
 {
 	float	x;
 	float	y;
-	float	z;
+	float dx;
+	float dy;
+	float ang;
 } t_vector;
 
 typedef struct s_mlx
@@ -37,9 +39,10 @@ typedef struct s_img
 
 typedef struct s_imgs
 {
-	t_img	img1;
-	t_img	img2;
-	t_img	img3;
+	t_img	img_g;
+	t_img	img_w;
+	t_img	img_p;
+	t_img	img_r;
 } t_imgs;
 
 typedef struct s_vec

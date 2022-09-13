@@ -15,6 +15,8 @@
 #define GRAY  "asset/gray.xpm"
 #define WHITE  "asset/white.xpm"
 
+void my_mlx_pixel_put(t_img *img, int x, int y, int color);
+
 void init_mlx(t_data *dt)
 {
 	dt->Tmlx.mlx = mlx_init();
@@ -31,8 +33,9 @@ void init_all_images(t_data *dt, t_img *img, void *mlx, char *filepath)
 
 void initImage(t_data *dt)
 {
-	init_all_images(dt, &dt->Timgs.img1, dt->Tmlx.mlx, GRAY);
-	init_all_images(dt, &dt->Timgs.img2, dt->Tmlx.mlx, WHITE);
+	init_all_images(dt, &dt->Timgs.img_g, dt->Tmlx.mlx, GRAY);
+	init_all_images(dt, &dt->Timgs.img_w, dt->Tmlx.mlx, WHITE);
+
 }
 
 void init(t_data *dt)
@@ -41,4 +44,19 @@ void init(t_data *dt)
 	initImage(dt);
 	dt->Tvec.x = 300;
 	dt->Tvec.y = 500;
+	dt->Tvec.ang = 0;
+	dt->Tvec.dx = cos(dt->Tvec.ang) * 5;
+	dt->Tvec.dy = sin(dt->Tvec.ang) * 5;
+
+	dt->Timgs.img_p.img = mlx_new_image(dt->Tmlx.mlx, 15, 15);
+	dt->Timgs.img_p.addr = mlx_get_data_addr(dt->Timgs.img_p.img, &dt->Timgs.img_p.bpp, &dt->Timgs.img_p.line_len, &dt->Timgs.img_p.endian);
+	for (size_t i = 0; i < 15; i++)
+		for (size_t j = 0; j < 15; j++)
+			my_mlx_pixel_put(&dt->Timgs.img_p, j, i, 0x00FFFF00);
+
+	dt->Timgs.img_r.img = mlx_new_image(dt->Tmlx.mlx, 20, 5);
+	dt->Timgs.img_r.addr = mlx_get_data_addr(dt->Timgs.img_r.img, &dt->Timgs.img_r.bpp, &dt->Timgs.img_r.line_len, &dt->Timgs.img_r.endian);
+	for (size_t i = 0; i < 5; i++)
+		for (size_t j = 0; j < 100; j++)
+			my_mlx_pixel_put(&dt->Timgs.img_r, j, i, 0x000000);
 }

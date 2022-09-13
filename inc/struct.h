@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/10 19:56:41 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/12 17:38:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,18 @@ typedef struct s_img
 	int		endian;
 } t_img;
 
+typedef struct s_map
+{
+	char	**map;
+	int		row;
+	int		col;
+} t_map;
+
 typedef struct s_data
 {
-	t_mlx	*Tmlx;
-	t_img	*Timg;
-}	t_data;
+	t_mlx	Tmlx;
+	t_img	Timg;
+	t_map	Tmap;
+} t_data;
 
 #endif

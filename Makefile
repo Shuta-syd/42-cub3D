@@ -6,38 +6,38 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 20:13:30 by shogura           #+#    #+#              #
-#    Updated: 2022/09/12 15:22:18 by shogura          ###   ########.fr        #
+#    Updated: 2022/09/12 22:36:22 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror
-LDFLAGS	=	-Lmlx -lmlx_Darwin -Llibft
-XFLAGS	=	-L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
+LDFLAGS	=	-Llibft -lft -lm -lmlx_Darwin
+XFLAGS	=	-Lmlx -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 NAME	=	cub3D
 SRCDIR	=	src
 OBJDIR	=	obj
-INCDIR	=	inc
+INCDIR	=	inc mlx libft
 LIBXDIR	=	mlx
 
 SRCS	=	$(shell find $(SRCDIR) -name "*.c" -type f)
 OBJS	=	$(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 IFLAGS	=	$(addprefix -I,$(INCDIR))
 
-all: libx libft $(OBJDIR) $(NAME)
+all: libx $(OBJDIR) $(NAME)
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@$(CC) $(CFLAGS) $(IFLAGS) -o $(@) -c -g $(<)
+	@$(CC) $(CFLAGS) $(IFLAGS) $(<) -c -o $(@)
 	@echo "$(<)\n     \
 	$(MGN)--->$(RES) \
 	$(GRN)$(@)$(RES)"
 
 $(NAME): $(OBJS)
-	@$(CC) $(LDFLAGS) $(XFLAGS) -o $(NAME) $(OBJS)
-	@echo "$(CYN)\n=====link=====$(RES)"
+	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(XFLAGS) -o $(NAME)
+	@echo "$(CYN)\n=====link=====$(RES)"$(LDFLAGS) $(XFLAGS)
 	@echo "$(YEL)Objects$(RES): $(OBJS)\n"
 	@echo "$(YEL)Flags$(RES): $(CFLAGS) $(LDFLAGS) $(XFLAGS)\n"
 	@echo "     $(MGN)--->$(RES) $(GRN)$(NAME)$(RES)"

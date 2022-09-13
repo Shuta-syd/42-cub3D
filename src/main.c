@@ -6,11 +6,19 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:04 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/12 15:19:53 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/12 22:31:44 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+
+//delete window by esc or x button
+int destroy_window(t_data *dt)
+{
+	mlx_destroy_window(dt->Tmlx.mlx, dt->Tmlx.win);
+	ft_putstr("[EXIT]\n");
+	exit(1);
+}
 
 void	ft_error(t_data *dt)
 {
@@ -19,6 +27,10 @@ void	ft_error(t_data *dt)
 	exit(1);
 }
 
+void print(t_data *dt)
+{
+	(void)dt;
+}
 
 int	main(int argc, char const *argv[])
 {
@@ -30,7 +42,8 @@ int	main(int argc, char const *argv[])
 	if (dt == NULL)
 		ft_error(NULL);
 	init(dt);
-	debug(dt);
-	mlx_loop(dt->Tmlx->mlx);
+	ft_isalpha(42);
+	// mlx_hook(dt->Tmlx.win, 17, 1L << 2, destroy_window, &dt);
+	mlx_loop(dt->Tmlx.mlx);
 	return 0;
 }

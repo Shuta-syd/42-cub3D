@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:04 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/13 19:31:00 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/13 19:48:16 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void drawPlayer(t_data *dt, t_img *pl , t_img *ray ,int x, int y)
 	(void)ray;
 	(void)pl;
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, pl->img, x, y);
-	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, ray->img, x + 10 , y + 10);
+	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, ray->img, x + dt->Tvec.dx * 5 / 2 , y + dt->Tvec.dy * 5);
 }
 
 int drawMap2D(t_data *dt)

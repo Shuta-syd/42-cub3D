@@ -12,16 +12,8 @@
 
 #include <cub3D.h>
 
-const char basicMap[8][9] = {
-	"11111111",
-	"10100001",
-	"10100101",
-	"10000001",
-	"10000001",
-	"10P00101",
-	"10000001",
-	"11111111",
-};
+#define GRAY  "asset/gray.xpm"
+#define WHITE  "asset/white.xpm"
 
 void init_mlx(t_data *dt)
 {
@@ -29,7 +21,24 @@ void init_mlx(t_data *dt)
 	dt->Tmlx.win = mlx_new_window(dt->Tmlx.mlx, WIN_W, WIN_H, "cub3D");
 }
 
+void init_all_images(t_data *dt, t_img *img, void *mlx, char *filepath)
+{
+	(void)dt;
+	int size = 100;
+	img->img = mlx_xpm_file_to_image(mlx, filepath, &size, &size);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len, &img->endian);
+}
+
+void initImage(t_data *dt)
+{
+	init_all_images(dt, &dt->Timgs.img1, dt->Tmlx.mlx, GRAY);
+	init_all_images(dt, &dt->Timgs.img2, dt->Tmlx.mlx, WHITE);
+}
+
 void init(t_data *dt)
 {
 	init_mlx(dt);
+	initImage(dt);
+	dt->Tvec.x = 300;
+	dt->Tvec.y = 500;
 }

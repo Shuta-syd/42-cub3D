@@ -44,7 +44,7 @@ void init(t_data *dt)
 	initImage(dt);
 	dt->Tvec.x = 300;
 	dt->Tvec.y = 500;
-	dt->Tvec.ang = 0;
+	dt->Tvec.ang = 0.5;
 	dt->Tvec.dx = cos(dt->Tvec.ang) * 5;
 	dt->Tvec.dy = sin(dt->Tvec.ang) * 5;
 
@@ -54,9 +54,5 @@ void init(t_data *dt)
 		for (size_t j = 0; j < 15; j++)
 			my_mlx_pixel_put(&dt->Timgs.img_p, j, i, 0x008000);
 
-	dt->Timgs.img_r.img = mlx_new_image(dt->Tmlx.mlx, 50, 5);
-	dt->Timgs.img_r.addr = mlx_get_data_addr(dt->Timgs.img_r.img, &dt->Timgs.img_r.bpp, &dt->Timgs.img_r.line_len, &dt->Timgs.img_r.endian);
-	for (size_t i = 0; i < 5; i++)
-		for (size_t j = 0; j < 50; j++)
-			my_mlx_pixel_put(&dt->Timgs.img_r, j, i, 0x000000);
+	dt->Timgs.img_r.img = mlx_new_image(dt->Tmlx.mlx, 100, 3);
 }

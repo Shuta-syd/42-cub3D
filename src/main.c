@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:04 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/13 19:48:16 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/13 21:56:27 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,20 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void drawPlayer(t_data *dt, t_img *pl , t_img *ray ,int x, int y)
+void drawPlayer(t_data *dt, t_img *pl , t_img *ray ,float x, float y)
 {
 	(void)ray;
 	(void)pl;
+	x += 15;
+	y += 15;
+	for (float j = x; j < x + dt->Tvec.dx * 5; j++)
+	{
+		float ii =  (((y + dt->Tvec.dy * 5) - y) / ((x + dt->Tvec.dx * 5) - x));
+		float b = y - ii * x;
+		printf("ii =>%f b => %f\n", ii, b);
+		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, j, (ii * j) + b, 0x000000);
+	}
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, pl->img, x, y);
-	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, ray->img, x + dt->Tvec.dx * 5 / 2 , y + dt->Tvec.dy * 5);
 }
 
 int drawMap2D(t_data *dt)

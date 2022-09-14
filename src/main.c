@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:04 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/14 13:42:55 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/14 13:51:33 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,11 @@ float calcHypotenuse(float sx, float sy, float ex, float ey)
 	return (sqrt(h));
 }
 
-void drawDiagonal(t_data * dt, float x, float y, float cnt)
+void drawDiagonal(t_data * dt, float x, float y)
 {
-	float len = calcHypotenuse(x, y, x + dt->Tvec.dx * 10, y + dt->Tvec.dy * 10);
-	if (cnt == 0)
-	{
-		x += 7.5;
-		y += 7.5;
-	}
+	x += 7.5;
+	y += 7.5;
+	float len = calcHypotenuse(x, y, x + dt->Tvec.dx * 15, y + dt->Tvec.dy * 15);
 	for (float l = 0; l < len; l++)
 	{
 		float xx = x  + l * cos(dt->Tvec.ang);
@@ -81,7 +78,7 @@ void drawDiagonal(t_data * dt, float x, float y, float cnt)
 void drawPlayer(t_data *dt, t_img *pl ,float x, float y)
 {
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, pl->img, x, y);
-	drawDiagonal(dt, x, y, 0);
+	drawDiagonal(dt, x, y);
 }
 
 int drawMap2D(t_data *dt)

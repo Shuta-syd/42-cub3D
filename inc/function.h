@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/14 21:00:14 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/14 22:26:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,15 @@
 
 #include "struct.h"
 
+/**
+ * @ dda.c
+ */
+void	DDA(t_data *dt, int x);
 
 /**
  * @ hook_action.c
  */
+int	loop(t_data *dt);
 int	keyAction(int keycode, t_data *dt);
 int	destroyWindow(t_data *dt);
 

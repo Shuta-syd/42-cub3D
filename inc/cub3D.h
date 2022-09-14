@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/14 20:57:48 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/14 21:05:29 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@
 
 
 /**
- * @ window size
+ * @ window size & map info
  */
-# define WIN_W 1024
-# define WIN_H 768
+#define mapWidth 24
+#define mapHeight 24
+#define screenWidth 640
+#define screenHeight 480
 
 /**
  * @keycode

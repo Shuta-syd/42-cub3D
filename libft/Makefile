@@ -6,7 +6,7 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 15:22:14 by shogura           #+#    #+#              #
-#    Updated: 2022/09/12 22:32:21 by shogura          ###   ########.fr        #
+#    Updated: 2022/09/14 20:45:00 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ ${NAME}: ${OBJS}
 	${CC} ${CFLAGS} -c $< $@
 
 clean:
-	rm -f ${OBJS_M} ${OBJS_B}
+	rm -f ${OBJS}
 
 fclean: clean
 	rm -rf ${NAME}

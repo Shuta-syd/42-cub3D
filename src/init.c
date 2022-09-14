@@ -41,16 +41,4 @@ void initImage(t_data *dt)
 void init(t_data *dt)
 {
 	init_mlx(dt);
-	initImage(dt);
-	dt->Tvec.x = 300;
-	dt->Tvec.y = 500;
-	dt->Tvec.ang = 0.5;
-	dt->Tvec.dx = cos(dt->Tvec.ang) * 5;
-	dt->Tvec.dy = sin(dt->Tvec.ang) * 5;
-
-	dt->Timgs.img_p.img = mlx_new_image(dt->Tmlx.mlx, 15, 15);
-	dt->Timgs.img_p.addr = mlx_get_data_addr(dt->Timgs.img_p.img, &dt->Timgs.img_p.bpp, &dt->Timgs.img_p.line_len, &dt->Timgs.img_p.endian);
-	for (size_t i = 0; i < 15; i++)
-		for (size_t j = 0; j < 15; j++)
-			my_mlx_pixel_put(&dt->Timgs.img_p, j, i, 0x008000);
 }

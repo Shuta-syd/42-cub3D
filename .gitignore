@@ -6,3 +6,4 @@ libft/gnl/*.o
 .vscode
 .DS_Store
 memo.txt
+archive/*

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/13 16:26:02 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/14 20:57:48 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,24 @@
 # include "struct.h"
 # include "function.h"
 
-// @window size 4:3 128:96
+
+/**
+ * @ window size
+ */
 # define WIN_W 1024
 # define WIN_H 768
 
-// @ keycode
+/**
+ * @keycode
+ */
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
 
-// @message
+/**
+ * @ message
+ */
 # define ERROR "[ERROR] something wrong"
 
 #endif

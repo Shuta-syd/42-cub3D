@@ -32,6 +32,8 @@ void initPlayer(t_data  *dt)
 	dt->P.dir = (t_vec){-1, 0};
 	// initial camera plane
 	dt->P.pl = (t_vec){0, 0.66};
+
+	dt->hit = false;
 }
 
 void init(t_data *dt)

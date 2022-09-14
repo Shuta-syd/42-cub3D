@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/14 22:15:32 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/14 22:46:45 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ typedef struct s_vec
 
 typedef struct s_player
 {
-	t_vec	pos;
-	t_vec	dir;
-	t_vec	pl;
-	t_vec	side;
-	t_vec	dl;
-	t_vec	ray;
-	double	fov;
+	t_vec	pos; // player postion
+	t_vec	dir; // player direction
+	t_vec	pl; // camera plane
+	t_vec	side; // side
+	t_vec	dl; //delta
+	t_vec	ray; // ray direction
+	t_vec	step; // step
+	double	fov; // angle
 } t_player;
 
 typedef struct s_data
@@ -61,6 +62,8 @@ typedef struct s_data
 	t_mlx		Tmlx;
 	t_map		Tmap;
 	t_player	P;
+	bool hit;
+	int side;
 } t_data;
 
 #endif

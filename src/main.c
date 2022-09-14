@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:04 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/13 22:01:33 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/14 13:42:55 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,42 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void drawPlayer(t_data *dt, t_img *pl , t_img *ray ,float x, float y)
+float calcHypotenuse(float sx, float sy, float ex, float ey)
 {
-	(void)ray;
-	(void)pl;
-	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, pl->img, x, y);
-	x += 7.5;
-	y += 7.5;
-	for (float j = x; j < x + dt->Tvec.dx * 5; j++)
+	float h;
+	float bottom;
+	float height;
+
+	bottom = sx - ex;
+	if (bottom < 0)
+		bottom *= -1;
+	height = sy - ey;
+	if (height < 0)
+		height *= -1;
+	h = pow(bottom, 2) + pow(height, 2);
+	return (sqrt(h));
+}
+
+void drawDiagonal(t_data * dt, float x, float y, float cnt)
+{
+	float len = calcHypotenuse(x, y, x + dt->Tvec.dx * 10, y + dt->Tvec.dy * 10);
+	if (cnt == 0)
 	{
-		float ii =  (((y + dt->Tvec.dy * 5) - y) / ((x + dt->Tvec.dx * 5) - x));
-		float b = y - ii * x;
-		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, j, (ii * j) + b, 0x000000);
+		x += 7.5;
+		y += 7.5;
 	}
+	for (float l = 0; l < len; l++)
+	{
+		float xx = x  + l * cos(dt->Tvec.ang);
+		float yy = y + l * sin(dt->Tvec.ang);
+		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, xx, yy, 0x000000);
+	}
+}
+
+void drawPlayer(t_data *dt, t_img *pl ,float x, float y)
+{
+	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, pl->img, x, y);
+	drawDiagonal(dt, x, y, 0);
 }
 
 int drawMap2D(t_data *dt)
@@ -73,7 +96,7 @@ int drawMap2D(t_data *dt)
 				mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timgs.img_g.img, x, y);
 			else
 				mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timgs.img_w.img, x, y);
-			drawPlayer(dt, &dt->Timgs.img_p, &dt->Timgs.img_r, dt->Tvec.x, dt->Tvec.y);
+			drawPlayer(dt, &dt->Timgs.img_p, dt->Tvec.x, dt->Tvec.y);
 		}
 	}
 	return (0);

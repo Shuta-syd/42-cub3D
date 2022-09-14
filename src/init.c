@@ -53,6 +53,4 @@ void init(t_data *dt)
 	for (size_t i = 0; i < 15; i++)
 		for (size_t j = 0; j < 15; j++)
 			my_mlx_pixel_put(&dt->Timgs.img_p, j, i, 0x008000);
-
-	dt->Timgs.img_r.img = mlx_new_image(dt->Tmlx.mlx, 100, 3);
 }

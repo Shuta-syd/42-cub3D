@@ -26,14 +26,7 @@ void initMlx(t_data *dt)
 
 void initPlayer(t_data  *dt)
 {
-	// player start position
-	dt->P.pos = (t_vec){22, 14};
-	// initial direction
-	dt->P.dir = (t_vec){-1, 0};
-	// initial camera plane
-	dt->P.pl = (t_vec){0, 0.66};
-
-	dt->hit = false;
+	(void)dt;
 }
 
 void init(t_data *dt)

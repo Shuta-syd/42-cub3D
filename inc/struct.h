@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/14 22:46:45 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/16 14:14:24 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_data
 	t_player	P;
 	bool hit;
 	int side;
+	double prepWallDist;
 } t_data;
 
 #endif

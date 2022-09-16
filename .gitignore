@@ -7,3 +7,4 @@ libft/gnl/*.o
 .DS_Store
 memo.txt
 archive/*
+archive2/*

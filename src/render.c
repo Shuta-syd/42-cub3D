@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 16:09:41 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 16:33:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ int	render(t_data *dt)
 {
 	renderMap(dt);
 	renderPlayer(dt);
+	renderRay();
 	return (0);
 }

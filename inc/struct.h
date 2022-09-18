@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 16:05:32 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 16:36:27 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,18 @@ typedef struct s_player
 	float	turnSpeed;
 } t_player;
 
+typedef struct s_ray
+{
+	float	rayAngle;
+	float	wallHitX;
+	float	wallHitY;
+	int		wasHitVertical;
+	int		isRayFacingUp;
+	int		isRayFacingDown;
+	int		isRayFacingRight;
+	int		isRayFacingLeft;
+} t_ray;
+
 /**
  * @ comprehensive data
  */
@@ -59,6 +71,7 @@ typedef struct s_data
 {
 	t_mlx		Tmlx;
 	t_imgs		Timg;
+	t_ray		R;
 	t_player	P;
 } t_data;
 

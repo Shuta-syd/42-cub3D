@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 13:06:56 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 14:37:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,37 @@ void renderMap(t_data *dt)
 	{
 		for (int j = 0; j < mapCol; j++)
 		{
-			int tileX = j * tileSize;
-			int tileY = i * tileSize;
+			int tileX = j * tileSize * MINIMAP_SCALE;
+			int tileY = i * tileSize * MINIMAP_SCALE;
 			if (map[i][j] == 1)
 				color = calc_trgb(0, 255, 255, 255);
 			else
 				color = calc_trgb(0, 0, 0, 0);
-			renderTile(&dt->Timg, tileX * MINIMAP_SCALE, tileY * MINIMAP_SCALE, color);
+			renderTile(&dt->Timg, tileX, tileY, color);
 		}
 	}
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.map.img, 0, 0);
+}
+
+void renderPlayer(t_data *dt)
+{
+	int startX;
+	int startY;
+	int endX;
+	int endY;
+
+	startX = dt->P.x * MINIMAP_SCALE;
+	startY = dt->P.y * MINIMAP_SCALE;
+	endX = dt->P.width * MINIMAP_SCALE;
+	endY = dt->P.height * MINIMAP_SCALE;
+	for (int y = 0; y < endY; y++)
+		for (int x = 0; x < endX; x++)
+			my_mlx_pixel_put(&dt->Timg.P, x, y, 0xFFFF00);
+	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.P.img, startX, startY);
+}
+
+void render(t_data *dt)
+{
+	renderMap(dt);
+	renderPlayer(dt);
 }

@@ -12,13 +12,17 @@
 
 #include <cub3D.h>
 
-void initImage(t_imgs *Timg, t_mlx *M)
+void initImage(t_data *dt, t_imgs *Timg, t_mlx *M)
 {
 	t_img	*map;
+	t_img	*P;
 
 	map = &Timg->map;
+	P = &Timg->P;
 	map->img = mlx_new_image(M->mlx, WINDOW_W, WINDOW_H);
 	map->addr = mlx_get_data_addr(map->img, &map->bpp, &map->line_len, &map->endian);
+	P->img = mlx_new_image(M->mlx, dt->P.width, dt->P.height);
+	P->addr = mlx_get_data_addr(P->img, &P->bpp, &P->line_len, &P->endian);
 }
 
 void initMlx(t_mlx *M)
@@ -31,8 +35,8 @@ void initPlayer(t_player *P)
 {
 	P->x = WINDOW_W / 2;
 	P->y = WINDOW_H / 2;
-	P->width = 5;
-	P->height = 5;
+	P->width = 10;
+	P->height = 10;
 	P->turnDirection = 0;
 	P->walkDirection = 0;
 	P->rotationAngle = M_PI / 2;
@@ -43,6 +47,6 @@ void initPlayer(t_player *P)
 void init(t_data *dt)
 {
 	initMlx(&dt->Tmlx);
-	initImage(&dt->Timg, &dt->Tmlx);
 	initPlayer(&dt->P);
+	initImage(dt, &dt->Timg, &dt->Tmlx);
 }

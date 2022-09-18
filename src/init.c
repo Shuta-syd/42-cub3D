@@ -40,8 +40,8 @@ void initPlayer(t_player *P)
 	P->turnDirection = 0;
 	P->walkDirection = 0;
 	P->rotationAngle = M_PI / 2;
-	P->turnSpeed = 45;
-	P->walkSpeed = 50;
+	P->turnSpeed = 100;
+	P->walkSpeed = 20;
 }
 
 void init(t_data *dt)

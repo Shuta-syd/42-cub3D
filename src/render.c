@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 15:00:29 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 16:09:41 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void renderDrawLine(t_data *dt, float x, float y)
 	{
 		plotX = x + cos(dt->P.rotationAngle) * l * MINIMAP_SCALE;
 		plotY = y + sin(dt->P.rotationAngle) * l * MINIMAP_SCALE;
-		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, plotX, plotY, 0xFFFF00);
+		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, plotX, plotY, 0xFF0000);
 	}
 }
 
@@ -74,7 +74,7 @@ void renderPlayer(t_data *dt)
 	endY = dt->P.height * MINIMAP_SCALE;
 	for (int y = 0; y < endY; y++)
 		for (int x = 0; x < endX; x++)
-			my_mlx_pixel_put(&dt->Timg.P, x, y, 0xFFFF00);
+			my_mlx_pixel_put(&dt->Timg.P, x, y, 0xFF0000);
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.P.img, startX, startY);
 	renderDrawLine(dt, startX, startY);
 }

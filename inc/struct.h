@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/16 14:14:24 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 12:29:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,36 +35,29 @@ typedef struct s_imgs
 
 typedef struct s_map
 {
-	int x;
-	int y;
-} t_map;
 
-typedef struct s_vec
-{
-	double x;
-	double y;
-} t_vec;
+} t_map;
 
 typedef struct s_player
 {
-	t_vec	pos; // player postion
-	t_vec	dir; // player direction
-	t_vec	pl; // camera plane
-	t_vec	side; // side
-	t_vec	dl; //delta
-	t_vec	ray; // ray direction
-	t_vec	step; // step
-	double	fov; // angle
+	float	x;
+	float	y;
+	float	width;
+	float	height;
+	int		turnDirection; // -1 for left, +1 for right
+	int		walkDirection; // -1 for back, +1 for front
+	float	rotationAngle;
+	float	walkSpeed;
+	float	turnSpeed;
 } t_player;
 
+/**
+ * @ comprehensive data
+ */
 typedef struct s_data
 {
 	t_mlx		Tmlx;
-	t_map		Tmap;
 	t_player	P;
-	bool hit;
-	int side;
-	double prepWallDist;
 } t_data;
 
 #endif

@@ -6,7 +6,7 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 20:13:30 by shogura           #+#    #+#              #
-#    Updated: 2022/09/16 14:00:58 by shogura          ###   ########.fr        #
+#    Updated: 2022/09/17 19:14:00 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,9 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+run: all
+	./cub3D
 
 .PHONY: all libx clean fclean re
 

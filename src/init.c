@@ -21,7 +21,7 @@ void initImage(t_data *dt)
 void initMlx(t_data *dt)
 {
 	dt->Tmlx.mlx = mlx_init();
-	dt->Tmlx.win = mlx_new_window(dt->Tmlx.mlx, screenWidth, screenHeight, "cub3D");
+	dt->Tmlx.win = mlx_new_window(dt->Tmlx.mlx, WINDOW_W, WINDOW_H, "cub3D");
 }
 
 void initPlayer(t_data  *dt)

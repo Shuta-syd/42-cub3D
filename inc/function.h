@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/16 14:04:20 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 12:37:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@
 #include "struct.h"
 
 /**
- * @ dda.c
+ * @ render.c
  */
-void DDA(t_data *dt, int x, const int worldMap[24][24]);
+void renderMap(t_data *dt);
 
 /**
  * @ hook_action.c
  */
-int loop(t_data *dt);
-int	keyAction(int keycode, t_data *dt);
+int keyAction(int keycode, t_data *dt);
 int	destroyWindow(t_data *dt);
 
 /**

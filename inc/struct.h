@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 16:42:13 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 18:20:51 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_ray
 	float	rayAngle;
 	float	wallHitX;
 	float	wallHitY;
+	float	distance;
 	int		wasHitVertical;
 	int		isRayFacingUp;
 	int		isRayFacingDown;

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 16:49:19 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 18:24:31 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,155 @@ void renderPlayer(t_data *dt)
 	renderDrawLine(dt, startX, startY);
 }
 
-void castRay(t_data *dt, float rayAngle, float stripId)
+/**
+ * @ what is this ?
+ */
+float normalizeAngle(float angle)
 {
+	angle = remainder(angle, M_PI * 2);
+	if (angle < 0)
+		angle = M_PI * 2 + angle;
+	return angle;
+}
+
+float distanceBetweenPoints(float x1, float y1, float x2, float y2)
+{
+	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+}
+
+/**
+ * TODO: All that crazy logic for horz, vert ...
+ */
+void castRay(t_data *dt, float rayAngle, int stripId)
+{
+	rayAngle = normalizeAngle(rayAngle);
+
+	int	isRayFacingDown = rayAngle > 0 && rayAngle > M_PI;
+	int	isRayFacingUp = !dt->R->isRayFacingDown;
+	int	isRayFacingRight = rayAngle < 0.5 * M_PI || rayAngle > 1.5 * M_PI;
+	int	isRayFacingLeft = !dt->R->isRayFacingRight;
+
+	float xIntercept, yIntercept;
+	float xStep, yStep;
+
 	/**
-	 * TODO: All that crazy logic for horz, vert ...
+	 * HORIZONTAL RAY-GRID INTERSECTION CODE
+	 */
+	int foundHorzWallHit = false;
+	float horzWallHitX = 0;
+	float horzWallHitY = 0;
+	int horzWallContent = 0;
+
+	xIntercept = floor(dt->P.x / tileSize) * tileSize;
+	xIntercept += isRayFacingRight ? tileSize : 0;
+
+	yIntercept = dt->P.y + (xIntercept - dt->P.x) / tan(rayAngle);
+
+	xStep = tileSize;
+	xStep *= isRayFacingLeft ? -1 : 1;
+
+	yStep = tileSize / tan(rayAngle);
+	yStep *= (isRayFacingUp && xStep > 0) ? -1 : 1;
+	yStep *= (isRayFacingDown && xStep < 0) ? -1 : 1;
+
+	float nextHorzTouchX = xIntercept;
+	float nextHorzTouchY = yIntercept;
+
+	while (nextHorzTouchX >= 0 && nextHorzTouchX <= WINDOW_W && nextHorzTouchX >= 0 && nextHorzTouchY <= WINDOW_H)
+	{
+		float xToCheck = nextHorzTouchX;
+		float yToCheck = nextHorzTouchY + (isRayFacingUp ? -1 : 0);
+
+		if (mapHasWallAt(xToCheck, yToCheck))
+		{
+			horzWallHitX = nextHorzTouchX;
+			horzWallHitY = nextHorzTouchY;
+			foundHorzWallHit = true;
+			horzWallContent = map[(int)floor(yToCheck / tileSize)][(int)floor(xToCheck / tileSize)];
+			break;
+		}
+		else
+		{
+			nextHorzTouchX += xStep;
+			nextHorzTouchY += yStep;
+		}
+
+	}
+
+	/**
+	 * VERTICAL RAY-GRID INTERSECTION CODE
+	 */
+	int foundVertWallHit = false;
+	float vertWallHitX = 0;
+	float vertWallHitY = 0;
+	int VertWallContent = 0;
+
+	yIntercept = floor(dt->P.y / tileSize) * tileSize;
+	yIntercept += isRayFacingDown ? tileSize : 0;
+
+	xIntercept = dt->P.x + (yIntercept - dt->P.y) / tan(rayAngle);
+
+	xStep = tileSize;
+	xStep *= isRayFacingUp ? -1 : 1;
+
+	yStep = tileSize / tan(rayAngle);
+	yStep *= (isRayFacingLeft && xStep > 0) ? -1 : 1;
+	yStep *= (isRayFacingRight && xStep < 0) ? -1 : 1;
+
+	float nextVertTouchX = xIntercept;
+	float nextVertTouchY = yIntercept;
+
+	while (nextVertTouchX >= 0 && nextVertTouchX <= WINDOW_W && nextVertTouchX >= 0 && nextVertTouchY <= WINDOW_H)
+	{
+		float xToCheck = nextVertTouchX + (isRayFacingLeft ? -1 : 0);
+		float yToCheck = nextVertTouchY;
+
+		if (mapHasWallAt(xToCheck, yToCheck))
+		{
+			vertWallHitX = nextVertTouchX;
+			vertWallHitY = nextVertTouchY;
+			foundVertWallHit = true;
+			VertWallContent = map[(int)floor(yToCheck / tileSize)][(int)floor(xToCheck / tileSize)];
+			break;
+		}
+		else
+		{
+			nextVertTouchX += xStep;
+			nextVertTouchY += yStep;
+		}
+	}
+	/**
+	 *  Calculate both horizontal and vertical hit distances and choose the smallest one
 	 */
 
-	
+	float horzHitDistance = foundHorzWallHit ? distanceBetweenPoints(dt->P.x, dt->P.y, horzWallHitX, horzWallHitY) : INT_MAX;
+
+	float vertHitDistance = foundVertWallHit ? distanceBetweenPoints(dt->P.x, dt->P.y, vertWallHitX, vertWallHitY) : INT_MAX;
+
+	if (vertHitDistance < horzHitDistance)
+	{
+		dt->R[stripId].distance = vertHitDistance;
+		dt->R[stripId].wallHitX = vertWallHitX;
+		dt->R[stripId].wallHitY = vertWallHitY;
+		dt->R[stripId].wallHitContent = VertWallContent;
+		dt->R[stripId].wasHitVertical = true;
+	}
+	else
+	{
+		dt->R[stripId].distance = horzHitDistance;
+		dt->R[stripId].wallHitX = horzWallHitX;
+		dt->R[stripId].wallHitY = horzWallHitY;
+		dt->R[stripId].wallHitContent = horzWallContent;
+		dt->R[stripId].wasHitVertical = false;
+	}
 }
 
 /**
  * @ start first ray subtracting half of our FOV
  */
-void castAllRays(t_data *dt)
+void castAllRays(t_data * dt)
 {
-	float	rayAngle;
+	float rayAngle;
 
 	rayAngle = dt->P.rotationAngle - (FOV_ANGLE / 2);
 	for (int stripId = 0; stripId < NUM_RAYS; stripId++)

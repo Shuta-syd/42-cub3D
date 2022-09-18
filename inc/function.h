@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 15:00:12 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 20:53:15 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,21 @@
 /**
  * @ render.c
  */
-int render(t_data *dt);
-void renderMap(t_data *dt);
+int		render(t_data *dt);
+void	renderMap(t_data *dt);
+void	castAllRays(t_data *dt);
 
 /**
  * @ hook_action.c
  */
 int keyAction(int keycode, t_data *dt);
 int	destroyWindow(t_data *dt);
+bool mapHasWallAt(float x, float y);
 
 /**
  * @ mlx_utils.c
  */
-int		calc_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
+int calc_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 /**

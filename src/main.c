@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:04 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 15:44:08 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 21:12:06 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(void)
 	if (dt == NULL)
 		ft_error(NULL);
 	init(dt);
+	castAllRays(dt);
 	render(dt);
 	mlx_hook(dt->Tmlx.win, 2, 1L << 0, keyAction, dt);
 	mlx_hook(dt->Tmlx.win, 17, 1L << 2, destroyWindow, dt);

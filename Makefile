@@ -6,12 +6,12 @@
 #    By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 20:13:30 by shogura           #+#    #+#              #
-#    Updated: 2022/09/17 19:14:00 by shogura          ###   ########.fr        #
+#    Updated: 2022/09/18 14:53:25 by shogura          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
-CFLAGS	=	#-Wall -Wextra -Werror -g
+CFLAGS	=	-Wall -Wextra -Werror -g
 LDFLAGS	=	-Llibft -lft -lm -lmlx_Darwin
 XFLAGS	=	-Lmlx -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 NAME	=	cub3D

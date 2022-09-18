@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 14:37:09 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 14:57:35 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,29 @@ void renderMap(t_data *dt)
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.map.img, 0, 0);
 }
 
+void renderDrawLine(t_data *dt, float x, float y)
+{
+	float	plotX;
+	float	plotY;
+	float	len;
+
+	len = 50;
+	x += +dt->P.width / 2 * MINIMAP_SCALE;
+	y += +dt->P.height / 2 * MINIMAP_SCALE;
+	for (int l = 0; l < len; l++)
+	{
+		plotX = x + cos(dt->P.rotationAngle) * l * MINIMAP_SCALE;
+		plotY = y + sin(dt->P.rotationAngle) * l * MINIMAP_SCALE;
+		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, plotX, plotY, 0xFFFF00);
+	}
+}
+
 void renderPlayer(t_data *dt)
 {
-	int startX;
-	int startY;
-	int endX;
-	int endY;
+	float startX;
+	float startY;
+	float endX;
+	float endY;
 
 	startX = dt->P.x * MINIMAP_SCALE;
 	startY = dt->P.y * MINIMAP_SCALE;
@@ -59,6 +76,7 @@ void renderPlayer(t_data *dt)
 		for (int x = 0; x < endX; x++)
 			my_mlx_pixel_put(&dt->Timg.P, x, y, 0xFFFF00);
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.P.img, startX, startY);
+	renderDrawLine(dt, startX, startY);
 }
 
 void render(t_data *dt)

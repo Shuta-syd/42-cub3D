@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 14:57:46 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 15:08:02 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@
 /**
  * @keycode (JIS)
  */
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
+# define UP 119
+# define DOWN 97
+# define LEFT 115
+# define RIGHT 100
 
 /**
  * @ message

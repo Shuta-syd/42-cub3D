@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 14:22:06 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 15:00:12 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 /**
  * @ render.c
  */
-void render(t_data *dt);
+int render(t_data *dt);
 void renderMap(t_data *dt);
 
 /**

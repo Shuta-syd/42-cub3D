@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 14:57:35 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 15:00:29 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void renderDrawLine(t_data *dt, float x, float y)
 	float	plotY;
 	float	len;
 
-	len = 50;
+	len = 50; //hypothesis
 	x += +dt->P.width / 2 * MINIMAP_SCALE;
 	y += +dt->P.height / 2 * MINIMAP_SCALE;
 	for (int l = 0; l < len; l++)
@@ -79,8 +79,9 @@ void renderPlayer(t_data *dt)
 	renderDrawLine(dt, startX, startY);
 }
 
-void render(t_data *dt)
+int	render(t_data *dt)
 {
 	renderMap(dt);
 	renderPlayer(dt);
+	return (0);
 }

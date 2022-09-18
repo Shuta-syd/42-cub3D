@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 15:08:02 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 15:25:10 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
  * @keycode (JIS)
  */
 # define UP 119
-# define DOWN 97
-# define LEFT 115
+# define DOWN 115
+# define LEFT 97
 # define RIGHT 100
 
 /**

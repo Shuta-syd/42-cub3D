@@ -6,12 +6,14 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 16:36:27 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 16:42:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+#include <cub3D.h>
 
 typedef struct s_mlx
 {
@@ -62,6 +64,7 @@ typedef struct s_ray
 	int		isRayFacingDown;
 	int		isRayFacingRight;
 	int		isRayFacingLeft;
+	int		wallHitContent;
 } t_ray;
 
 /**
@@ -71,7 +74,7 @@ typedef struct s_data
 {
 	t_mlx		Tmlx;
 	t_imgs		Timg;
-	t_ray		R;
+	t_ray		R[960];
 	t_player	P;
 } t_data;
 

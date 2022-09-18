@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 16:33:39 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/18 16:49:19 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,39 @@ void renderPlayer(t_data *dt)
 	renderDrawLine(dt, startX, startY);
 }
 
+void castRay(t_data *dt, float rayAngle, float stripId)
+{
+	/**
+	 * TODO: All that crazy logic for horz, vert ...
+	 */
+
+	
+}
+
+/**
+ * @ start first ray subtracting half of our FOV
+ */
+void castAllRays(t_data *dt)
+{
+	float	rayAngle;
+
+	rayAngle = dt->P.rotationAngle - (FOV_ANGLE / 2);
+	for (int stripId = 0; stripId < NUM_RAYS; stripId++)
+	{
+		castRay(dt, rayAngle, stripId);
+		rayAngle += FOV_ANGLE / NUM_RAYS;
+	}
+}
+
+void renderRay(t_data *dt)
+{
+	(void)dt;
+}
+
 int	render(t_data *dt)
 {
 	renderMap(dt);
 	renderPlayer(dt);
-	renderRay();
+	renderRay(dt);
 	return (0);
 }

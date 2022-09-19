@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 13:56:32 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 14:54:47 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_data
 {
 	t_mlx		Tmlx;
 	t_imgs		Timg;
-	t_ray		R[60];
+	t_ray		R[100];
 	t_player	P;
 } t_data;
 

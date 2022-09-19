@@ -15,14 +15,19 @@
 void initImage(t_data *dt, t_imgs *Timg, t_mlx *M)
 {
 	t_img	*map;
+	t_img	*map3D;
 	t_img	*P;
 
 	map = &Timg->map;
 	P = &Timg->P;
-	map->img = mlx_new_image(M->mlx, WINDOW_W, WINDOW_H);
+	map3D = Timg->map3D;
+
+	map->img = mlx_new_image(M->mlx, WINDOW_W * MINIMAP_SCALE, WINDOW_H * MINIMAP_SCALE);
 	map->addr = mlx_get_data_addr(map->img, &map->bpp, &map->line_len, &map->endian);
 	P->img = mlx_new_image(M->mlx, dt->P.width * MINIMAP_SCALE, dt->P.height * MINIMAP_SCALE);
 	P->addr = mlx_get_data_addr(P->img, &P->bpp, &P->line_len, &P->endian);
+	map3D->img = mlx_new_image(M->mlx, WINDOW_W, WINDOW_H);
+	map3D->addr = mlx_get_data_addr(map3D->img, &map3D->bpp, &map3D->line_len, &map3D->endian);
 }
 
 void initMlx(t_mlx *M)

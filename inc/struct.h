@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 15:45:49 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 18:05:47 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_imgs
 {
 	t_img	map;
 	t_img	P;
+	t_img	map3D;
 } t_imgs;
 
 typedef struct s_map

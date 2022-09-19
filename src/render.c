@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/18 21:13:37 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 12:41:01 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,10 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 		{
 			horzWallHitX = nextHorzTouchX;
 			horzWallHitY = nextHorzTouchY;
-			foundHorzWallHit = true;
 			horzWallContent = map[(int)floor(yToCheck / tileSize)][(int)floor(xToCheck / tileSize)];
+			foundHorzWallHit = true;
+			// printf("HORZ x->[%f] y->[%f] content->[%d]\n", horzWallHitX, horzWallHitY, horzWallContent);
+			// mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, horzWallHitX, horzWallHitY, 0xFF0000);
 			break;
 		}
 		else
@@ -186,6 +188,8 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 			vertWallHitY = nextVertTouchY;
 			foundVertWallHit = true;
 			VertWallContent = map[(int)floor(yToCheck / tileSize)][(int)floor(xToCheck / tileSize)];
+			// printf("VERT x->[%f] y->[%f] content->[%d]\n", vertWallHitX, vertWallHitY, VertWallContent);
+			// mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, vertWallHitX, vertWallHitY, 0x0000FF);
 			break;
 		}
 		else
@@ -194,29 +198,35 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 			nextVertTouchY += yStep;
 		}
 	}
+
 	/**
 	 *  Calculate both horizontal and vertical hit distances and choose the smallest one
 	 */
-
 	float horzHitDistance = foundHorzWallHit ? distanceBetweenPoints(dt->P.x, dt->P.y, horzWallHitX, horzWallHitY) : INT_MAX;
+	// printf("horz distance->[%f] found->[%d]\n", horzHitDistance, foundHorzWallHit);
 
 	float vertHitDistance = foundVertWallHit ? distanceBetweenPoints(dt->P.x, dt->P.y, vertWallHitX, vertWallHitY) : INT_MAX;
+	// printf("vert distance->[%f] found->[%d]\n", vertHitDistance, foundVertWallHit);
 
-	if (vertHitDistance < horzHitDistance)
+	if (vertHitDistance < horzHitDistance && vertHitDistance != INT_MAX)
 	{
 		dt->R[stripId].distance = vertHitDistance;
-		dt->R[stripId].wallHitX = vertWallHitX;
 		dt->R[stripId].wallHitY = vertWallHitY;
+		dt->R[stripId].wallHitX = vertWallHitX;
 		dt->R[stripId].wallHitContent = VertWallContent;
 		dt->R[stripId].wasHitVertical = true;
 	}
-	else
+	else if (vertHitDistance > horzHitDistance && horzHitDistance != INT_MAX)
 	{
 		dt->R[stripId].distance = horzHitDistance;
 		dt->R[stripId].wallHitX = horzWallHitX;
 		dt->R[stripId].wallHitY = horzWallHitY;
 		dt->R[stripId].wallHitContent = horzWallContent;
 		dt->R[stripId].wasHitVertical = false;
+	}
+	else
+	{
+		// printf("not contact. h->%d v->%d\n", foundHorzWallHit, foundVertWallHit);
 	}
 	dt->R[stripId].rayAngle = rayAngle;
 	dt->R[stripId].isRayFacingUp = isRayFacingUp;
@@ -242,10 +252,11 @@ void castAllRays(t_data * dt)
 
 void renderRays(t_data *dt)
 {
-	int color = calc_trgb(255, 0, 0, 255);
+	(void)dt;
+	int color = calc_trgb(0, 0, 255, 0);
 	for (int i = 0; i < NUM_RAYS; i++)
 	{
-		printf("distance->[%f] wallX->[%f] wallY->[%f]\n", dt->R[i].distance, dt->R[i].wallHitX, dt->R[i].wallHitY);
+		// printf("distance->[%f] wallX->[%f] wallY->[%f]\n", dt->R[i].distance, dt->R[i].wallHitX, dt->R[i].wallHitY);
 		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, dt->R[i].wallHitX, dt->R[i].wallHitY, color);
 		// renderDrawLine(dt, dt->P.x, dt->P.y, dt->R[i].distance, color);
 	}
@@ -253,6 +264,7 @@ void renderRays(t_data *dt)
 
 int	render(t_data *dt)
 {
+	(void)dt;
 	renderMap(dt);
 	renderRays(dt);
 	renderPlayer(dt);

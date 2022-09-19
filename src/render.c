@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 15:26:41 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 17:20:26 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void renderDrawLine(t_data *dt, float x, float y, float len, float angle, int co
 	y = (y + dt->P.height / 2) * MINIMAP_SCALE;
 	for (int l = 0; l < len * MINIMAP_SCALE; l++)
 	{
-		plotX = x + cos(angle) * l * MINIMAP_SCALE;
-		plotY = y + sin(angle) * l * MINIMAP_SCALE;
+		plotX = x + cos(angle) * l;
+		plotY = y + sin(angle) * l;
 		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, plotX, plotY, color);
 	}
 }
@@ -87,7 +87,6 @@ void renderRays(t_data *dt)
 
 int	render(t_data *dt)
 {
-	(void)dt;
 	renderMap(dt);
 	renderPlayer(dt);
 	renderRays(dt);

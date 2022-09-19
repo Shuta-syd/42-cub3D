@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 15:17:52 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 17:21:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 #define tileSize 64
 #define mapRow 11
 #define mapCol 15
-#define MINIMAP_SCALE 1.0
+#define MINIMAP_SCALE 0.4
 #define WINDOW_W mapCol * tileSize
 #define WINDOW_H mapRow * tileSize
 

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 17:20:26 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 17:26:48 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void renderTile(t_imgs *Timg, int tileX, int tileY, int color)
 	endY = tileY + tileSize * MINIMAP_SCALE;
 	for (int y = tileY; y < endY; y++)
 		for (int x = tileX; x < endX; x++)
-			my_mlx_pixel_put(&Timg->map, x, y, color);
+			my_mlx_pixel_put(&Timg->map, x , y, color);
 }
 
 void renderMap(t_data *dt)
@@ -72,9 +72,8 @@ void renderPlayer(t_data *dt)
 	endY = dt->P.height * MINIMAP_SCALE;
 	for (int y = 0; y < endY; y++)
 		for (int x = 0; x < endX; x++)
-			my_mlx_pixel_put(&dt->Timg.P, x, y, 0xFF0000);
+			my_mlx_pixel_put(&dt->Timg.P, x , y, 0xFF0000);
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.P.img, startX, startY);
-	//renderDrawLine(dt, dt->P.x , dt->P.y, 50, dt->P.rotationAngle, 0xFF0000);
 }
 
 

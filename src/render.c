@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 12:41:01 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 14:18:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void renderMap(t_data *dt)
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.map.img, 0, 0);
 }
 
-void renderDrawLine(t_data *dt, float x, float y, float len, int color)
+void renderDrawLine(t_data *dt, float x, float y, float len, float angle, int color)
 {
 	float	plotX;
 	float	plotY;
@@ -53,8 +53,8 @@ void renderDrawLine(t_data *dt, float x, float y, float len, int color)
 	y += +dt->P.height / 2 * MINIMAP_SCALE;
 	for (int l = 0; l < len; l++)
 	{
-		plotX = x + cos(dt->P.rotationAngle) * l * MINIMAP_SCALE;
-		plotY = y + sin(dt->P.rotationAngle) * l * MINIMAP_SCALE;
+		plotX = x + cos(angle) * l * MINIMAP_SCALE;
+		plotY = y + sin(angle) * l * MINIMAP_SCALE;
 		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, plotX, plotY, color);
 	}
 }
@@ -74,7 +74,7 @@ void renderPlayer(t_data *dt)
 		for (int x = 0; x < endX; x++)
 			my_mlx_pixel_put(&dt->Timg.P, x, y, 0xFF0000);
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.P.img, startX, startY);
-	renderDrawLine(dt, startX, startY, 50, 0xFF0000);
+	renderDrawLine(dt, startX, startY, 50, dt->P.rotationAngle, 0xFF0000);
 }
 
 /**
@@ -84,7 +84,7 @@ float normalizeAngle(float angle)
 {
 	angle = remainder(angle, M_PI * 2);
 	if (angle < 0)
-		angle = M_PI * 2 + angle;
+		angle = M_PI * 2.0 + angle;
 	return angle;
 }
 
@@ -131,6 +131,7 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 	float nextHorzTouchX = xIntercept;
 	float nextHorzTouchY = yIntercept;
 
+	static int i = 1;
 	while (nextHorzTouchX >= 0 && nextHorzTouchX <= WINDOW_W && nextHorzTouchY >= 0 && nextHorzTouchY <= WINDOW_H)
 	{
 		float xToCheck = nextHorzTouchX;
@@ -151,8 +152,8 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 			nextHorzTouchX += xStep;
 			nextHorzTouchY += yStep;
 		}
-
 	}
+	i++;
 
 	/**
 	 * VERTICAL RAY-GRID INTERSECTION CODE
@@ -171,8 +172,8 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 	xStep *= isRayFacingLeft ? -1 : 1;
 
 	yStep = tileSize / tan(rayAngle);
-	yStep *= (isRayFacingUp && xStep > 0) ? -1 : 1;
-	yStep *= (isRayFacingDown && xStep < 0) ? -1 : 1;
+	yStep *= (isRayFacingUp && yStep > 0) ? -1 : 1;
+	yStep *= (isRayFacingDown && yStep < 0) ? -1 : 1;
 
 	float nextVertTouchX = xIntercept;
 	float nextVertTouchY = yIntercept;
@@ -208,7 +209,7 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 	float vertHitDistance = foundVertWallHit ? distanceBetweenPoints(dt->P.x, dt->P.y, vertWallHitX, vertWallHitY) : INT_MAX;
 	// printf("vert distance->[%f] found->[%d]\n", vertHitDistance, foundVertWallHit);
 
-	if (vertHitDistance < horzHitDistance && vertHitDistance != INT_MAX)
+	if (vertHitDistance <= horzHitDistance && vertHitDistance != INT_MAX)
 	{
 		dt->R[stripId].distance = vertHitDistance;
 		dt->R[stripId].wallHitY = vertWallHitY;
@@ -216,7 +217,7 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 		dt->R[stripId].wallHitContent = VertWallContent;
 		dt->R[stripId].wasHitVertical = true;
 	}
-	else if (vertHitDistance > horzHitDistance && horzHitDistance != INT_MAX)
+	else if (vertHitDistance >= horzHitDistance && horzHitDistance != INT_MAX)
 	{
 		dt->R[stripId].distance = horzHitDistance;
 		dt->R[stripId].wallHitX = horzWallHitX;
@@ -224,10 +225,12 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 		dt->R[stripId].wallHitContent = horzWallContent;
 		dt->R[stripId].wasHitVertical = false;
 	}
-	else
-	{
-		// printf("not contact. h->%d v->%d\n", foundHorzWallHit, foundVertWallHit);
-	}
+	//else
+	//{
+	//	static int i;
+	//	printf("Vdistance->[%f] Hdistance->[%f]\n", vertHitDistance, horzHitDistance);
+	//	printf("not contact[%d]. h->%d v->%d\n", i++, foundHorzWallHit, foundVertWallHit);
+	//}
 	dt->R[stripId].rayAngle = rayAngle;
 	dt->R[stripId].isRayFacingUp = isRayFacingUp;
 	dt->R[stripId].isRayFacingDown = isRayFacingDown;
@@ -246,6 +249,7 @@ void castAllRays(t_data * dt)
 	for (int stripId = 0; stripId < NUM_RAYS; stripId++)
 	{
 		castRay(dt, rayAngle, stripId);
+		//renderDrawLine(dt, dt->P.x, dt->P.y, distanceBetweenPoints(dt->P.x, dt->P.y, dt->P.x + cos(rayAngle) * 50, dt->P.y + sin(rayAngle) * 50), rayAngle, color);
 		rayAngle += FOV_ANGLE / NUM_RAYS;
 	}
 }
@@ -257,8 +261,8 @@ void renderRays(t_data *dt)
 	for (int i = 0; i < NUM_RAYS; i++)
 	{
 		// printf("distance->[%f] wallX->[%f] wallY->[%f]\n", dt->R[i].distance, dt->R[i].wallHitX, dt->R[i].wallHitY);
-		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, dt->R[i].wallHitX, dt->R[i].wallHitY, color);
-		// renderDrawLine(dt, dt->P.x, dt->P.y, dt->R[i].distance, color);
+		//mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, dt->R[i].wallHitX, dt->R[i].wallHitY, color);
+		renderDrawLine(dt, dt->P.x, dt->P.y, dt->R[i].distance, dt->R[i].rayAngle, color);
 	}
 }
 
@@ -266,7 +270,7 @@ int	render(t_data *dt)
 {
 	(void)dt;
 	renderMap(dt);
-	renderRays(dt);
 	renderPlayer(dt);
+	renderRays(dt);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 12:00:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 14:18:44 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool mapHasWallAt(float x, float y)
 		return true;
 	mapX = floor(x / tileSize);
 	mapY = floor(y / tileSize);
-	return map[mapY][mapX] == 1;
+	return (map[mapY][mapX] == 1);
 }
 
 void	movePlayer(t_player *P)
@@ -52,12 +52,12 @@ void switchDirection(int keycode , t_player *P)
 		P->turnDirection = 0;
 		P->walkDirection = -1;
 	}
-	else if (keycode == RIGHT)
+	else if (keycode == LEFT)
 	{
 		P->walkDirection = 0;
 		P->turnDirection = +1;
 	}
-	else if (keycode == LEFT)
+	else if (keycode == RIGHT)
 	{
 		P->walkDirection = 0;
 		P->turnDirection = -1;

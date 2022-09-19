@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 11:57:53 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 13:56:06 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
  * @ angle of view & ray info
  */
 #define FOV_ANGLE (60 * M_PI / 180)
-#define NUM_RAYS WINDOW_W
+#define NUM_RAYS 60
 
 /**
  * @keycode (JIS)

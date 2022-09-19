@@ -6,23 +6,15 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 14:33:43 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 15:24:17 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
-bool mapHasWallAt(float x, float y)
-{
-	int	mapX;
-	int	mapY;
-	if (x < 0 || x > WINDOW_W || y < 0 || y > WINDOW_H)
-		return true;
-	mapX = floor(x / tileSize);
-	mapY = floor(y / tileSize);
-	return (map[mapY][mapX] == 1);
-}
-
+/**
+ * @ calculate player new X and Y
+ */
 void	movePlayer(t_player *P)
 {
 	float moveStep;

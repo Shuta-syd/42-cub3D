@@ -46,6 +46,7 @@ void initPlayer(t_player *P)
 
 void init(t_data *dt)
 {
+	dt->frame = 0;
 	initMlx(&dt->Tmlx);
 	initPlayer(&dt->P);
 	initImage(dt, &dt->Timg, &dt->Tmlx);

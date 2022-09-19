@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 14:18:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 14:29:59 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 	float xStep, yStep;
 
 	/**
-	 * HORIZONTAL RAY-GRID INTERSECTION CODE
+	 * [HORIZONTAL RAY-GRID INTERSECTION CODE]
 	 */
 	int foundHorzWallHit = false;
 	float horzWallHitX = 0;
@@ -131,7 +131,6 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 	float nextHorzTouchX = xIntercept;
 	float nextHorzTouchY = yIntercept;
 
-	static int i = 1;
 	while (nextHorzTouchX >= 0 && nextHorzTouchX <= WINDOW_W && nextHorzTouchY >= 0 && nextHorzTouchY <= WINDOW_H)
 	{
 		float xToCheck = nextHorzTouchX;
@@ -153,10 +152,9 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 			nextHorzTouchY += yStep;
 		}
 	}
-	i++;
 
 	/**
-	 * VERTICAL RAY-GRID INTERSECTION CODE
+	 * [VERTICAL RAY-GRID INTERSECTION CODE]
 	 */
 	int foundVertWallHit = false;
 	float vertWallHitX = 0;
@@ -171,7 +169,7 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 	xStep = tileSize;
 	xStep *= isRayFacingLeft ? -1 : 1;
 
-	yStep = tileSize / tan(rayAngle);
+	yStep = tileSize * tan(rayAngle);
 	yStep *= (isRayFacingUp && yStep > 0) ? -1 : 1;
 	yStep *= (isRayFacingDown && yStep < 0) ? -1 : 1;
 
@@ -225,12 +223,12 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 		dt->R[stripId].wallHitContent = horzWallContent;
 		dt->R[stripId].wasHitVertical = false;
 	}
-	//else
-	//{
-	//	static int i;
-	//	printf("Vdistance->[%f] Hdistance->[%f]\n", vertHitDistance, horzHitDistance);
-	//	printf("not contact[%d]. h->%d v->%d\n", i++, foundHorzWallHit, foundVertWallHit);
-	//}
+	else
+	{
+		static int i;
+		printf("Vdistance->[%f] Hdistance->[%f]\n", vertHitDistance, horzHitDistance);
+		printf("not contact[%d]. h->%d v->%d\n", i++, foundHorzWallHit, foundVertWallHit);
+	}
 	dt->R[stripId].rayAngle = rayAngle;
 	dt->R[stripId].isRayFacingUp = isRayFacingUp;
 	dt->R[stripId].isRayFacingDown = isRayFacingDown;

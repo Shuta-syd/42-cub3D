@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 15:27:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 18:17:59 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 int		render(t_data *dt);
 void	renderMap(t_data *dt);
 void	renderDrawLine(t_data *dt, float x, float y, float len, float angle, int color);
+
+/**
+ * @render3D.c
+ */
+void	generate3DProjection(t_data *dt);
 
 /**
  * @ ray.c

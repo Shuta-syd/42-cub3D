@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 17:26:48 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 18:23:34 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,27 @@ void renderRays(t_data *dt)
 		renderDrawLine(dt, dt->P.x, dt->P.y, dt->R[i].distance, dt->R[i].rayAngle, color);
 }
 
+void fillColorBuf(t_img *img, int width, int height, int color)
+{
+	for (int i = 0; i < height; i++)
+		for (int j = 0; j < width; j++)
+			my_mlx_pixel_put(img, j, i, color);
+}
+
 int	render(t_data *dt)
 {
+
+	fillColorBuf(&dt->Timg.map3D, WINDOW_W, WINDOW_H, 0x99CCFF);
+	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.map3D.img, 0, 0);
+
+	/**
+	 * render 3D Texture
+	 */
+	// generate3DProjection(dt);
+
+	/**
+	 * render minimap
+	 */
 	renderMap(dt);
 	renderPlayer(dt);
 	renderRays(dt);

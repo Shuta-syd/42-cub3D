@@ -20,7 +20,7 @@ void initImage(t_data *dt, t_imgs *Timg, t_mlx *M)
 
 	map = &Timg->map;
 	P = &Timg->P;
-	map3D = Timg->map3D;
+	map3D = &Timg->map3D;
 
 	map->img = mlx_new_image(M->mlx, WINDOW_W * MINIMAP_SCALE, WINDOW_H * MINIMAP_SCALE);
 	map->addr = mlx_get_data_addr(map->img, &map->bpp, &map->line_len, &map->endian);

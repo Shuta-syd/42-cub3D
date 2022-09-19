@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 18:23:34 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 19:05:37 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,12 @@ void fillColorBuf(t_img *img, int width, int height, int color)
 
 int	render(t_data *dt)
 {
-
-	fillColorBuf(&dt->Timg.map3D, WINDOW_W, WINDOW_H, 0x99CCFF);
-	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.map3D.img, 0, 0);
-
 	/**
 	 * render 3D Texture
 	 */
-	// generate3DProjection(dt);
+	fillColorBuf(&dt->Timg.map3D, WINDOW_W, WINDOW_H, 0x99CCFF);
+	generate3DProjection(dt);
+	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.map3D.img, 0, 0);
 
 	/**
 	 * render minimap

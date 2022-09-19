@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 17:27:07 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 19:06:16 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 #define tileSize 64
 #define mapRow 11
 #define mapCol 15
-#define MINIMAP_SCALE 0.3
+#define MINIMAP_SCALE 0.2
 #define WINDOW_W mapCol * tileSize
 #define WINDOW_H mapRow * tileSize
 
@@ -39,7 +39,7 @@
  * @ angle of view & ray info
  */
 #define FOV_ANGLE (60 * M_PI / 180)
-#define NUM_RAYS 900
+#define NUM_RAYS 960
 
 /**
  * @keycode (JIS)

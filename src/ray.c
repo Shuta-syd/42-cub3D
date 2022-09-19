@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:23:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 16:59:24 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 17:01:34 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 	intersectionVert(D, dt, rayAngle);
 
 	/**
-	 *  Calculate both horizontal and vertical hit distances and choose the smallest one
+	 * Calculate both horizontal and vertical hit distances and choose the smallest one
 	 */
 	cpmDistance(D, dt, stripId);
 	dt->R[stripId].rayAngle = rayAngle;

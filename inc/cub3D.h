@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 14:54:51 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 15:17:52 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdbool.h>
 # include <libft.h>
 # include <limits.h>
-# include <float.h>
 # include <math.h>
 # include <mlx.h>
 # include "struct.h"
@@ -40,7 +39,7 @@
  * @ angle of view & ray info
  */
 #define FOV_ANGLE (60 * M_PI / 180)
-#define NUM_RAYS 100
+#define NUM_RAYS 900
 
 /**
  * @keycode (JIS)

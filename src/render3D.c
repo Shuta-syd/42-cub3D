@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 19:08:51 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/20 00:50:23 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	generate3DProjection(t_data *dt)
 	for (int i = 0; i < NUM_RAYS; i++)
 	{
 		float distanceProjPlane = (WINDOW_W / 2) / tan(FOV_ANGLE / 2); //distance from player to projection plane
-		float projectedWallHeight = (tileSize / dt->R[i].distance * distanceProjPlane); // tileSize of the projection plane
+		float correctWallDistance = dt->R[i].distance * cos(dt->R[i].rayAngle - dt->P.rotationAngle);
+		float projectedWallHeight = (tileSize / correctWallDistance * distanceProjPlane); // tileSize of the projection plane
 
 		int wallStripHeight = (int)projectedWallHeight;
 

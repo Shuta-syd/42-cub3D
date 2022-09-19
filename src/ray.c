@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:23:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 16:15:01 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 16:15:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,32 +204,7 @@ void castRay(t_data *dt, float rayAngle, int stripId)
 	/**
 	 *  Calculate both horizontal and vertical hit distances and choose the smallest one
 	 */
-	float horzHitDistance = D.H.foundHorzWallHit ? distanceBetweenPoints(dt->P.x, dt->P.y, D.H.horzWallHitX, D.H.horzWallHitY) : INT_MAX;
-	// printf("horz distance->[%f] found->[%d]\n", horzHitDistance, foundHorzWallHit);
-
-	float vertHitDistance = foundVertWallHit ? distanceBetweenPoints(dt->P.x, dt->P.y, vertWallHitX, vertWallHitY) : INT_MAX;
-	// printf("vert distance->[%f] found->[%d]\n", vertHitDistance, foundVertWallHit);
-
-	if (vertHitDistance <= horzHitDistance && vertHitDistance != INT_MAX)
-	{
-		dt->R[stripId].distance = vertHitDistance;
-		dt->R[stripId].wallHitY = vertWallHitY;
-		dt->R[stripId].wallHitX = vertWallHitX;
-		dt->R[stripId].wallHitContent = VertWallContent;
-		dt->R[stripId].wasHitVertical = true;
-	}
-	else if (vertHitDistance >= horzHitDistance && horzHitDistance != INT_MAX)
-	{
-		dt->R[stripId].distance = horzHitDistance;
-		dt->R[stripId].wallHitX = D.H.horzWallHitX;
-		dt->R[stripId].wallHitY = D.H.horzWallHitY;
-		dt->R[stripId].wallHitContent = D.H.horzWallContent;
-		dt->R[stripId].wasHitVertical = false;
-	}
-	/**
-	 *  Calculate both horizontal and vertical hit distances and choose the smallest one
-	 */
-	//cpmDistance(&D, dt, stripId);
+	cpmDistance(&D, dt, stripId);
 
 	dt->R[stripId].rayAngle = rayAngle;
 	dt->R[stripId].isRayFacingUp = D.isRayFacingUp;

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:23:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 17:01:34 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/19 17:03:33 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,38 +61,6 @@ void intersectionHorz(t_dda *D, t_data *dt, float rayAngle)
 	}
 }
 
-void	cpmDistance(t_dda *D, t_data *dt, int stripId)
-{
-	float horzHitDistance;
-	float vertHitDistance;
-
-	if (D->H.foundHorzWallHit)
-		horzHitDistance = distanceBetweenPoints(dt->P.x, dt->P.y, D->H.horzWallHitX, D->H.horzWallHitY);
-	else
-		horzHitDistance = INT_MAX;
-	if (D->V.foundVertWallHit)
-		vertHitDistance = distanceBetweenPoints(dt->P.x, dt->P.y, D->V.vertWallHitX, D->V.vertWallHitY);
-	else
-		vertHitDistance = INT_MAX;
-
-	if (vertHitDistance <= horzHitDistance && vertHitDistance != INT_MAX)
-	{
-		dt->R[stripId].distance = vertHitDistance;
-		dt->R[stripId].wallHitY = D->V.vertWallHitY;
-		dt->R[stripId].wallHitX = D->V.vertWallHitX;
-		dt->R[stripId].wallHitContent = D->V.vertWallContent;
-		dt->R[stripId].wasHitVertical = true;
-	}
-	else if (vertHitDistance >= horzHitDistance && horzHitDistance != INT_MAX)
-	{
-		dt->R[stripId].distance = horzHitDistance;
-		dt->R[stripId].wallHitX = D->H.horzWallHitX;
-		dt->R[stripId].wallHitY = D->H.horzWallHitY;
-		dt->R[stripId].wallHitContent = D->H.horzWallContent;
-		dt->R[stripId].wasHitVertical = false;
-	}
-}
-
 void intersectionVert(t_dda *D, t_data *dt, float rayAngle)
 {
 	D->xIntercept = floor(dt->P.x / tileSize) * tileSize;
@@ -128,6 +96,38 @@ void intersectionVert(t_dda *D, t_data *dt, float rayAngle)
 			D->V.nextVertTouchX += D->xStep;
 			D->V.nextVertTouchY += D->yStep;
 		}
+	}
+}
+
+void cpmDistance(t_dda *D, t_data *dt, int stripId)
+{
+	float horzHitDistance;
+	float vertHitDistance;
+
+	if (D->H.foundHorzWallHit)
+		horzHitDistance = distanceBetweenPoints(dt->P.x, dt->P.y, D->H.horzWallHitX, D->H.horzWallHitY);
+	else
+		horzHitDistance = INT_MAX;
+	if (D->V.foundVertWallHit)
+		vertHitDistance = distanceBetweenPoints(dt->P.x, dt->P.y, D->V.vertWallHitX, D->V.vertWallHitY);
+	else
+		vertHitDistance = INT_MAX;
+
+	if (vertHitDistance <= horzHitDistance && vertHitDistance != INT_MAX)
+	{
+		dt->R[stripId].distance = vertHitDistance;
+		dt->R[stripId].wallHitY = D->V.vertWallHitY;
+		dt->R[stripId].wallHitX = D->V.vertWallHitX;
+		dt->R[stripId].wallHitContent = D->V.vertWallContent;
+		dt->R[stripId].wasHitVertical = true;
+	}
+	else if (vertHitDistance >= horzHitDistance && horzHitDistance != INT_MAX)
+	{
+		dt->R[stripId].distance = horzHitDistance;
+		dt->R[stripId].wallHitX = D->H.horzWallHitX;
+		dt->R[stripId].wallHitY = D->H.horzWallHitY;
+		dt->R[stripId].wallHitContent = D->H.horzWallContent;
+		dt->R[stripId].wasHitVertical = false;
 	}
 }
 

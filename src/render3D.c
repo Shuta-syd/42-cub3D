@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/20 00:50:23 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/20 01:15:59 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	generate3DProjection(t_data *dt)
 {
-	int color = calc_trgb(255, 255, 255, 1);
 
 	for (int i = 0; i < NUM_RAYS; i++)
 	{
@@ -33,6 +32,19 @@ void	generate3DProjection(t_data *dt)
 		/**
 		 * render the wall from wallTopPixel to wallBottomPixel
 		 */
+		int color;
+		if (dt->R[i].wasHitVertical)
+			color = calc_trgb(0, 255, 255, 255);
+		else
+			color = calc_trgb(0, 204, 204, 204);
+
+
+		for (int y = 0; y < wallTopPixel; y++)
+			my_mlx_pixel_put(&dt->Timg.map3D, i, y, 0x99CCFF);
+
+		for (int y = wallBottomPixel; y < WINDOW_H; y++)
+			my_mlx_pixel_put(&dt->Timg.map3D, i, y, 0x9ecccc);
+
 		for (int y = wallTopPixel; y < wallBottomPixel; y++)
 			my_mlx_pixel_put(&dt->Timg.map3D, i, y, color);
 	}

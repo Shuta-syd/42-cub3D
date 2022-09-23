@@ -1,5 +1,5 @@
 /* XPM */
-static char *tex1[] = {
+static char *wall01[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 156 2 ",
 "   c #2A261B",

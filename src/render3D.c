@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/23 19:29:25 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/23 19:40:15 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	generate3DProjection(t_data *dt)
 			// calculate textureOffsetY
 			int textureOffsetY;
 			int distanceFromTop = y + (wallStripHeight / 2) - (WINDOW_H / 2);
+			//why is tilesize casting by float type ?
 			textureOffsetY = distanceFromTop * ((float)tileSize / wallStripHeight);
 
 			int texelColor = dt->tex[0].data[tileSize * textureOffsetY + textureOffsetX];

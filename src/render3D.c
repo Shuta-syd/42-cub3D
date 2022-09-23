@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/23 18:13:58 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/23 19:29:25 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,32 @@ void	generate3DProjection(t_data *dt)
 		else
 			color = calc_trgb(0, 204, 204, 204);
 
-
+		// sailing
 		for (int y = 0; y < wallTopPixel; y++)
 			my_mlx_pixel_put(&dt->Timg.map3D, i, y, 0x99CCFF);
 
+
+		int textureOffsetX;
+		// calculate textureOffsetX
+		if (dt->R[i].wasHitVertical)
+			textureOffsetX = (int)dt->R[i].wallHitY % tileSize; //same 0
+		else
+			textureOffsetX = (int)dt->R[i].wallHitX % tileSize;
+
+		// wall
+		for (int y = wallTopPixel; y < wallBottomPixel; y++)
+		{
+			// calculate textureOffsetY
+			int textureOffsetY;
+			int distanceFromTop = y + (wallStripHeight / 2) - (WINDOW_H / 2);
+			textureOffsetY = distanceFromTop * ((float)tileSize / wallStripHeight);
+
+			int texelColor = dt->tex[0].data[tileSize * textureOffsetY + textureOffsetX];
+			my_mlx_pixel_put(&dt->Timg.map3D, i, y, texelColor);
+		}
+
+		// floor
 		for (int y = wallBottomPixel; y < WINDOW_H; y++)
 			my_mlx_pixel_put(&dt->Timg.map3D, i, y, 0x9ecccc);
-			// mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.t.img, i, y);
-
-		for (int y = wallTopPixel; y < wallBottomPixel; y++)
-			my_mlx_pixel_put(&dt->Timg.map3D, i, y, color);
 	}
 }

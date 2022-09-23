@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:49:25 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/23 18:30:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/23 19:12:00 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@ void	parseXpmData(t_data *dt, t_tex *tex, char *path)
 	xpm.img = mlx_xpm_file_to_image(dt->Tmlx.mlx, path, &xpm.width, &xpm.height);
 	tex->width = xpm.width;
 	tex->height = xpm.height;
-	xpm.addr = (int *)mlx_get_data_addr(xpm.img, &xpm.bpp, &xpm.line_len, &xpm.endian);
+	xpm.data = (int *)mlx_get_data_addr(xpm.img, &xpm.bpp, &xpm.line_len, &xpm.endian);
 	tex->data = (int *)malloc(sizeof(int) * tex->width * tex->height);
 	while (++x < tex->width)
+	{
+		y = -1;
 		while (++y < tex->height)
+		{
 			tex->data[tileSize * y + x] = xpm.data[tileSize * y + x];
+			mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, x, y, xpm.data[tileSize * y + x]);
+		}
+	}
 	return ;
 }
 

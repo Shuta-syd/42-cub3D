@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/20 01:15:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/22 15:55:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	generate3DProjection(t_data *dt)
 
 		for (int y = wallBottomPixel; y < WINDOW_H; y++)
 			my_mlx_pixel_put(&dt->Timg.map3D, i, y, 0x9ecccc);
+			// mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.t.img, i, y);
 
 		for (int y = wallTopPixel; y < wallBottomPixel; y++)
 			my_mlx_pixel_put(&dt->Timg.map3D, i, y, color);

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:04 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/23 17:51:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/23 18:06:19 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	main(void)
 		ft_error(NULL);
 	init(dt);
 	parseXpm(dt);
-	// castAllRays(dt);
-	// render(dt);
-	// mlx_hook(dt->Tmlx.win, 2, 1L << 0, keyAction, dt);
-	// mlx_hook(dt->Tmlx.win, 17, 1L << 2, destroyWindow, dt);
-	// mlx_loop(dt->Tmlx.mlx);
+	castAllRays(dt);
+	render(dt);
+	mlx_hook(dt->Tmlx.win, 2, 1L << 0, keyAction, dt);
+	mlx_hook(dt->Tmlx.win, 17, 1L << 2, destroyWindow, dt);
+	mlx_loop(dt->Tmlx.mlx);
 	return 0;
 }

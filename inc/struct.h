@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/22 16:38:21 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/23 17:55:32 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,23 @@ typedef struct s_mlx
 	void	*win;
 }	t_mlx;
 
+typedef struct s_tex
+{
+	int	width;
+	int	height;
+	int	*data;
+} t_tex;
+
 typedef struct s_img
 {
 	void	*img;
 	char	*addr;
+	int		*data;
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		width;
+	int		height;
 } t_img;
 
 typedef struct s_imgs
@@ -114,7 +124,7 @@ typedef struct s_data
 	t_imgs		Timg;
 	t_ray		R[960];
 	t_player	P;
-	uint	frame;
+	t_tex		tex[1];
 } t_data;
 
 #endif

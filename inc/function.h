@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 18:17:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/23 16:58:55 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,14 @@ void	generate3DProjection(t_data *dt);
 void	castAllRays(t_data *dt);
 
 /**
+ * @ parse.c
+ */
+void parseXpm(t_data *dt);
+
+/**
  * @ hook_action.c
  */
-int	keyAction(int keycode, t_data *dt);
+int keyAction(int keycode, t_data *dt);
 int	destroyWindow(t_data *dt);
 
 /**

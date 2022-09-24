@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 19:11:35 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 19:27:05 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct s_map
 	int		row;
 	int		col;
 	char	*filepath[4];
-	int		floor[3];
-	int		ceiling[3];
+	int		floor;
+	int		ceiling;
 } t_map;
 
 typedef struct s_player

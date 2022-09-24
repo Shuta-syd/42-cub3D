@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:49:25 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 19:12:38 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 19:32:08 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,49 @@ void	parseXpm(t_data *dt)
 		parseXpmData(dt, &dt->tex[i], (char *)texturePath[i]);
 }
 
-void	fetchFilePath(t_map *map, char *line)
+int	countCharOfFilePath(char *line)
+{
+	int	l;
+
+	l = 0;
+	while (line[l] && line[l] != ' ' && line[l] != '\n')
+		l++;
+	return (l);
+}
+
+void	fetchFilePath(t_map *map, char *line, int dir)
 {
 	int i;
 	int	len;
 
 	i = 0;
-	while (line[i] == ' ')
+	while (line[i] && line[i] == ' ')
 		i++;
-	len = i;
-	while (line[])
+	len = countCharOfFilePath(&line[i]);
+	map->filepath[dir] = malloc(sizeof(char) * len + 1);
+}
+
+void fetchColor(t_map *map, char *line, int type)
+{
+	int	i;
+	int	j;
+	int	rgb[3];
+
+	i = 0;
+	j = 0;
+	while (line[i] && line[i] == ' ')
+		i++;
+	while (line[i] && line[i] != ' \n')
 	{
-		/* code */
+		rgb[j++] = ft_atoi(&line[i]);
+		while (ft_isdigit(line[i]))
+			i++;
+		i++;
 	}
-
-
+	if (type == 0)
+		map->floor = calc_trgb(0, rgb[0], rgb[1], rgb[2]);
+	else if (type == 1)
+		map->ceiling = calc_trgb(0, rgb[0], rgb[1], rgb[2]);
 }
 
 void adaptMapElement(t_map *map, char *line)
@@ -72,10 +100,23 @@ void adaptMapElement(t_map *map, char *line)
 	int	i;
 
 	i = 0;
-	while (line[i] == ' ')
+	if (line[i] == '\n' || line[i] == '\0')
+		return;
+	while (line[i] && line[i] == ' ')
 		i++;
 	if (ft_strnstr(&line[i], "NO", 2))
-		fetchFilePath(map, &line[i]);
+		fetchFilePath(map, &line[i + 2], NORTH);
+	else if (ft_strnstr(&line[i], "SO", 2))
+		fetchFilePath(map, &line[i + 2], SOUTH);
+	else if (ft_strnstr(&line[i], "WE", 2))
+		fetchFilePath(map, &line[i + 2], WEST);
+	else if (ft_strnstr(&line[i], "EA", 2))
+		fetchFilePath(map, &line[i + 2], EAST);
+	else if (ft_strnstr(&line[i], "F", 1))
+		fetchColor(map, &line[i + 1], 0);
+	else if (ft_strnstr(&line[i], "C", 1))
+		fetchColor(map, &line[i + 1], 1);
+	
 }
 
 void parseMap(t_data *dt, const char *filepath)

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:49:25 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 16:50:57 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 19:12:38 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,54 @@ void	parseXpm(t_data *dt)
 	i = -1;
 	while (texturePath[++i])
 		parseXpmData(dt, &dt->tex[i], (char *)texturePath[i]);
+}
+
+void	fetchFilePath(t_map *map, char *line)
+{
+	int i;
+	int	len;
+
+	i = 0;
+	while (line[i] == ' ')
+		i++;
+	len = i;
+	while (line[])
+	{
+		/* code */
+	}
+
+
+}
+
+void adaptMapElement(t_map *map, char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ')
+		i++;
+	if (ft_strnstr(&line[i], "NO", 2))
+		fetchFilePath(map, &line[i]);
+}
+
+void parseMap(t_data *dt, const char *filepath)
+{
+	t_map	*map;
+	int		fd;
+	char	*line;
+
+	map = &dt->Tmap;
+	fd = open(filepath, O_RDONLY);
+	while (1)
+	{
+		line = get_next_line(fd);
+		adaptMapElement(map, line);
+	}
+	return ;
+}
+
+void parse(t_data *dt, const char *filepath)
+{
+	parseXpm(dt);
+	parseMap(dt, filepath);
 }

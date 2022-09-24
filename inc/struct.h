@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 16:38:24 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 19:11:35 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,12 @@ typedef struct s_imgs
 
 typedef struct s_map
 {
-
+	int		*map;
+	int		row;
+	int		col;
+	char	*filepath[4];
+	int		floor[3];
+	int		ceiling[3];
 } t_map;
 
 typedef struct s_player
@@ -121,6 +126,7 @@ typedef struct s_ray
 typedef struct s_data
 {
 	t_mlx		Tmlx;
+	t_map		Tmap;
 	t_imgs		Timg;
 	t_ray		R[960];
 	t_player	P;

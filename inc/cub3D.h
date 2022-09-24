@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 18:01:04 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 18:55:26 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <libft.h>
+# include <fcntl.h>
 # include <limits.h>
 # include <math.h>
 # include <mlx.h>

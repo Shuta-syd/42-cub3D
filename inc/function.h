@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/23 18:46:48 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 18:56:15 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	castAllRays(t_data *dt);
 /**
  * @ parse.c
  */
+void parse(t_data *dt, const char *filepath);
 void parseXpm(t_data *dt);
 
 /**

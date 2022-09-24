@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 15:43:54 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 16:07:28 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@
 /**
  * @ images info
  */
-# define NORTH "./asset/xpm/wall_north.xpm"
-# define SOUTH "./asset/xpm/wall_south.xpm"
-#define WEST "./asset/xpm/wall_west.xpm"
-#define EAST "./asset/xpm/wall_east.xpm"
+# define NORTH 0
+# define SOUTH 1
+#define WEST 2
+#define EAST 3
 
 static const int map[11][15] = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},

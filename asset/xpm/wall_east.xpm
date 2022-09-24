@@ -1,5 +1,5 @@
 /* XPM */
-static char *wall04[] = {
+static char *wall_east[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 166 2 ",
 "   c #263D1B",

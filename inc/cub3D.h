@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 19:06:16 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 15:43:54 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@
  * @ message
  */
 # define ERROR "[ERROR] something wrong"
+
+/**
+ * @ images info
+ */
+# define NORTH "./asset/xpm/wall_north.xpm"
+# define SOUTH "./asset/xpm/wall_south.xpm"
+#define WEST "./asset/xpm/wall_west.xpm"
+#define EAST "./asset/xpm/wall_east.xpm"
 
 static const int map[11][15] = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},

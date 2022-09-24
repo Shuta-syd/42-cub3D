@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:23:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 17:05:37 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 18:04:42 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,10 +172,10 @@ void castAllRays(t_data *dt)
 {
 	float rayAngle;
 
-	rayAngle = dt->P.rotationAngle - (FOV_ANGLE / 2);
-	for (int stripId = 0; stripId < NUM_RAYS; stripId++)
+	for (int col = 0; col < NUM_RAYS; col++)
 	{
-		castRay(dt, normalizeAngle(rayAngle), stripId);
+		rayAngle = dt->P.rotationAngle + atan((col - NUM_RAYS / 2) / DIST_PROJ_PLANE);
+		castRay(dt, normalizeAngle(rayAngle), col);
 		rayAngle += FOV_ANGLE / NUM_RAYS;
 	}
 }

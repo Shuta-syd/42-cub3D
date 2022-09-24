@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 16:57:07 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 18:01:04 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@
 /**
  * @ angle of view & ray info
  */
-#define FOV_ANGLE (60 * M_PI / 180)
-#define NUM_RAYS 960
+# define FOV_ANGLE (60 * M_PI / 180)
+# define DIST_PROJ_PLANE ((WINDOW_W / 2) / tan(FOV_ANGLE / 2))
+# define NUM_RAYS 960
 
 /**
  * @keycode (JIS)

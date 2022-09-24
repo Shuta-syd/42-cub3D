@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/23 17:55:32 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 16:38:24 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ typedef struct s_data
 	t_imgs		Timg;
 	t_ray		R[960];
 	t_player	P;
-	t_tex		tex[1];
+	t_tex		tex[4];
 } t_data;
 
 #endif

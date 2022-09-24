@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 16:24:47 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 16:43:17 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int *setTextureDirection(t_data *dt, t_tex *tex, t_ray ray)
 {
-	if (ray.wasHitVertical && (dt->P.x - ray.wallHitX))
+	if (ray.wasHitVertical && (dt->P.x - ray.wallHitX) > 0)
 		return (tex[WEST].data);
 	else if (ray.wasHitVertical && (dt->P.x - ray.wallHitX) < 0)
 		return (tex[EAST].data);
-	else if (ray.wasHitVertical == false && (dt->P.y - ray.wallHitY))
+	else if (ray.wasHitVertical == false && (dt->P.y - ray.wallHitY) > 0)
 		return (tex[NORTH].data);
 	else
 		return (tex[SOUTH].data);

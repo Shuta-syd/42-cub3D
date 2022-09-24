@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 18:55:26 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 20:20:31 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@
 #define WINDOW_W mapCol * tileSize
 #define WINDOW_H mapRow * tileSize
 
+/**
+ * @ map info
+ */
+#define POS 10;
 
 /**
  * @ angle of view & ray info

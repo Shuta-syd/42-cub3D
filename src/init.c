@@ -56,4 +56,5 @@ void init(t_data *dt)
 	initMlx(&dt->Tmlx);
 	initPlayer(&dt->P);
 	initImage(dt, &dt->Timg, &dt->Tmlx);
+	dt->Tmap = (t_map){};
 }

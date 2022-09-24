@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 19:27:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 19:59:59 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ typedef struct s_imgs
 
 typedef struct s_map
 {
-	int		*map;
+	t_list	*list;
+	int		**content;
 	int		row;
 	int		col;
 	char	*filepath[4];

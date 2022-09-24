@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:49:25 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 19:32:08 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 20:22:04 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	parseXpm(t_data *dt)
 		parseXpmData(dt, &dt->tex[i], (char *)texturePath[i]);
 }
 
-int	countCharOfFilePath(char *line)
+int	countLineLen(char *line)
 {
 	int	l;
 
@@ -68,7 +68,7 @@ void	fetchFilePath(t_map *map, char *line, int dir)
 	i = 0;
 	while (line[i] && line[i] == ' ')
 		i++;
-	len = countCharOfFilePath(&line[i]);
+	len = countLineLen(&line[i]);
 	map->filepath[dir] = malloc(sizeof(char) * len + 1);
 }
 
@@ -82,7 +82,7 @@ void fetchColor(t_map *map, char *line, int type)
 	j = 0;
 	while (line[i] && line[i] == ' ')
 		i++;
-	while (line[i] && line[i] != ' \n')
+	while (line[i] && line[i] != '\n')
 	{
 		rgb[j++] = ft_atoi(&line[i]);
 		while (ft_isdigit(line[i]))
@@ -93,6 +93,82 @@ void fetchColor(t_map *map, char *line, int type)
 		map->floor = calc_trgb(0, rgb[0], rgb[1], rgb[2]);
 	else if (type == 1)
 		map->ceiling = calc_trgb(0, rgb[0], rgb[1], rgb[2]);
+}
+
+void countRowCol(t_map *map, t_list *lst)
+{
+	int		i;
+	int		row;
+	int		col;
+	char	*content;
+
+	col = 0;
+	while (lst)
+	{
+		i = 0;
+		row = 0;
+		content = (char *)lst->content;
+		while (content[i] && content[i] != '\n')
+		{
+			if (content[i] == ' ')
+				i++;
+			else
+				row++;
+		}
+		if (map->row < row)
+			map->row = row;
+		lst = lst->next;
+		col++;
+	}
+	map->col = col;
+}
+
+void allocateMapMem(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	map->content = ft_calloc(map->col, sizeof(char *));
+	while (i < map->col)
+	{
+		map->content[i] = ft_calloc(map->row, sizeof(char));
+		i++;
+	}
+}
+
+void fetchMap(t_map *map, t_list *lst)
+{
+	int	i;
+	int	j;
+	int	col;
+	char *content;
+
+	j = 0;
+	col = 0;
+	countRowCol(map, lst);
+	allocateMapMem(map);
+	while (lst)
+	{
+		i = 0;
+		content = (char *)lst->content;
+		while (content[i] && content[i] != '\n')
+		{
+			if (content[i] == ' ')
+				i++;
+			else if (ft_isdigit(content[i]))
+			{
+				map->content[col][j] = content[i] - '0';
+				j++;
+			}
+			else
+			{
+				map->content[col][j] = POS;
+				j++;
+			}
+		}
+		col++;
+		lst = lst->next;
+	}
 }
 
 void adaptMapElement(t_map *map, char *line)
@@ -116,7 +192,8 @@ void adaptMapElement(t_map *map, char *line)
 		fetchColor(map, &line[i + 1], 0);
 	else if (ft_strnstr(&line[i], "C", 1))
 		fetchColor(map, &line[i + 1], 1);
-	
+	else
+		ft_lstadd_back(&map->list, ft_lstnew(&line[i]));
 }
 
 void parseMap(t_data *dt, const char *filepath)
@@ -132,11 +209,12 @@ void parseMap(t_data *dt, const char *filepath)
 		line = get_next_line(fd);
 		adaptMapElement(map, line);
 	}
+	fetchMap(map, map->list);
 	return ;
 }
 
 void parse(t_data *dt, const char *filepath)
 {
 	parseXpm(dt);
-	parseMap(dt, filepath);
+	// parseMap(dt, filepath);
 }

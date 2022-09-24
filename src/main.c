@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:25:04 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 18:55:49 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 20:22:24 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	main(int ac, const char **av)
 {
 	t_data	*dt;
 
-	if (ac != 2)
-		return (1);
+	// if (ac != 2)
+	// 	return (1);
 	dt = (t_data *)malloc(sizeof(t_data));
 	if (dt == NULL)
 		ft_error(NULL);

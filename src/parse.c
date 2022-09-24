@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:49:25 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 15:46:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 16:50:57 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	parseXpm(t_data *dt)
 {
 	int	i;
 	const char *texturePath[] = {
-		"./asset/xpm/wall_north.xpm",
-		"./asset/xpm/wall_south.xpm",
-		"./asset/xpm/wall_west.xpm",
-		"./asset/xpm/wall_east.xpm",
+		"./asset/xpm/wall02_north.xpm",
+		"./asset/xpm/wall02_south.xpm",
+		"./asset/xpm/wall02_west.xpm",
+		"./asset/xpm/wall02_east.xpm",
 		NULL
 };
 

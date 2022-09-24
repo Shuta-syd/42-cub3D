@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 16:38:50 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 16:57:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@
 # define LEFT 97
 # define RIGHT 100
 # define ESC 65307
+# define ARROW_L 65361
+# define ARROW_R 65363
 
 /**
  * @ message

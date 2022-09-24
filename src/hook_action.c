@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 15:24:17 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/24 16:58:52 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void switchDirection(int keycode , t_player *P)
 		P->turnDirection = 0;
 		P->walkDirection = -1;
 	}
-	else if (keycode == LEFT)
+	else if (keycode == ARROW_L)
 	{
 		P->walkDirection = 0;
 		P->turnDirection = +1;
 	}
-	else if (keycode == RIGHT)
+	else if (keycode == ARROW_R)
 	{
 		P->walkDirection = 0;
 		P->turnDirection = -1;
@@ -64,7 +64,7 @@ int	keyAction(int keycode, t_data *dt)
 	t_player *P;
 
 	P = &dt->P;
-	if (keycode == UP || keycode == DOWN || keycode == RIGHT || keycode == LEFT)
+	if (keycode == UP || keycode == DOWN || keycode == RIGHT || keycode == LEFT || keycode == ARROW_L || keycode == ARROW_R)
 	{
 		switchDirection(keycode, P);
 		movePlayer(P);

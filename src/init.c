@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2"0"22/09/"1"0 "1"8:26:59 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/12 17:42:14 by shogura          ###   ########.fr       */
+/*   Created: 2022/09/25 17:49:48 by shogura           #+#    #+#             */
+/*   Updated: 2022/09/25 20:00:55 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	initImage(t_data *dt, t_imgs *Timg, t_mlx *M)
 	map3D->addr = mlx_get_data_addr(map3D->img, &map3D->bpp, &map3D->line_len, &map3D->endian);
 }
 
-void initMlx(t_mlx *M)
+void	initMlx(t_mlx *M)
 {
 	M->mlx = mlx_init();
 	M->win = mlx_new_window(M->mlx, WINDOW_W, WINDOW_H, "cub3D");
 }
 
-void initPlayer(t_player *P)
+void	initPlayer(t_player *P)
 {
 	P->x = WINDOW_W / 2;
 	P->y = WINDOW_H / 2;
@@ -51,11 +51,11 @@ void initPlayer(t_player *P)
 	P->walkSpeed = 20;
 }
 
-void init(t_data *dt)
+void	init(t_data *dt)
 {
 
-	WINDOW_W = dt->Tmap.col * tileSize;
-	WINDOW_H = dt->Tmap.row * tileSize;
+	WINDOW_W = dt->Tmap.row * tileSize;
+	WINDOW_H = dt->Tmap.col * tileSize;
 	NUM_RAYS = WINDOW_W;
 
 	initMlx(&dt->Tmlx);

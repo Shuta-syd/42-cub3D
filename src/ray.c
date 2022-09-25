@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:48:31 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 21:54:34 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,10 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 	}
 }
 
-void	cpmDistance(t_dda *D, t_data *dt, int stripId)
+/**
+ * @ Copy the closer intersection to dt
+ */
+void	cpm_distance(t_dda *D, t_data *dt, int stripId)
 {
 	float	horzHitDistance;
 	float	vertHitDistance;
@@ -164,7 +167,6 @@ void	cpmDistance(t_dda *D, t_data *dt, int stripId)
 		vertHitDistance = distanceBetweenPoints(dt->P.x, dt->P.y, D->V.vertWallHitX, D->V.vertWallHitY);
 	else
 		vertHitDistance = INT_MAX;
-
 	if (vertHitDistance <= horzHitDistance && vertHitDistance != INT_MAX)
 	{
 		dt->R[stripId].distance = vertHitDistance;
@@ -196,7 +198,7 @@ void	cast_ray(t_data *dt, float rayAngle, int stripId)
 	dda->isRayFacingLeft = !dda->isRayFacingRight;
 	intersection_horz(dda, dt, rayAngle);
 	intersection_vert(dda, dt, rayAngle);
-	cpmDistance(dda, dt, stripId);
+	cpm_distance(dda, dt, stripId);
 	dt->R[stripId].rayAngle = rayAngle;
 	dt->R[stripId].isRayFacingUp = dda->isRayFacingUp;
 	dt->R[stripId].isRayFacingDown = dda->isRayFacingDown;

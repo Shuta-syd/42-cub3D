@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:31:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:10:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 21:21:29 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int ac, char const *av[])
 	dt = ft_calloc(1, sizeof(t_data));
 	parse_map(dt, av[1]);
 	init(dt);
-	parseXpm(dt);
+	parse_xpm(dt);
 	castAllRays(dt);
 	// printXpmData(&dt->tex[0]);
 	render(dt);

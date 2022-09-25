@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:15:45 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 21:21:17 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	count_row_col(t_map *map, t_list *lst);
 int		count_line(char *line);
 
 /**
- *
+ * parse_xpm.c
  */
-void parseXpm(t_data *dt);
+void parse_xpm(t_data *dt);
 
 /**
  * @ hook_action.c

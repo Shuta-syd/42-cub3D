@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:49:25 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 20:22:04 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 15:05:06 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ void	fetchFilePath(t_map *map, char *line, int dir)
 	i = 0;
 	while (line[i] && line[i] == ' ')
 		i++;
-	len = countLineLen(&line[i]);
-	map->filepath[dir] = malloc(sizeof(char) * len + 1);
+	len = countLineLen(&line[i]) + 1;
+	map->filepath[dir] = malloc(sizeof(char) * len);
+	ft_strlcpy(map->filepath[dir], &line[i], len);
 }
 
 void fetchColor(t_map *map, char *line, int type)
@@ -110,10 +111,10 @@ void countRowCol(t_map *map, t_list *lst)
 		content = (char *)lst->content;
 		while (content[i] && content[i] != '\n')
 		{
-			if (content[i] == ' ')
-				i++;
-			else
+
+			if (content[i] != ' ')
 				row++;
+			i++;
 		}
 		if (map->row < row)
 			map->row = row;
@@ -136,15 +137,17 @@ void allocateMapMem(t_map *map)
 	}
 }
 
-void fetchMap(t_map *map, t_list *lst)
+void fetchMap(t_map *map)
 {
 	int	i;
 	int	j;
 	int	col;
 	char *content;
+	t_list *lst;
 
 	j = 0;
 	col = 0;
+	lst = map->list;
 	countRowCol(map, lst);
 	allocateMapMem(map);
 	while (lst)
@@ -153,31 +156,26 @@ void fetchMap(t_map *map, t_list *lst)
 		content = (char *)lst->content;
 		while (content[i] && content[i] != '\n')
 		{
-			if (content[i] == ' ')
-				i++;
-			else if (ft_isdigit(content[i]))
-			{
-				map->content[col][j] = content[i] - '0';
-				j++;
-			}
-			else
-			{
-				map->content[col][j] = POS;
-				j++;
-			}
+			if (ft_isdigit(content[i]) && content[i] != ' ')
+				map->content[col][j++] = content[i] - '0';
+			else if (content[i] != ' ')
+				map->content[col][j++] = POS;
+			i++;
 		}
 		col++;
 		lst = lst->next;
 	}
 }
 
-void adaptMapElement(t_map *map, char *line)
+bool adaptMapElement(t_map *map, char *line)
 {
 	int	i;
 
 	i = 0;
-	if (line[i] == '\n' || line[i] == '\0')
-		return;
+	if (line == NULL)
+		return (false);
+	else if (line[i] == '\n' || line[i] == '\0')
+		return (true);
 	while (line[i] && line[i] == ' ')
 		i++;
 	if (ft_strnstr(&line[i], "NO", 2))
@@ -194,6 +192,7 @@ void adaptMapElement(t_map *map, char *line)
 		fetchColor(map, &line[i + 1], 1);
 	else
 		ft_lstadd_back(&map->list, ft_lstnew(&line[i]));
+	return (true);
 }
 
 void parseMap(t_data *dt, const char *filepath)
@@ -207,14 +206,16 @@ void parseMap(t_data *dt, const char *filepath)
 	while (1)
 	{
 		line = get_next_line(fd);
-		adaptMapElement(map, line);
+		if (adaptMapElement(map, line) == false)
+			break;
+		free(line);
 	}
-	fetchMap(map, map->list);
+	fetchMap(map);
 	return ;
 }
 
 void parse(t_data *dt, const char *filepath)
 {
 	parseXpm(dt);
-	// parseMap(dt, filepath);
+	parseMap(dt, filepath);
 }

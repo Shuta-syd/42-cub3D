@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:39:18 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 21:48:31 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	calc_vert_delta(t_dda *D, t_data *dt, float rayAngle)
 	 * @ Incremental width of the intersection with the x-axis to the next intersection
 	 */
 	D->xStep = tileSize;
-	if (D->xStep)
+	if (D->isRayFacingLeft)
 		D->xStep *= -1;
 	D->yStep = tileSize * tan(rayAngle);
 	if (D->isRayFacingUp && D->yStep > 0)

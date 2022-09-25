@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 20:14:36 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 21:40:15 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	keyAction(int keycode, t_data *dt)
 	{
 		switchDirection(keycode, P);
 		movePlayer(dt, P);
-		castAllRays(dt);
+		cast_all_rays(dt);
 		render(dt);
 	}
 	else if (keycode == ESC)

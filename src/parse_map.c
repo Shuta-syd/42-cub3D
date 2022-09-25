@@ -1,69 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parseMap.c                                         :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:06 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 17:46:46 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 21:15:26 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
-void	countRowCol(t_map *map, t_list *lst)
-{
-	int	i;
-	int	row;
-	int	col;
-	char *content;
-
-	col = 0;
-	while (lst)
-	{
-		i = 0;
-		row = 0;
-		content = (char *)lst->content;
-		while (content[i] && content[i] != '\n')
-		{
-
-			if (content[i] != ' ')
-				row++;
-			i++;
-		}
-		col++;
-		if (map->row < row)
-			map->row = row;
-		lst = lst->next;
-	}
-	map->col = col;
-}
-
-int	countLineLen(char *line)
-{
-	int	l;
-
-	l = 0;
-	while (line[l] && line[l] != ' ' && line[l] != '\n')
-		l++;
-	return (l);
-}
-
-void	allocateMapMem(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	map->content = ft_calloc(map->col, sizeof(int *));
-	while (i < map->col)
-	{
-		map->content[i] = ft_calloc(map->row, sizeof(int));
-		i++;
-	}
-}
-
-void	fetchFilePath(t_map *map, char *line, int dir)
+void	fetch_filepath(t_map *map, char *line, int dir)
 {
 	int	i;
 	int	len;
@@ -71,12 +20,12 @@ void	fetchFilePath(t_map *map, char *line, int dir)
 	i = 0;
 	while (line[i] && line[i] == ' ')
 		i++;
-	len = countLineLen(&line[i]) + 1;
+	len = count_line(&line[i]) + 1;
 	map->filepath[dir] = malloc(sizeof(char) * len);
 	ft_strlcpy(map->filepath[dir], &line[i], len);
 }
 
-void	fetchColor(t_map *map, char *line, int type)
+void	fetch_color(t_map *map, char *line, int type)
 {
 	int	i;
 	int	j;
@@ -99,7 +48,7 @@ void	fetchColor(t_map *map, char *line, int type)
 		map->ceiling = calc_trgb(0, rgb[0], rgb[1], rgb[2]);
 }
 
-bool	adaptMapElement(t_map *map, char *line)
+bool	adapt_map_element(t_map *map, char *line)
 {
 	int	i;
 
@@ -111,34 +60,32 @@ bool	adaptMapElement(t_map *map, char *line)
 	while (line[i] && line[i] == ' ')
 		i++;
 	if (ft_strnstr(&line[i], "NO", 2))
-		fetchFilePath(map, &line[i + 2], NORTH);
+		fetch_filepath(map, &line[i + 2], NORTH);
 	else if (ft_strnstr(&line[i], "SO", 2))
-		fetchFilePath(map, &line[i + 2], SOUTH);
+		fetch_filepath(map, &line[i + 2], SOUTH);
 	else if (ft_strnstr(&line[i], "WE", 2))
-		fetchFilePath(map, &line[i + 2], WEST);
+		fetch_filepath(map, &line[i + 2], WEST);
 	else if (ft_strnstr(&line[i], "EA", 2))
-		fetchFilePath(map, &line[i + 2], EAST);
+		fetch_filepath(map, &line[i + 2], EAST);
 	else if (ft_strnstr(&line[i], "F", 1))
-		fetchColor(map, &line[i + 1], 0);
+		fetch_color(map, &line[i + 1], 0);
 	else if (ft_strnstr(&line[i], "C", 1))
-		fetchColor(map, &line[i + 1], 1);
+		fetch_color(map, &line[i + 1], 1);
 	else
 		ft_lstadd_back(&map->list, ft_lstnew(ft_strdup(&line[i])));
 	return (true);
 }
 
-void	fetchMap(t_map *map)
+void	fetch_map_info(t_map *map, t_list *lst)
 {
 	int		i;
 	int		row;
 	int		col;
 	char	*content;
-	t_list	*lst;
 
 	col = 0;
-	lst = map->list;
-	countRowCol(map, lst);
-	allocateMapMem(map);
+	count_row_col(map, lst);
+	allocate_map_mem(map);
 	while (lst)
 	{
 		i = 0;
@@ -157,7 +104,7 @@ void	fetchMap(t_map *map)
 	}
 }
 
-void	parseMap(t_data *dt, const char *filepath)
+void	parse_map(t_data *dt, const char *filepath)
 {
 	int		fd;
 	char	*line;
@@ -168,10 +115,10 @@ void	parseMap(t_data *dt, const char *filepath)
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (adaptMapElement(map, line) == false)
-			break;
+		if (adapt_map_element(map, line) == false)
+			break ;
 		free(line);
 	}
-	fetchMap(map);
-	return;
+	fetch_map_info(map, map->list);
+	return ;
 }

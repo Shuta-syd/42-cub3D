@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 19:42:41 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 21:15:45 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,17 @@ void	generate3DProjection(t_data *dt);
 void	castAllRays(t_data *dt);
 
 /**
- * @ parse.c
+ * @ parse_map.c & parse_map_utils.c
  */
-void parse(t_data *dt, const char *filepath);
+void	parse_map(t_data *dt, const char *filepath);
+void	allocate_map_mem(t_map *map);
+void	count_row_col(t_map *map, t_list *lst);
+int		count_line(char *line);
+
+/**
+ *
+ */
 void parseXpm(t_data *dt);
-void parseMap(t_data *dt, const char *filepath);
 
 /**
  * @ hook_action.c

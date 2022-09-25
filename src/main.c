@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:31:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 20:33:00 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 21:10:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(int ac, char const *av[])
 	if (ac != 2)
 		return (1);
 	dt = ft_calloc(1, sizeof(t_data));
-	parseMap(dt, av[1]);
+	parse_map(dt, av[1]);
 	init(dt);
 	parseXpm(dt);
 	castAllRays(dt);

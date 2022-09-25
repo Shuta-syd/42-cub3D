@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:24:49 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 22:06:48 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	renderDrawLine(t_data *dt, float x, float y, float len, float angle, int co
 /**
  * @render3D.c
  */
-void	generate3DProjection(t_data *dt);
+void	generate3d_projection(t_data *dt);
 
 /**
  * @ ray.c

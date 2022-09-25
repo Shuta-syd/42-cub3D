@@ -6,14 +6,14 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 20:32:46 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 22:06:59 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 void printXpmData(t_tex *tex);
 
-int *setTextureDirection(t_data *dt, t_ray ray)
+int *set_texture_direction(t_data *dt, t_ray ray)
 {
 	if (ray.wasHitVertical && (dt->P.x - ray.wallHitX) > 0){
 		return (dt->tex[WEST].data);
@@ -33,7 +33,7 @@ int *setTextureDirection(t_data *dt, t_ray ray)
 	}
 }
 
-void	generate3DProjection(t_data *dt)
+void	generate3d_projection(t_data *dt)
 {
 
 	for (int i = 0; i < NUM_RAYS; i++)
@@ -79,7 +79,7 @@ void	generate3DProjection(t_data *dt)
 			// why is tilesize casting by float type ?
 			textureOffsetY = distanceFromTop * ((float)tileSize / wallStripHeight);
 
-			int *texture = setTextureDirection(dt, dt->R[i]);
+			int *texture = set_texture_direction(dt, dt->R[i]);
 
 			int texelColor = texture[tileSize * textureOffsetY + textureOffsetX];
 			my_mlx_pixel_put(&dt->Timg.map3D, i, y, texelColor);

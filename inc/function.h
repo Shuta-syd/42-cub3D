@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:21:17 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 21:24:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	generate3DProjection(t_data *dt);
 /**
  * @ ray.c
  */
-void	castAllRays(t_data *dt);
+void	cast_all_rays(t_data *dt);
 
 /**
  * @ parse_map.c & parse_map_utils.c

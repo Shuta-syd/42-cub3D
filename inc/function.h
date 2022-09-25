@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 18:56:15 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 17:21:56 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	castAllRays(t_data *dt);
  */
 void parse(t_data *dt, const char *filepath);
 void parseXpm(t_data *dt);
+void parseMap(t_data *dt, const char *filepath);
 
 /**
  * @ hook_action.c
@@ -47,8 +48,8 @@ int	destroyWindow(t_data *dt);
 /**
  * @ utils.c
  */
-bool	mapHasWallAt(float x, float y);
-float	distanceBetweenPoints(float x1, float y1, float x2, float y2);
+bool mapHasWallAt(t_map map, float x, float y);
+float distanceBetweenPoints(float x1, float y1, float x2, float y2);
 
 /**
  * @ mlx_utils.c

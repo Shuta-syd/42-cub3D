@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:23:51 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 18:04:42 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 17:22:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void intersectionHorz(t_dda *D, t_data *dt, float rayAngle)
 		float xToCheck = D->H.nextHorzTouchX;
 		float yToCheck = D->H.nextHorzTouchY + (D->isRayFacingUp ? -1 : 0);
 
-		if (mapHasWallAt(xToCheck, yToCheck))
+		if (mapHasWallAt(dt->Tmap ,xToCheck, yToCheck))
 		{
 			D->H.horzWallHitX = D->H.nextHorzTouchX;
 			D->H.horzWallHitY = D->H.nextHorzTouchY;
-			D->H.horzWallContent = map[(int)floor(yToCheck / tileSize)][(int)floor(xToCheck / tileSize)];
+			D->H.horzWallContent = dt->Tmap.content[(int)floor(yToCheck / tileSize)][(int)floor(xToCheck / tileSize)];
 			D->H.foundHorzWallHit = true;
 			break;
 		}
@@ -83,12 +83,12 @@ void intersectionVert(t_dda *D, t_data *dt, float rayAngle)
 		float xToCheck = D->V.nextVertTouchX + (D->isRayFacingLeft ? -1 : 0);
 		float yToCheck = D->V.nextVertTouchY;
 
-		if (mapHasWallAt(xToCheck, yToCheck))
+		if (mapHasWallAt(dt->Tmap, xToCheck, yToCheck))
 		{
 			D->V.vertWallHitX = D->V.nextVertTouchX;
 			D->V.vertWallHitY = D->V.nextVertTouchY;
 			D->V.foundVertWallHit = true;
-			D->V.vertWallContent = map[(int)floor(yToCheck / tileSize)][(int)floor(xToCheck / tileSize)];
+			D->V.vertWallContent = dt->Tmap.content[(int)floor(yToCheck / tileSize)][(int)floor(xToCheck / tileSize)];
 			break;
 		}
 		else

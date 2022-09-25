@@ -53,8 +53,12 @@ void initPlayer(t_player *P)
 
 void init(t_data *dt)
 {
+
+	WINDOW_W = dt->Tmap.col * tileSize;
+	WINDOW_H = dt->Tmap.row * tileSize;
+	NUM_RAYS = WINDOW_W;
+
 	initMlx(&dt->Tmlx);
 	initPlayer(&dt->P);
 	initImage(dt, &dt->Timg, &dt->Tmlx);
-	dt->Tmap = (t_map){};
 }

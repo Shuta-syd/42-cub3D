@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:49:25 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 15:05:06 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 17:17:53 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,10 @@ void countRowCol(t_map *map, t_list *lst)
 				row++;
 			i++;
 		}
+		col++;
 		if (map->row < row)
 			map->row = row;
 		lst = lst->next;
-		col++;
 	}
 	map->col = col;
 }
@@ -129,10 +129,10 @@ void allocateMapMem(t_map *map)
 	int	i;
 
 	i = 0;
-	map->content = ft_calloc(map->col, sizeof(char *));
+	map->content = ft_calloc(map->col, sizeof(int *));
 	while (i < map->col)
 	{
-		map->content[i] = ft_calloc(map->row, sizeof(char));
+		map->content[i] = ft_calloc(map->row, sizeof(int));
 		i++;
 	}
 }
@@ -140,12 +140,11 @@ void allocateMapMem(t_map *map)
 void fetchMap(t_map *map)
 {
 	int	i;
-	int	j;
+	int	row;
 	int	col;
 	char *content;
 	t_list *lst;
 
-	j = 0;
 	col = 0;
 	lst = map->list;
 	countRowCol(map, lst);
@@ -153,13 +152,14 @@ void fetchMap(t_map *map)
 	while (lst)
 	{
 		i = 0;
+		row = -1;
 		content = (char *)lst->content;
 		while (content[i] && content[i] != '\n')
 		{
 			if (ft_isdigit(content[i]) && content[i] != ' ')
-				map->content[col][j++] = content[i] - '0';
+				map->content[col][++row] = content[i] - '0';
 			else if (content[i] != ' ')
-				map->content[col][j++] = POS;
+				map->content[col][++row] = POS;
 			i++;
 		}
 		col++;
@@ -191,8 +191,24 @@ bool adaptMapElement(t_map *map, char *line)
 	else if (ft_strnstr(&line[i], "C", 1))
 		fetchColor(map, &line[i + 1], 1);
 	else
-		ft_lstadd_back(&map->list, ft_lstnew(&line[i]));
+		ft_lstadd_back(&map->list, ft_lstnew(ft_strdup(&line[i])));
 	return (true);
+}
+
+void printMap(t_map map)
+{
+	int i = -1;
+
+	printf("col[%d] row[%d]\n", map.col, map.row);
+	while (++i < map.col)
+	{
+		int j = -1;
+		while (++j < map.row)
+		{
+			printf("%d", map.content[i][j]);
+		}
+		putchar('\n');
+	}
 }
 
 void parseMap(t_data *dt, const char *filepath)
@@ -201,6 +217,7 @@ void parseMap(t_data *dt, const char *filepath)
 	int		fd;
 	char	*line;
 
+	dt->Tmap = (t_map){};
 	map = &dt->Tmap;
 	fd = open(filepath, O_RDONLY);
 	while (1)
@@ -211,11 +228,12 @@ void parseMap(t_data *dt, const char *filepath)
 		free(line);
 	}
 	fetchMap(map);
-	return ;
+	return;
 }
 
 void parse(t_data *dt, const char *filepath)
 {
 	parseXpm(dt);
 	parseMap(dt, filepath);
+	// printMap(dt->Tmap);
 }

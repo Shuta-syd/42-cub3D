@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/24 16:58:52 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 15:13:12 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * @ calculate player new X and Y
  */
-void	movePlayer(t_player *P)
+void	movePlayer(t_data *dt, t_player *P)
 {
 	float moveStep;
 	float	newX;
@@ -25,7 +25,7 @@ void	movePlayer(t_player *P)
 	moveStep = P->walkDirection * P->walkSpeed;
 	newX = P->x + cos(P->rotationAngle) * moveStep;
 	newY = P->y + sin(P->rotationAngle) * moveStep;
-	if (mapHasWallAt(newX, newY) == false)
+	if (mapHasWallAt(&dt->Tmap, newX, newY) == false)
 	{
 		P->x = newX;
 		P->y = newY;
@@ -67,7 +67,7 @@ int	keyAction(int keycode, t_data *dt)
 	if (keycode == UP || keycode == DOWN || keycode == RIGHT || keycode == LEFT || keycode == ARROW_L || keycode == ARROW_R)
 	{
 		switchDirection(keycode, P);
-		movePlayer(P);
+		movePlayer(dt, P);
 		castAllRays(dt);
 		render(dt);
 	}

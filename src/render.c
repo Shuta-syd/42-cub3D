@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/22 15:49:21 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 17:04:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void renderMap(t_data *dt)
 {
 	int color;
 
-	for (int i = 0; i < mapRow; i++)
+	for (int i = 0; i < dt->Tmap.row; i++)
 	{
-		for (int j = 0; j < mapCol; j++)
+		for (int j = 0; j < dt->Tmap.col; j++)
 		{
 			int tileX = j * tileSize * MINIMAP_SCALE;
 			int tileY = i * tileSize * MINIMAP_SCALE;
-			if (map[i][j] == 1)
+			if (dt->Tmap.content[i][j] == 1)
 				color = calc_trgb(0, 255, 255, 255);
 			else
 				color = calc_trgb(0, 0, 0, 0);
@@ -97,14 +97,14 @@ int	render(t_data *dt)
 	 * render 3D Texture
 	 */
 	// fillColorBuf(&dt->Timg.map3D, WINDOW_W, WINDOW_H, 0x99CCFF);;
-	generate3DProjection(dt);
-	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.map3D.img, 0, 0);
+	// generate3DProjection(dt);
+	// mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.map3D.img, 0, 0);
 
 	/**
 	 * render minimap
 	 */
-	renderMap(dt);
-	renderPlayer(dt);
-	renderRays(dt);
+	// renderMap(dt);
+	// renderPlayer(dt);
+	// renderRays(dt);
 	return (0);
 }

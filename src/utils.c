@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:07 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/19 15:26:02 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/25 17:23:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ float	distanceBetweenPoints(float x1, float y1, float x2, float y2)
 /**
  * @ find weather there is (x, y) in wall
  */
-bool	mapHasWallAt(float x, float y)
+bool	mapHasWallAt(t_map map, float x, float y)
 {
 	int	mapX;
 	int	mapY;
@@ -29,5 +29,5 @@ bool	mapHasWallAt(float x, float y)
 		return true;
 	mapX = floor(x / tileSize);
 	mapY = floor(y / tileSize);
-	return (map[mapY][mapX] == 1);
+	return (map.content[mapY][mapX] == 1);
 }

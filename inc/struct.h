@@ -6,16 +6,14 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 18:17:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:05:48 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-#include <cub3D.h>
-#define uint unsigned int
-
+# include <cub3D.h>
 /**
  * @ struct required for 3d wall
  *
@@ -28,14 +26,14 @@
  */
 typedef struct s_3d
 {
-	float	distanceProjPlane;
-	float	correctWallDistance;
-	float	projectedWallHeight;
-	int		wallStripHeight;
-	int		wallTopPixel;
-	int		wallBottomPixel;
+	float	distance_proj_plane;
+	float	correct_wall_distance;
+	float	projected_wall_height;
+	int		wall_strip_height;
+	int		wall_top_pixel;
+	int		wall_bottom_pixel;
 	int		*texture;
-	int		texelColor;
+	int		texel_color;
 }	t_3d;
 
 typedef struct s_mlx
@@ -99,23 +97,23 @@ typedef struct s_player
 
 typedef struct s_horz
 {
-	int foundHorzWallHit;
-	float horzWallHitX;
-	float horzWallHitY;
-	float nextHorzTouchX;
-	float nextHorzTouchY;
-	int horzWallContent;
+	int		wall_hit;
+	int		wall_content;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	float	next_x;
+	float	next_y;
 }	t_horz;
 
 typedef struct s_vert
 {
-	int foundVertWallHit;
-	float vertWallHitX;
-	float vertWallHitY;
-	float nextVertTouchX;
-	float nextVertTouchY;
-	int vertWallContent;
-}	t_vert;
+	int		wall_hit;
+	int		wall_content;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	float	next_x;
+	float	next_y;
+} t_vert;
 
 typedef struct s_dda
 {
@@ -127,8 +125,8 @@ typedef struct s_dda
 	float	y_intercept;
 	float	x_step;
 	float	y_step;
-	t_horz H;
-	t_vert V;
+	t_horz	H;
+	t_vert	V;
 }	t_dda;
 
 typedef struct s_ray

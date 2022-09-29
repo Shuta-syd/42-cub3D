@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:20:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 18:22:34 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:02:16 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	calc_vert_delta(t_dda *D, t_data *dt, float rayAngle)
 		D->y_step *= -1;
 	if (D->facing_down && D->y_step < 0)
 		D->y_step *= -1;
-	D->V.nextVertTouchX = D->x_intercept;
-	D->V.nextVertTouchY = D->y_intercept;
+	D->V.next_x = D->x_intercept;
+	D->V.next_y = D->y_intercept;
 }
 
 void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
@@ -36,26 +36,26 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 	float	y_to_check;
 
 	calc_vert_delta(D, dt, rayAngle);
-	while (D->V.nextVertTouchX >= 0 && D->V.nextVertTouchX
-		<= g_window_w && D->V.nextVertTouchY >= 0
-		&& D->V.nextVertTouchY <= g_window_h)
+	while (D->V.next_x >= 0 && D->V.next_x
+		<= g_window_w && D->V.next_y >= 0
+		&& D->V.next_y <= g_window_h)
 	{
-		x_to_check = D->V.nextVertTouchX;
+		x_to_check = D->V.next_x;
 		if (D->facing_left)
 			x_to_check -= 1;
-		y_to_check = D->V.nextVertTouchY;
+		y_to_check = D->V.next_y;
 		if (map_has_wall_at(dt->t_map, x_to_check, y_to_check))
 		{
-			D->V.vertWallHitX = D->V.nextVertTouchX;
-			D->V.vertWallHitY = D->V.nextVertTouchY;
-			D->V.foundVertWallHit = true;
-			D->V.vertWallContent = dt->t_map.content[(int)floor(y_to_check / TILESIZE)][(int)floor(x_to_check / TILESIZE)];
+			D->V.wall_hit_x = D->V.next_x;
+			D->V.wall_hit_y = D->V.next_y;
+			D->V.wall_hit = true;
+			D->V.wall_content = dt->t_map.content[(int)floor(y_to_check / TILESIZE)][(int)floor(x_to_check / TILESIZE)];
 			break ;
 		}
 		else
 		{
-			D->V.nextVertTouchX += D->x_step;
-			D->V.nextVertTouchY += D->y_step;
+			D->V.next_x += D->x_step;
+			D->V.next_y += D->y_step;
 		}
 	}
 }

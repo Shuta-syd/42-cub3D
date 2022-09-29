@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:19:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 18:22:31 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:00:41 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	calc_horz_delta(t_dda *D, t_data *dt, float rayAngle)
 		D->x_step *= -1;
 	if (D->facing_right && D->x_step < 0)
 		D->x_step *= -1;
-	D->H.nextHorzTouchX = D->x_intercept;
-	D->H.nextHorzTouchY = D->y_intercept;
+	D->H.next_x = D->x_intercept;
+	D->H.next_y = D->y_intercept;
 }
 
 void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
@@ -36,26 +36,26 @@ void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
 	float	y_to_check;
 
 	calc_horz_delta(D, dt, rayAngle);
-	while (D->H.nextHorzTouchX >= 0 && D->H.nextHorzTouchX <= g_window_w && D->H.nextHorzTouchY >= 0 && D->H.nextHorzTouchY <= g_window_h)
+	while (D->H.next_x >= 0 && D->H.next_x <= g_window_w && D->H.next_y >= 0 && D->H.next_y <= g_window_h)
 	{
-		x_to_check = D->H.nextHorzTouchX;
-		y_to_check = D->H.nextHorzTouchY;
+		x_to_check = D->H.next_x;
+		y_to_check = D->H.next_y;
 		if (D->facing_up)
 			y_to_check -= 1;
 		if (map_has_wall_at(dt->t_map, x_to_check, y_to_check))
 		{
 			if (y_to_check < 0)
 				y_to_check = 0;
-			D->H.horzWallHitX = D->H.nextHorzTouchX;
-			D->H.horzWallHitY = D->H.nextHorzTouchY;
-			D->H.horzWallContent = dt->t_map.content[(int)floor(y_to_check / TILESIZE)][(int)floor(x_to_check / TILESIZE)];
-			D->H.foundHorzWallHit = true;
+			D->H.wall_hit_x = D->H.next_x;
+			D->H.wall_hit_y = D->H.next_y;
+			D->H.wall_content = dt->t_map.content[(int)floor(y_to_check / TILESIZE)][(int)floor(x_to_check / TILESIZE)];
+			D->H.wall_hit = true;
 			break ;
 		}
 		else
 		{
-			D->H.nextHorzTouchX += D->x_step;
-			D->H.nextHorzTouchY += D->y_step;
+			D->H.next_x += D->x_step;
+			D->H.next_y += D->y_step;
 		}
 	}
 }

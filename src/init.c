@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:49:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 18:03:49 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:04:55 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	init_image(t_data *dt, t_imgs *Timg, t_mlx *M)
 			g_window_h * MINIMAP_SCALE);
 	map->addr = mlx_get_data_addr(map->img, &map->bpp,
 			&map->line_len, &map->endian);
-	p->img = mlx_new_image(M->mlx, dt->P.width * MINIMAP_SCALE,
-			dt->P.height * MINIMAP_SCALE);
+	p->img = mlx_new_image(M->mlx, dt->t_p.width * MINIMAP_SCALE,
+			dt->t_p.height * MINIMAP_SCALE);
 	p->addr = mlx_get_data_addr(p->img, &p->bpp, &p->line_len, &p->endian);
 	map3d->img = mlx_new_image(M->mlx, g_window_w, g_window_h);
 	map3d->addr = mlx_get_data_addr(map3d->img, &map3d->bpp,
@@ -59,6 +59,6 @@ void	init(t_data *dt)
 	g_num_rays = g_window_w;
 	dt->t_r = ft_calloc(g_num_rays, sizeof(t_ray));
 	init_mlx(&dt->t_mlx);
-	init_player(dt, &dt->P);
+	init_player(dt, &dt->t_p);
 	init_image(dt, &dt->t_img, &dt->t_mlx);
 }

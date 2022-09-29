@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:20:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:57:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:22:34 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	calc_vert_delta(t_dda *D, t_data *dt, float rayAngle)
 {
-	D->xIntercept = floor(dt->P.x / TILESIZE) * TILESIZE;
-	if (D->isRayFacingRight)
-		D->xIntercept += TILESIZE;
-	D->yIntercept = dt->P.y + (D->xIntercept - dt->P.x) * tan(rayAngle);
-	D->xStep = TILESIZE;
-	if (D->isRayFacingLeft)
-		D->xStep *= -1;
-	D->yStep = TILESIZE * tan(rayAngle);
-	if (D->isRayFacingUp && D->yStep > 0)
-		D->yStep *= -1;
-	if (D->isRayFacingDown && D->yStep < 0)
-		D->yStep *= -1;
-	D->V.nextVertTouchX = D->xIntercept;
-	D->V.nextVertTouchY = D->yIntercept;
+	D->x_intercept = floor(dt->t_p.x / TILESIZE) * TILESIZE;
+	if (D->facing_right)
+		D->x_intercept += TILESIZE;
+	D->y_intercept = dt->t_p.y + (D->x_intercept - dt->t_p.x) * tan(rayAngle);
+	D->x_step = TILESIZE;
+	if (D->facing_left)
+		D->x_step *= -1;
+	D->y_step = TILESIZE * tan(rayAngle);
+	if (D->facing_up && D->y_step > 0)
+		D->y_step *= -1;
+	if (D->facing_down && D->y_step < 0)
+		D->y_step *= -1;
+	D->V.nextVertTouchX = D->x_intercept;
+	D->V.nextVertTouchY = D->y_intercept;
 }
 
 void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
@@ -41,7 +41,7 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 		&& D->V.nextVertTouchY <= g_window_h)
 	{
 		x_to_check = D->V.nextVertTouchX;
-		if (D->isRayFacingLeft)
+		if (D->facing_left)
 			x_to_check -= 1;
 		y_to_check = D->V.nextVertTouchY;
 		if (map_has_wall_at(dt->t_map, x_to_check, y_to_check))
@@ -54,8 +54,8 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 		}
 		else
 		{
-			D->V.nextVertTouchX += D->xStep;
-			D->V.nextVertTouchY += D->yStep;
+			D->V.nextVertTouchX += D->x_step;
+			D->V.nextVertTouchY += D->y_step;
 		}
 	}
 }

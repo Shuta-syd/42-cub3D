@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:57:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:04:48 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	key_action(int keycode, t_data *dt)
 {
 	t_player	*p;
 
-	p = &dt->P;
+	p = &dt->t_p;
 	if (keycode == UP || keycode == DOWN || keycode == RIGHT
 		|| keycode == LEFT || keycode == ARROW_L || keycode == ARROW_R)
 	{

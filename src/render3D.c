@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 18:00:06 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:31:45 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	*set_texture_direction(t_data *dt, t_ray ray)
 {
-	if (ray.wasHitVertical && (dt->P.x - ray.wallHitX) > 0)
+	if (ray.was_hit_vertical && (dt->t_p.x - ray.wall_hit_x) > 0)
 		return (dt->tex[WEST].data);
-	else if (ray.wasHitVertical && (dt->P.x - ray.wallHitX) < 0)
+	else if (ray.was_hit_vertical && (dt->t_p.x - ray.wall_hit_x) < 0)
 		return (dt->tex[EAST].data);
-	else if (ray.wasHitVertical == false && (dt->P.y - ray.wallHitY) > 0)
+	else if (ray.was_hit_vertical == false && (dt->t_p.y - ray.wall_hit_y) > 0)
 		return (dt->tex[NORTH].data);
 	else
 		return (dt->tex[SOUTH].data);
@@ -28,7 +28,7 @@ void	init_wall_projection(t_data *dt, t_3d *wall, int i)
 {
 	wall->distanceProjPlane = (g_window_w / 2) / tan(FOV_ANGLE / 2);
 	wall->correctWallDistance = dt->t_r[i].distance
-		* cos(dt->t_r[i].rayAngle - dt->P.rotationAngle);
+		* cos(dt->t_r[i].ray_angle - dt->t_p.rotationAngle);
 	wall->projectedWallHeight = (TILESIZE / wall->correctWallDistance
 			* wall->distanceProjPlane);
 	wall->wallStripHeight = (int)wall->projectedWallHeight;
@@ -88,10 +88,10 @@ void	generate3d_projection(t_data *dt)
 	{
 		init_wall_projection(dt, &wall, i);
 		render_cr(dt, &wall, i, true);
-		if (dt->t_r[i].wasHitVertical)
-			offset_x = (int)dt->t_r[i].wallHitY % TILESIZE;
+		if (dt->t_r[i].was_hit_vertical)
+			offset_x = (int)dt->t_r[i].wall_hit_y % TILESIZE;
 		else
-			offset_x = (int)dt->t_r[i].wallHitX % TILESIZE;
+			offset_x = (int)dt->t_r[i].wall_hit_x % TILESIZE;
 		render_3d_wall(dt, &wall, i, offset_x);
 		render_cr(dt, &wall, i, false);
 	}

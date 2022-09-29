@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:58:12 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:05:14 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	render_minimap(t_data *dt)
 {
 	render_map(dt);
-	render_player(dt, dt->P.x * MINIMAP_SCALE, dt->P.y * MINIMAP_SCALE);
+	render_player(dt, dt->t_p.x * MINIMAP_SCALE, dt->t_p.y * MINIMAP_SCALE);
 	render_rays(dt);
 }
 

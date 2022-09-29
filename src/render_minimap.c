@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:59:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 18:00:01 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:11:30 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	render_drawline(t_data *dt, float len, float angle)
 	float	plot_y;
 
 	l = -1;
-	x = (dt->P.x + dt->P.width / 2) * MINIMAP_SCALE;
-	y = (dt->P.y + dt->P.height / 2) * MINIMAP_SCALE;
+	x = (dt->t_p.x + dt->t_p.width / 2) * MINIMAP_SCALE;
+	y = (dt->t_p.y + dt->t_p.height / 2) * MINIMAP_SCALE;
 	while (++l < len * MINIMAP_SCALE)
 	{
 		plot_x = x + cos(angle) * l;
@@ -85,8 +85,8 @@ void	render_player(t_data *dt, float startX, float startY)
 	float	end_y;
 
 	y = -1;
-	end_x = dt->P.width * MINIMAP_SCALE;
-	end_y = dt->P.height * MINIMAP_SCALE;
+	end_x = dt->t_p.width * MINIMAP_SCALE;
+	end_y = dt->t_p.height * MINIMAP_SCALE;
 	while (++y < end_y)
 	{
 		x = -1;
@@ -104,5 +104,5 @@ void	render_rays(t_data *dt)
 
 	i = -1;
 	while (++i < g_num_rays)
-		render_drawline(dt, dt->t_r[i].distance, dt->t_r[i].rayAngle);
+		render_drawline(dt, dt->t_r[i].distance, dt->t_r[i].ray_angle);
 }

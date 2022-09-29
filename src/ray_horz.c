@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:19:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:57:20 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:22:31 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	calc_horz_delta(t_dda *D, t_data *dt, float rayAngle)
 {
-	D->yIntercept = floor(dt->P.y / TILESIZE) * TILESIZE;
-	if (D->isRayFacingDown)
-		D->yIntercept += TILESIZE;
-	D->xIntercept = dt->P.x + (D->yIntercept - dt->P.y) / tan(rayAngle);
-	D->yStep = TILESIZE;
-	if (D->isRayFacingUp)
-		D->yStep *= -1;
-	D->xStep = TILESIZE / tan(rayAngle);
-	if (D->isRayFacingLeft && D->xStep > 0)
-		D->xStep *= -1;
-	if (D->isRayFacingRight && D->xStep < 0)
-		D->xStep *= -1;
-	D->H.nextHorzTouchX = D->xIntercept;
-	D->H.nextHorzTouchY = D->yIntercept;
+	D->y_intercept = floor(dt->t_p.y / TILESIZE) * TILESIZE;
+	if (D->facing_down)
+		D->y_intercept += TILESIZE;
+	D->x_intercept = dt->t_p.x + (D->y_intercept - dt->t_p.y) / tan(rayAngle);
+	D->y_step = TILESIZE;
+	if (D->facing_up)
+		D->y_step *= -1;
+	D->x_step = TILESIZE / tan(rayAngle);
+	if (D->facing_left && D->x_step > 0)
+		D->x_step *= -1;
+	if (D->facing_right && D->x_step < 0)
+		D->x_step *= -1;
+	D->H.nextHorzTouchX = D->x_intercept;
+	D->H.nextHorzTouchY = D->y_intercept;
 }
 
 void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
@@ -40,7 +40,7 @@ void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
 	{
 		x_to_check = D->H.nextHorzTouchX;
 		y_to_check = D->H.nextHorzTouchY;
-		if (D->isRayFacingUp)
+		if (D->facing_up)
 			y_to_check -= 1;
 		if (map_has_wall_at(dt->t_map, x_to_check, y_to_check))
 		{
@@ -54,8 +54,8 @@ void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
 		}
 		else
 		{
-			D->H.nextHorzTouchX += D->xStep;
-			D->H.nextHorzTouchY += D->yStep;
+			D->H.nextHorzTouchX += D->x_step;
+			D->H.nextHorzTouchY += D->y_step;
 		}
 	}
 }

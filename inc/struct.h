@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 18:01:13 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:17:03 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,30 +119,30 @@ typedef struct s_vert
 
 typedef struct s_dda
 {
-	int		isRayFacingUp;
-	int		isRayFacingDown;
-	int		isRayFacingRight;
-	int		isRayFacingLeft;
-	float	xIntercept;
-	float	yIntercept;
-	float	xStep;
-	float	yStep;
+	int		facing_up;
+	int		facing_down;
+	int		facing_right;
+	int		facing_left;
+	float	x_intercept;
+	float	y_intercept;
+	float	x_step;
+	float	y_step;
 	t_horz H;
 	t_vert V;
 }	t_dda;
 
 typedef struct s_ray
 {
-	float	rayAngle;
-	float	wallHitX;
-	float	wallHitY;
+	float	ray_angle;
+	float	wall_hit_x;
+	float	wall_hit_y;
 	float	distance;
-	int		wasHitVertical;
-	int		isRayFacingUp;
-	int		isRayFacingDown;
-	int		isRayFacingRight;
-	int		isRayFacingLeft;
-	int		wallHitContent;
+	int		was_hit_vertical;
+	int		facing_up;
+	int		facing_down;
+	int		facing_right;
+	int		facing_left;
+	int		wall_hit_content;
 }	t_ray;
 
 /**
@@ -154,7 +154,7 @@ typedef struct s_data
 	t_map		t_map;
 	t_imgs		t_img;
 	t_ray		*t_r;
-	t_player	P;
+	t_player	t_p;
 	t_tex		tex[4];
 }	t_data;
 

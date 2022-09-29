@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 22:06:48 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:02:45 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@
  * @ render.c
  */
 int		render(t_data *dt);
-void	renderMap(t_data *dt);
-void	renderDrawLine(t_data *dt, float x, float y, float len, float angle, int color);
+
+/**
+ * @ render_minimap.c
+ */
+void	render_rays(t_data *dt);
+void	render_player(t_data *dt, float startX, float startY);
+void	render_map(t_data *dt);
 
 /**
  * @render3D.c

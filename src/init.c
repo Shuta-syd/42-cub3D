@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:49:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:21:12 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:29:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	init(t_data *dt)
 	WINDOW_W = dt->Tmap.row * tileSize;
 	WINDOW_H = dt->Tmap.col * tileSize;
 	NUM_RAYS = WINDOW_W;
+	dt->R = ft_calloc(NUM_RAYS, sizeof(t_ray));
 	init_mlx(&dt->Tmlx);
 	init_player(dt, &dt->P);
 	init_image(dt, &dt->Timg, &dt->Tmlx);

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 13:51:58 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 13:56:11 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,22 @@ void	renderDrawLine(t_data *dt, float x, float y, float len, float angle, int co
 	}
 }
 
-void	render_player(t_data *dt)
+void	render_player(t_data *dt, float startX, float startY)
 {
-	float	startX;
-	float	startY;
+	int	x;
+	int	y;
 	float	endX;
 	float	endY;
 
-	startX = dt->P.x * MINIMAP_SCALE;
-	startY = dt->P.y * MINIMAP_SCALE;
+	y = -1;
 	endX = dt->P.width * MINIMAP_SCALE;
 	endY = dt->P.height * MINIMAP_SCALE;
-	for (int y = 0; y < endY; y++)
-		for (int x = 0; x < endX; x++)
+	while (++y < endY)
+	{
+		x = -1;
+		while (++x < endX)
 			my_mlx_pixel_put(&dt->Timg.P, x, y, 0xFF0000);
+	}
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.P.img, startX, startY);
 }
 
@@ -109,7 +111,7 @@ int	render(t_data *dt)
 	 * render minimap
 	 */
 	render_map(dt);
-	render_player(dt);
+	render_player(dt, dt->P.x * MINIMAP_SCALE, dt->P.y * MINIMAP_SCALE);
 	render_rays(dt);
 	return (0);
 }

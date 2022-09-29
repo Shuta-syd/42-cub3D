@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 14:43:43 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:49:26 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,24 @@ void	render_cr(t_data *dt, t_3d *wall, int i, bool wasCeiling)
 
 }
 
+void render_3d_wall(t_data *dt, t_3d *wall, int i, int offsetX)
+{
+	int	y;
+	int	offsetY;
+	int	distanceFromTop;
+
+	y = wall->wallTopPixel - 1;
+	while (++y < wall->wallBottomPixel)
+	{
+		distanceFromTop = y + (wall->wallStripHeight / 2) - (WINDOW_H / 2);
+		// why is tilesize casting by float type ?
+		offsetY = distanceFromTop * ((float)tileSize / wall->wallStripHeight);
+		wall->texture = set_texture_direction(dt, dt->R[i]);
+		wall->texelColor = wall->texture[tileSize * offsetY + offsetX];
+		my_mlx_pixel_put(&dt->Timg.map3D, i, y, wall->texelColor);
+	}
+}
+
 void	generate3d_projection(t_data *dt)
 {
 	int		i;
@@ -69,27 +87,11 @@ void	generate3d_projection(t_data *dt)
 	{
 		init_wall_projection(dt, &wall, i);
 		render_cr(dt, &wall, i, true);
-		// calculate textureOffsetX
 		if (dt->R[i].wasHitVertical)
 			textureOffsetX = (int)dt->R[i].wallHitY % tileSize; // same 0
 		else
 			textureOffsetX = (int)dt->R[i].wallHitX % tileSize;
-
-		// wall
-		for (int y = wall.wallTopPixel; y < wall.wallBottomPixel; y++)
-		{
-			// calculate textureOffsetY
-			int textureOffsetY;
-			int distanceFromTop = y + (wall.wallStripHeight / 2) - (WINDOW_H / 2);
-			// why is tilesize casting by float type ?
-			textureOffsetY = distanceFromTop * ((float)tileSize / wall.wallStripHeight);
-
-			int *texture = set_texture_direction(dt, dt->R[i]);
-
-			int texelColor = texture[tileSize * textureOffsetY + textureOffsetX];
-			my_mlx_pixel_put(&dt->Timg.map3D, i, y, texelColor);
-		}
-
+		render_3d_wall(dt, &wall, i, textureOffsetX);
 		render_cr(dt, &wall, i, false);
 	}
 }

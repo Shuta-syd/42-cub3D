@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 14:33:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:48:35 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * correctWallDistance: distance from player to correct wall
  * projectedWallHeight: type of float height of the wall on the window
  * wallStripHeight: type of int height of the wall on the window
- * wallTopPixel: 
+ * wallTopPixel:
  * wallBottomPixel:
  */
 typedef struct s_3d
@@ -34,6 +34,8 @@ typedef struct s_3d
 	int		wallStripHeight;
 	int		wallTopPixel;
 	int		wallBottomPixel;
+	int		*texture;
+	int		texelColor;
 } t_3d;
 
 typedef struct s_mlx

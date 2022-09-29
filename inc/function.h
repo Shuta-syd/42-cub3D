@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:15:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:21:53 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,20 @@ void	render_map(t_data *dt);
 void	generate3d_projection(t_data *dt);
 
 /**
- * @ ray.c
+ * @ ray.c & ray_horz.c & ray_vert.c
  */
 void	cast_all_rays(t_data *dt);
+void	intersection_horz(t_dda *D, t_data *dt, float rayAngle);
+void	intersection_vert(t_dda *D, t_data *dt, float rayAngle);
+
+/**
+ * @ ray_horz.c
+ */
 
 /**
  * @ parse_map.c & parse_map_utils.c
  */
-void	parse_map(t_data *dt, const char *filepath);
+void parse_map(t_data *dt, const char *filepath);
 void	allocate_map_mem(t_map *map);
 void	count_row_col(t_map *map, t_list *lst);
 int		count_line(char *line);

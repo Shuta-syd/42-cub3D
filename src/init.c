@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:49:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:20:15 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:18:36 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_image(t_data *dt, t_imgs *Timg, t_mlx *M)
 	p->addr = mlx_get_data_addr(p->img, &p->bpp, &p->line_len, &p->endian);
 	map3d->img = mlx_new_image(M->mlx, WINDOW_W, WINDOW_H);
 	map3d->addr = mlx_get_data_addr(map3d->img, &map3d->bpp,
-		&map3d->line_len, &map3d->endian);
+			&map3d->line_len, &map3d->endian);
 }
 
 void	init_mlx(t_mlx *M)

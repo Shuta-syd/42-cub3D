@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 22:06:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:04:21 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,14 @@ void printXpmData(t_tex *tex);
 
 int *set_texture_direction(t_data *dt, t_ray ray)
 {
-	if (ray.wasHitVertical && (dt->P.x - ray.wallHitX) > 0){
+	if (ray.wasHitVertical && (dt->P.x - ray.wallHitX) > 0)
 		return (dt->tex[WEST].data);
-	}
 	else if (ray.wasHitVertical && (dt->P.x - ray.wallHitX) < 0)
-	{
 		return (dt->tex[EAST].data);
-	}
 	else if (ray.wasHitVertical == false && (dt->P.y - ray.wallHitY) > 0)
-	{
-
 		return (dt->tex[NORTH].data);
-	}
 	else
-	{
 		return (dt->tex[SOUTH].data);
-	}
 }
 
 void	generate3d_projection(t_data *dt)

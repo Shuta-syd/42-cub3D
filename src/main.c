@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:31:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:39:45 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:03:23 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int main(int ac, char const *av[])
 	init(dt);
 	parse_xpm(dt);
 	cast_all_rays(dt);
-	// printXpmData(&dt->tex[0]);
 	render(dt);
 	mlx_hook(dt->Tmlx.win, 2, 1L << 0, keyAction, dt);
 	mlx_hook(dt->Tmlx.win, 17, 1L << 2, destroyWindow, dt);

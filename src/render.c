@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 22:19:17 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 13:49:12 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,15 @@ void	render_tile(t_imgs *Timg, int tileX, int tileY, int color)
 	int	end_x;
 	int	end_y;
 
-	// x = tileX - 1;
-	// y = tileY - 1;
+	y = tileY - 1;
 	end_x = tileX + tileSize * MINIMAP_SCALE;
 	end_y = tileY + tileSize * MINIMAP_SCALE;
-	// while (++y < end_y)
-	// 	while (++x < end_x)
-	// 		my_mlx_pixel_put(&Timg->map, x, y, color);
-
-	for (int y = tileY; y < end_y; y++)
-		for (int x = tileX; x < end_x; x++)
+	while (++y < end_y)
+	{
+		x = tileX - 1;
+		while (++x < end_x)
 			my_mlx_pixel_put(&Timg->map, x, y, color);
+	}
 }
 
 void	render_map(t_data *dt)

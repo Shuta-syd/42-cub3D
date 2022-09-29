@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:40:15 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:12:27 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 /**
  * @ calculate player new X and Y
  */
-void	movePlayer(t_data *dt, t_player *P)
+void	move_player(t_data *dt, t_player *P)
 {
-	float	moveStep;
-	float	newX;
-	float	newY;
+	float	move_step;
+	float	new_x;
+	float	new_y;
 
 	P->rotationAngle += P->turnDirection * P->turnSpeed;
-	moveStep = P->walkDirection * P->walkSpeed;
-	newX = P->x + cos(P->rotationAngle) * moveStep;
-	newY = P->y + sin(P->rotationAngle) * moveStep;
-	if (mapHasWallAt(dt->Tmap, newX, newY) == false)
+	move_step = P->walkDirection * P->walkSpeed;
+	new_x = P->x + cos(P->rotationAngle) * move_step;
+	new_y = P->y + sin(P->rotationAngle) * move_step;
+	if (mapHasWallAt(dt->Tmap, new_x, new_y) == false)
 	{
-		P->x = newX;
-		P->y = newY;
+		P->x = new_x;
+		P->y = new_y;
 	}
 }
 
-void	switchDirection(int keycode, t_player *P)
+void	switch_direction(int keycode, t_player *P)
 {
 	if (keycode == UP)
 	{
@@ -59,15 +59,16 @@ void	switchDirection(int keycode, t_player *P)
 /**
  * @ Key action to operate WSAD key
  */
-int	keyAction(int keycode, t_data *dt)
+int	key_action(int keycode, t_data *dt)
 {
-	t_player	*P;
+	t_player	*p;
 
-	P = &dt->P;
-	if (keycode == UP || keycode == DOWN || keycode == RIGHT || keycode == LEFT || keycode == ARROW_L || keycode == ARROW_R)
+	p = &dt->P;
+	if (keycode == UP || keycode == DOWN || keycode == RIGHT
+		|| keycode == LEFT || keycode == ARROW_L || keycode == ARROW_R)
 	{
-		switchDirection(keycode, P);
-		movePlayer(dt, P);
+		switch_direction(keycode, p);
+		move_player(dt, p);
 		cast_all_rays(dt);
 		render(dt);
 	}
@@ -79,10 +80,10 @@ int	keyAction(int keycode, t_data *dt)
 /**
  * @ hook action to delete window by esc or x button
  */
-int	destroyWindow(t_data *dt)
+int	destroy_window(t_data *dt)
 {
 	mlx_destroy_window(dt->Tmlx.mlx, dt->Tmlx.win);
-	ft_putstr("[EXIT]\n");
+	ft_putstr_fd("[EXIT]\n", 2);
 	exit(1);
 	return (1);
 }

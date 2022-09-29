@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:59:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:02:08 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:05:36 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	render_player(t_data *dt, float startX, float startY)
 			my_mlx_pixel_put(&dt->Timg.P, x, y, 0xFF0000);
 	}
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win,
-							dt->Timg.P.img, startX, startY);
+		dt->Timg.P.img, startX, startY);
 }
 
 void	render_rays(t_data *dt)

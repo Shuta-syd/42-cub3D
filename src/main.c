@@ -6,12 +6,13 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:31:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:10:57 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:44:14 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
+/*
 void printMapStruct(t_map map)
 {
 	printf("WIN_W[%d] WIN_H[%d]\n", WINDOW_W, WINDOW_H);
@@ -27,10 +28,9 @@ void printMapStruct(t_map map)
 		putchar('\n');
 	}
 }
+*/
 
-void printXpmData(t_tex *tex);
-
-int main(int ac, char const *av[])
+int	main(int ac, char const *av[])
 {
 	t_data	*dt;
 
@@ -45,5 +45,5 @@ int main(int ac, char const *av[])
 	mlx_hook(dt->Tmlx.win, 2, 1L << 0, key_action, dt);
 	mlx_hook(dt->Tmlx.win, 17, 1L << 2, destroy_window, dt);
 	mlx_loop(dt->Tmlx.mlx);
-	return 0;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:54:34 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:17:12 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
 		x_to_check = D->H.nextHorzTouchX;
 		y_to_check = D->H.nextHorzTouchY + (D->isRayFacingUp ? -1 : 0);
 
-		if (mapHasWallAt(dt->Tmap, x_to_check, y_to_check))
+		if (map_has_wall_at(dt->Tmap, x_to_check, y_to_check))
 		{
 			D->H.horzWallHitX = D->H.nextHorzTouchX;
 			D->H.horzWallHitY = D->H.nextHorzTouchY;
@@ -135,7 +135,7 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 		x_to_check = D->V.nextVertTouchX + (D->isRayFacingLeft ? -1 : 0);
 		y_to_check = D->V.nextVertTouchY;
 
-		if (mapHasWallAt(dt->Tmap, x_to_check, y_to_check))
+		if (map_has_wall_at(dt->Tmap, x_to_check, y_to_check))
 		{
 			D->V.vertWallHitX = D->V.nextVertTouchX;
 			D->V.vertWallHitY = D->V.nextVertTouchY;
@@ -160,11 +160,11 @@ void	cpm_distance(t_dda *D, t_data *dt, int stripId)
 	float	vertHitDistance;
 
 	if (D->H.foundHorzWallHit)
-		horzHitDistance = distanceBetweenPoints(dt->P.x, dt->P.y, D->H.horzWallHitX, D->H.horzWallHitY);
+		horzHitDistance = distance_between_points(dt->P.x, dt->P.y, D->H.horzWallHitX, D->H.horzWallHitY);
 	else
 		horzHitDistance = INT_MAX;
 	if (D->V.foundVertWallHit)
-		vertHitDistance = distanceBetweenPoints(dt->P.x, dt->P.y, D->V.vertWallHitX, D->V.vertWallHitY);
+		vertHitDistance = distance_between_points(dt->P.x, dt->P.y, D->V.vertWallHitX, D->V.vertWallHitY);
 	else
 		vertHitDistance = INT_MAX;
 	if (vertHitDistance <= horzHitDistance && vertHitDistance != INT_MAX)

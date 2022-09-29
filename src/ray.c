@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:03:43 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:11:26 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	cast_all_rays(t_data *dt)
 	col = -1;
 	while (++col < g_num_rays)
 	{
-		ray_angle = dt->t_p.rotationAngle
+		ray_angle = dt->t_p.rotation_angle
 			+ atan((col - g_num_rays / 2) / DIST_PROJ_PLANE);
 		cast_ray(dt, normalize_angle(ray_angle), col);
 		ray_angle += FOV_ANGLE / g_num_rays;

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:09:44 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:11:57 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_wall_projection(t_data *dt, t_3d *wall, int i)
 {
 	wall->distance_proj_plane = (g_window_w / 2) / tan(FOV_ANGLE / 2);
 	wall->correct_wall_distance = dt->t_r[i].distance
-		* cos(dt->t_r[i].ray_angle - dt->t_p.rotationAngle);
+		* cos(dt->t_r[i].ray_angle - dt->t_p.rotation_angle);
 	wall->projected_wall_height = (TILESIZE / wall->correct_wall_distance
 			* wall->distance_proj_plane);
 	wall->wall_strip_height = (int)wall->projected_wall_height;

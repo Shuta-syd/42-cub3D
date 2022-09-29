@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:49:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:09:25 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:11:43 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	init_player(t_data *dt, t_player *P)
 	P->y = dt->t_map.pY;
 	P->width = 20;
 	P->height = 20;
-	P->turnDirection = 0;
-	P->walkDirection = 0;
-	P->rotationAngle = M_PI / 2;
-	P->turnSpeed = 100;
-	P->walkSpeed = 20;
+	P->turn_direction = 0;
+	P->walk_direction = 0;
+	P->rotation_angle = M_PI / 2;
+	P->turn_speed = 100;
+	P->walk_speed = 20;
 }
 
 void	init(t_data *dt)

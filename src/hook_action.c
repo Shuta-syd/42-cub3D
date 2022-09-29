@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 18:04:48 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:12:51 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	move_player(t_data *dt, t_player *P)
 	float	new_x;
 	float	new_y;
 
-	P->rotationAngle += P->turnDirection * P->turnSpeed;
-	move_step = P->walkDirection * P->walkSpeed;
-	new_x = P->x + cos(P->rotationAngle) * move_step;
-	new_y = P->y + sin(P->rotationAngle) * move_step;
+	P->rotation_angle += P->turn_direction * P->turn_speed;
+	move_step = P->walk_direction * P->walk_speed;
+	new_x = P->x + cos(P->rotation_angle) * move_step;
+	new_y = P->y + sin(P->rotation_angle) * move_step;
 	if (map_has_wall_at(dt->t_map, new_x, new_y) == false)
 	{
 		P->x = new_x;
@@ -36,23 +36,23 @@ void	switch_direction(int keycode, t_player *P)
 {
 	if (keycode == UP)
 	{
-		P->turnDirection = 0;
-		P->walkDirection = +1;
+		P->turn_direction = 0;
+		P->walk_direction = +1;
 	}
 	else if (keycode == DOWN)
 	{
-		P->turnDirection = 0;
-		P->walkDirection = -1;
+		P->turn_direction = 0;
+		P->walk_direction = -1;
 	}
 	else if (keycode == ARROW_L)
 	{
-		P->walkDirection = 0;
-		P->turnDirection = +1;
+		P->walk_direction = 0;
+		P->turn_direction = +1;
 	}
 	else if (keycode == ARROW_R)
 	{
-		P->walkDirection = 0;
-		P->turnDirection = -1;
+		P->walk_direction = 0;
+		P->turn_direction = -1;
 	}
 }
 

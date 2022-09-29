@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 13:56:11 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 13:59:11 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,12 @@ void	render_player(t_data *dt, float startX, float startY)
 
 void	render_rays(t_data *dt)
 {
+	int	i;
 	int	color;
 
+	i = -1;
 	color = calc_trgb(0, 0, 255, 0);
-	for (int i = 0; i < NUM_RAYS; i++)
+	while (++i < NUM_RAYS)
 		renderDrawLine(dt, dt->P.x, dt->P.y, dt->R[i].distance, dt->R[i].rayAngle, color);
 }
 

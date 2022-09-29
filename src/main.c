@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:31:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 16:32:46 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:22:56 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int ac, char const *av[])
 	parse_map(dt, av[1]);
 	init(dt);
 	parse_xpm(dt);
-	printMapStruct(dt->Tmap);
 	cast_all_rays(dt);
 	render(dt);
 	mlx_hook(dt->Tmlx.win, 2, 1L << 0, key_action, dt);

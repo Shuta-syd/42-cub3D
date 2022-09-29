@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:06 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:58:45 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:20:20 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,11 @@ void	fetch_map_info(t_map *map, t_list *lst)
 			if (ft_isdigit(content[i]) && content[i] != ' ')
 				map->content[col][++row] = content[i] - '0';
 			else if (content[i] != ' ')
-				map->content[col][++row] = POS;
+			{
+				map->content[col][++row] = 0;
+				map->pX = row * tileSize;
+				map->pY = col * tileSize;
+			}
 			i++;
 		}
 		while (i++ < map->row)

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:49:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 16:13:07 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:21:12 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	init_mlx(t_mlx *M)
 	M->win = mlx_new_window(M->mlx, WINDOW_W, WINDOW_H, "cub3D");
 }
 
-void	init_player(t_player *P)
+void	init_player(t_data *dt, t_player *P)
 {
-	P->x = WINDOW_W / 2;
-	P->y = WINDOW_H / 2;
+	P->x = dt->Tmap.pX;
+	P->y = dt->Tmap.pY;
 	P->width = 20;
 	P->height = 20;
 	P->turnDirection = 0;
@@ -58,6 +58,6 @@ void	init(t_data *dt)
 	WINDOW_H = dt->Tmap.col * tileSize;
 	NUM_RAYS = WINDOW_W;
 	init_mlx(&dt->Tmlx);
-	init_player(&dt->P);
+	init_player(dt, &dt->P);
 	init_image(dt, &dt->Timg, &dt->Tmlx);
 }

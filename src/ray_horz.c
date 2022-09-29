@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:19:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:49:04 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 16:42:30 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
 	float	y_to_check;
 
 	calc_horz_delta(D, dt, rayAngle);
-	while (D->H.nextHorzTouchX >= 0 && D->H.nextHorzTouchX <= WINDOW_W
-		&& D->H.nextHorzTouchY >= 0 && D->H.nextHorzTouchY <= WINDOW_H)
+	while (D->H.nextHorzTouchX >= 0 && D->H.nextHorzTouchX <= WINDOW_W && D->H.nextHorzTouchY >= 0 && D->H.nextHorzTouchY <= WINDOW_H)
 	{
 		x_to_check = D->H.nextHorzTouchX;
 		y_to_check = D->H.nextHorzTouchY;
@@ -45,6 +44,8 @@ void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
 			y_to_check -= 1;
 		if (map_has_wall_at(dt->Tmap, x_to_check, y_to_check))
 		{
+			if (y_to_check < 0)
+				y_to_check = 0;
 			D->H.horzWallHitX = D->H.nextHorzTouchX;
 			D->H.horzWallHitY = D->H.nextHorzTouchY;
 			D->H.horzWallContent = dt->Tmap.content[(int)floor(y_to_check / tileSize)][(int)floor(x_to_check / tileSize)];

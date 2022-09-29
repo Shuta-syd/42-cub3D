@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 17:06:21 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:57:24 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@
 /**
  * @ map info
  */
-#define POS 10;
+#define POS 8;
+#define NONE 9;
 
 /**
  * @ angle of view & ray info

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:59:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:05:36 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 16:44:20 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ void	render_map(t_data *dt)
 			tile_y = i * tileSize * MINIMAP_SCALE;
 			if (dt->Tmap.content[i][j] == 1)
 				color = calc_trgb(0, 255, 255, 255);
-			else
+			else if (dt->Tmap.content[i][j] != 9)
 				color = calc_trgb(0, 0, 0, 0);
+			else
+				color = 0xafafb0;
 			render_tile(&dt->Timg, tile_x, tile_y, color);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:06 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:15:26 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:58:45 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	fetch_map_info(t_map *map, t_list *lst)
 				map->content[col][++row] = POS;
 			i++;
 		}
+		while (i++ < map->row)
+			map->content[col][++row] = NONE;
 		col++;
 		lst = lst->next;
 	}

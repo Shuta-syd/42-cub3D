@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 18:05:14 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:10:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	render(t_data *dt)
 {
 	generate3d_projection(dt);
 	mlx_put_image_to_window(dt->t_mlx.mlx, dt->t_mlx.win,
-		dt->t_img.map3D.img, 0, 0);
+		dt->t_img.map_3d.img, 0, 0);
 	render_minimap(dt);
 	return (0);
 }

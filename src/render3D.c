@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:08:20 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:09:44 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	render_cr(t_data *dt, t_3d *wall, int i, bool wasCeiling)
 	{
 		y = -1;
 		while (++y < wall->wall_top_pixel)
-			my_mlx_pixel_put(&dt->t_img.map3D, i, y, dt->t_map.ceiling);
+			my_mlx_pixel_put(&dt->t_img.map_3d, i, y, dt->t_map.ceiling);
 	}
 	else
 	{
 		y = wall->wall_bottom_pixel - 1;
 		while (++y < g_window_h)
-			my_mlx_pixel_put(&dt->t_img.map3D, i, y, dt->t_map.floor);
+			my_mlx_pixel_put(&dt->t_img.map_3d, i, y, dt->t_map.floor);
 	}
 }
 
@@ -73,7 +73,7 @@ void	render_3d_wall(t_data *dt, t_3d *wall, int i, int offsetX)
 				/ wall->wall_strip_height);
 		wall->texture = set_texture_direction(dt, dt->t_r[i]);
 		wall->texel_color = wall->texture[TILESIZE * offset_y + offsetX];
-		my_mlx_pixel_put(&dt->t_img.map3D, i, y, wall->texel_color);
+		my_mlx_pixel_put(&dt->t_img.map_3d, i, y, wall->texel_color);
 	}
 }
 

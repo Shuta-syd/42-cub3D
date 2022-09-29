@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:49:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 18:04:55 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:09:25 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	init_image(t_data *dt, t_imgs *Timg, t_mlx *M)
 	t_img	*p;
 
 	map = &Timg->map;
-	p = &Timg->P;
-	map3d = &Timg->map3D;
+	p = &Timg->p;
+	map3d = &Timg->map_3d;
 	map->img = mlx_new_image(M->mlx, g_window_w * MINIMAP_SCALE,
 			g_window_h * MINIMAP_SCALE);
 	map->addr = mlx_get_data_addr(map->img, &map->bpp,

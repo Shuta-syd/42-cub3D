@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:59:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 18:11:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:10:02 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ void	render_player(t_data *dt, float startX, float startY)
 	{
 		x = -1;
 		while (++x < end_x)
-			my_mlx_pixel_put(&dt->t_img.P, x, y, 0xFF0000);
+			my_mlx_pixel_put(&dt->t_img.p, x, y, 0xFF0000);
 	}
 	mlx_put_image_to_window(dt->t_mlx.mlx, dt->t_mlx.win,
-		dt->t_img.P.img, startX, startY);
+		dt->t_img.p.img, startX, startY);
 }
 
 void	render_rays(t_data *dt)

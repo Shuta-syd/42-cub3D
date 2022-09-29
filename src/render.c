@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 13:59:11 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:58:40 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	render_map(t_data *dt)
 	int	i;
 	int	j;
 	int	color;
+	int	tile_x;
+	int	tile_y;
 
 	i = -1;
 	while (++i < dt->Tmap.col)
@@ -42,52 +44,55 @@ void	render_map(t_data *dt)
 		j = -1;
 		while (++j < dt->Tmap.row)
 		{
-			int tileX = j * tileSize * MINIMAP_SCALE;
-			int tileY = i * tileSize * MINIMAP_SCALE;
+			tile_x = j * tileSize * MINIMAP_SCALE;
+			tile_y = i * tileSize * MINIMAP_SCALE;
 			if (dt->Tmap.content[i][j] == 1)
 				color = calc_trgb(0, 255, 255, 255);
 			else
 				color = calc_trgb(0, 0, 0, 0);
-			render_tile(&dt->Timg, tileX, tileY, color);
+			render_tile(&dt->Timg, tile_x, tile_y, color);
 		}
 	}
 	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.map.img, 0, 0);
 }
 
-void	renderDrawLine(t_data *dt, float x, float y, float len, float angle, int color)
+void	render_drawline(t_data *dt, float len, float angle)
 {
 	int		l;
-	float	plotX;
-	float	plotY;
+	float	x;
+	float	y;
+	float	plot_x;
+	float	plot_y;
 
 	l = -1;
-	x = (x + dt->P.width / 2) * MINIMAP_SCALE;
-	y = (y + dt->P.height / 2) * MINIMAP_SCALE;
+	x = (dt->P.x + dt->P.width / 2) * MINIMAP_SCALE;
+	y = (dt->P.y + dt->P.height / 2) * MINIMAP_SCALE;
 	while (++l < len * MINIMAP_SCALE)
 	{
-		plotX = x + cos(angle) * l;
-		plotY = y + sin(angle) * l;
-		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, plotX, plotY, color);
+		plot_x = x + cos(angle) * l;
+		plot_y = y + sin(angle) * l;
+		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, plot_x, plot_y, 0x00ff00);
 	}
 }
 
 void	render_player(t_data *dt, float startX, float startY)
 {
-	int	x;
-	int	y;
-	float	endX;
-	float	endY;
+	int		x;
+	int		y;
+	float	end_x;
+	float	end_y;
 
 	y = -1;
-	endX = dt->P.width * MINIMAP_SCALE;
-	endY = dt->P.height * MINIMAP_SCALE;
-	while (++y < endY)
+	end_x = dt->P.width * MINIMAP_SCALE;
+	end_y = dt->P.height * MINIMAP_SCALE;
+	while (++y < end_y)
 	{
 		x = -1;
-		while (++x < endX)
+		while (++x < end_x)
 			my_mlx_pixel_put(&dt->Timg.P, x, y, 0xFF0000);
 	}
-	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.P.img, startX, startY);
+	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win,
+		dt->Timg.P.img, startX, startY);
 }
 
 void	render_rays(t_data *dt)
@@ -96,22 +101,15 @@ void	render_rays(t_data *dt)
 	int	color;
 
 	i = -1;
-	color = calc_trgb(0, 0, 255, 0);
 	while (++i < NUM_RAYS)
-		renderDrawLine(dt, dt->P.x, dt->P.y, dt->R[i].distance, dt->R[i].rayAngle, color);
+		render_drawline(dt, dt->R[i].distance, dt->R[i].rayAngle);
 }
 
 int	render(t_data *dt)
 {
-	/**
-	 * render 3D Texture
-	 */
 	generate3d_projection(dt);
-	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.map3D.img, 0, 0);
-
-	/**
-	 * render minimap
-	 */
+	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win,
+		dt->Timg.map3D.img, 0, 0);
 	render_map(dt);
 	render_player(dt, dt->P.x * MINIMAP_SCALE, dt->P.y * MINIMAP_SCALE);
 	render_rays(dt);

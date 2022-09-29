@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 18:43:08 by shogura           #+#    #+#             */
-/*   Updated: 2022/04/20 17:50:52 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:20:18 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdbool.h>
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+
 void	*ft_calloc(size_t count, size_t size);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);

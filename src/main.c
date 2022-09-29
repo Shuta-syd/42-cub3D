@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:31:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:57:09 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 20:26:38 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void print_mapStruct(t_map map)
 }
 */
 
+
+
 int	main(int ac, char const *av[])
 {
 	t_data	*dt;
@@ -37,6 +39,8 @@ int	main(int ac, char const *av[])
 	if (ac != 2)
 		return (1);
 	dt = ft_calloc(1, sizeof(t_data));
+	if (dt == NULL)
+		return (ft_error(NULL, M_ERROR));
 	parse_map(dt, av[1]);
 	init(dt);
 	parse_xpm(dt);

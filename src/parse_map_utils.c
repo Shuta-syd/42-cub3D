@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:14:13 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 21:15:35 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:42:10 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,13 @@ void	allocate_map_mem(t_map *map)
 
 	i = 0;
 	map->content = ft_calloc(map->col, sizeof(int *));
+	if (map->content == NULL)
+		ft_error(NULL, M_ERROR);
 	while (i < map->col)
 	{
 		map->content[i] = ft_calloc(map->row, sizeof(int));
+		if (map->content[i] == NULL)
+			ft_error(NULL, M_ERROR);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:56:50 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:35:55 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 /**
  * @ error.c
  */
-void	ft_error(t_data *dt);
+int		ft_error(t_data *dt, char *msg);
 
 /**
  * @ init.c

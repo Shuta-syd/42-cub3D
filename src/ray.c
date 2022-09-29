@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:17:29 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:47:42 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,9 @@ void	cast_ray(t_data *dt, float rayAngle, int stripId)
 	t_dda	*dda;
 
 	dda = ft_calloc(1, sizeof(t_dda));
-	dda->facing_down = rayAngle > 0
-		&& rayAngle < M_PI;
+	if (dda == NULL)
+		ft_error(dt, M_ERROR);
+	dda->facing_down = rayAngle > 0 && rayAngle < M_PI;
 	dda->facing_up = !dda->facing_down;
 	dda->facing_right = rayAngle < 0.5 * M_PI
 		|| rayAngle > 1.5 * M_PI;

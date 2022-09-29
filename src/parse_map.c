@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:06 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:13:58 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:45:58 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	fetch_filepath(t_map *map, char *line, int dir)
 	while (line[i] && line[i] == ' ')
 		i++;
 	len = count_line(&line[i]) + 1;
-	map->filepath[dir] = malloc(sizeof(char) * len);
+	map->filepath[dir] = ft_calloc(len, sizeof(char));
+	if (map->filepath[dir] == NULL)
+		ft_error(NULL, M_ERROR); // check
 	ft_strlcpy(map->filepath[dir], &line[i], len);
 }
 
@@ -48,6 +50,16 @@ void	fetch_color(t_map *map, char *line, int type)
 		map->ceiling = calc_trgb(0, rgb[0], rgb[1], rgb[2]);
 }
 
+void	fetch_line_content(t_map *map, char *line)
+{
+	char	*str;
+
+	str = ft_strdup(line);
+	if (str == NULL)
+		ft_error(NULL, M_ERROR);
+	ft_lstadd_back(&map->list, ft_lstnew(str));
+}
+
 bool	adapt_map_element(t_map *map, char *line)
 {
 	int	i;
@@ -72,7 +84,7 @@ bool	adapt_map_element(t_map *map, char *line)
 	else if (ft_strnstr(&line[i], "C", 1))
 		fetch_color(map, &line[i + 1], 1);
 	else
-		ft_lstadd_back(&map->list, ft_lstnew(ft_strdup(&line[i])));
+		fetch_line_content(map, &line[i]);
 	return (true);
 }
 
@@ -118,6 +130,8 @@ void	parse_map(t_data *dt, const char *filepath)
 
 	map = &dt->t_map;
 	fd = open(filepath, O_RDONLY);
+	if (fd < 0)
+		ft_error(dt, "[ERROR] can not open file.");
 	while (1)
 	{
 		line = get_next_line(fd);

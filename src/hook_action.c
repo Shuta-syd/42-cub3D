@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:12:51 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 20:29:31 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,13 @@ int	key_action(int keycode, t_data *dt)
  */
 int	destroy_window(t_data *dt)
 {
+	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.map.img);
+	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.map_3d.img);
+	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.p.img);
+	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.texture[0].img);
+	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.texture[1].img);
+	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.texture[2].img);
+	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.texture[3].img);
 	mlx_destroy_window(dt->t_mlx.mlx, dt->t_mlx.win);
 	ft_putstr_fd("[EXIT]\n", 2);
 	exit(1);

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:21:13 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/12 22:34:32 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:19:34 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <limits.h>
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
 size_t	ft_strnlen(char *dst, size_t maxlen);
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *b, size_t len);

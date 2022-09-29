@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:49:51 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 20:23:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@
 # define SOUTH 1
 # define WEST 2
 # define EAST 3
+
+# define M_ERROR "[ERROR] fail to allocate memory\n"
 
 int	g_window_w;
 int	g_window_h;

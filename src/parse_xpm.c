@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:26 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:57:18 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 20:22:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,16 @@ void	parse_xpm_data(t_data *dt, t_tex *tex, char *path)
 	xpm.data = (int *)mlx_get_data_addr(xpm.img, &xpm.bpp,
 			&xpm.line_len, &xpm.endian);
 	tex->data = ft_calloc(tex->width * tex->height, sizeof(int));
+	if (tex->data == NULL)
+		ft_error(dt, M_ERROR);
 	while (++x < tex->width)
 	{
 		y = -1;
 		while (++y < tex->height)
 			tex->data[TILESIZE * y + x] = xpm.data[TILESIZE * y + x];
 	}
-	return ;
+	free(xpm.data);
+	return;
 }
 
 void	parse_xpm(t_data *dt)

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:59:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 16:44:20 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:48:33 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	render_tile(t_imgs *Timg, int tileX, int tileY, int color)
 	int	end_y;
 
 	y = tileY - 1;
-	end_x = tileX + tileSize * MINIMAP_SCALE;
-	end_y = tileY + tileSize * MINIMAP_SCALE;
+	end_x = tileX + TILESIZE * MINIMAP_SCALE;
+	end_y = tileY + TILESIZE * MINIMAP_SCALE;
 	while (++y < end_y)
 	{
 		x = tileX - 1;
@@ -44,8 +44,8 @@ void	render_map(t_data *dt)
 		j = -1;
 		while (++j < dt->Tmap.row)
 		{
-			tile_x = j * tileSize * MINIMAP_SCALE;
-			tile_y = i * tileSize * MINIMAP_SCALE;
+			tile_x = j * TILESIZE * MINIMAP_SCALE;
+			tile_y = i * TILESIZE * MINIMAP_SCALE;
 			if (dt->Tmap.content[i][j] == 1)
 				color = calc_trgb(0, 255, 255, 255);
 			else if (dt->Tmap.content[i][j] != 9)
@@ -103,6 +103,6 @@ void	render_rays(t_data *dt)
 	int	color;
 
 	i = -1;
-	while (++i < NUM_RAYS)
+	while (++i < g_num_rays)
 		render_drawline(dt, dt->R[i].distance, dt->R[i].rayAngle);
 }

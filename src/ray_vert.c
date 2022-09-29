@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:20:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:50:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:47:45 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	calc_vert_delta(t_dda *D, t_data *dt, float rayAngle)
 {
-	D->xIntercept = floor(dt->P.x / tileSize) * tileSize;
+	D->xIntercept = floor(dt->P.x / TILESIZE) * TILESIZE;
 	if (D->isRayFacingRight)
-		D->xIntercept += tileSize;
+		D->xIntercept += TILESIZE;
 	D->yIntercept = dt->P.y + (D->xIntercept - dt->P.x) * tan(rayAngle);
-	D->xStep = tileSize;
+	D->xStep = TILESIZE;
 	if (D->isRayFacingLeft)
 		D->xStep *= -1;
-	D->yStep = tileSize * tan(rayAngle);
+	D->yStep = TILESIZE * tan(rayAngle);
 	if (D->isRayFacingUp && D->yStep > 0)
 		D->yStep *= -1;
 	if (D->isRayFacingDown && D->yStep < 0)
@@ -37,8 +37,8 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 
 	calc_vert_delta(D, dt, rayAngle);
 	while (D->V.nextVertTouchX >= 0 && D->V.nextVertTouchX
-		<= WINDOW_W && D->V.nextVertTouchY >= 0
-		&& D->V.nextVertTouchY <= WINDOW_H)
+		<= g_window_w && D->V.nextVertTouchY >= 0
+		&& D->V.nextVertTouchY <= g_window_h)
 	{
 		x_to_check = D->V.nextVertTouchX;
 		if (D->isRayFacingLeft)
@@ -49,7 +49,7 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 			D->V.vertWallHitX = D->V.nextVertTouchX;
 			D->V.vertWallHitY = D->V.nextVertTouchY;
 			D->V.foundVertWallHit = true;
-			D->V.vertWallContent = dt->Tmap.content[(int)floor(y_to_check / tileSize)][(int)floor(x_to_check / tileSize)];
+			D->V.vertWallContent = dt->Tmap.content[(int)floor(y_to_check / TILESIZE)][(int)floor(x_to_check / TILESIZE)];
 			break ;
 		}
 		else

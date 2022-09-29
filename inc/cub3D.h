@@ -6,12 +6,12 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:57:24 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:49:51 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-#define MINIRT_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -24,24 +24,23 @@
 # include "struct.h"
 # include "function.h"
 
-
 /**
  * @ window size & map info
  */
-#define tileSize 64
-#define MINIMAP_SCALE 0.2
+# define TILESIZE 64
+# define MINIMAP_SCALE 0.2
 
 /**
  * @ map info
  */
-#define POS 8;
-#define NONE 9;
+# define POS 8;
+# define NONE 9;
 
 /**
  * @ angle of view & ray info
  */
 # define FOV_ANGLE (60 * M_PI / 180)
-# define DIST_PROJ_PLANE ((WINDOW_W / 2) / tan(FOV_ANGLE / 2))
+# define DIST_PROJ_PLANE ((g_window_w / 2) / tan(FOV_ANGLE / 2))
 
 /**
  * @keycode (JIS)
@@ -64,24 +63,10 @@
  */
 # define NORTH 0
 # define SOUTH 1
-#define WEST 2
-#define EAST 3
+# define WEST 2
+# define EAST 3
 
-int WINDOW_W;
-int WINDOW_H;
-int NUM_RAYS;
-
-// static const int map[11][15] = {
-// 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-// 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1 },
-// 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1 },
-// 	{ 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-// 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-// 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-// 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1 },
-// 	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-// 	{ 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-// 	{ 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-// 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-// };
+int	g_window_w;
+int	g_window_h;
+int	g_num_rays;
 #endif

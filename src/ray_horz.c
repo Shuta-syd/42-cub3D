@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:19:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 16:42:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:47:43 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	calc_horz_delta(t_dda *D, t_data *dt, float rayAngle)
 {
-	D->yIntercept = floor(dt->P.y / tileSize) * tileSize;
+	D->yIntercept = floor(dt->P.y / TILESIZE) * TILESIZE;
 	if (D->isRayFacingDown)
-		D->yIntercept += tileSize;
+		D->yIntercept += TILESIZE;
 	D->xIntercept = dt->P.x + (D->yIntercept - dt->P.y) / tan(rayAngle);
-	D->yStep = tileSize;
+	D->yStep = TILESIZE;
 	if (D->isRayFacingUp)
 		D->yStep *= -1;
-	D->xStep = tileSize / tan(rayAngle);
+	D->xStep = TILESIZE / tan(rayAngle);
 	if (D->isRayFacingLeft && D->xStep > 0)
 		D->xStep *= -1;
 	if (D->isRayFacingRight && D->xStep < 0)
@@ -36,7 +36,7 @@ void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
 	float	y_to_check;
 
 	calc_horz_delta(D, dt, rayAngle);
-	while (D->H.nextHorzTouchX >= 0 && D->H.nextHorzTouchX <= WINDOW_W && D->H.nextHorzTouchY >= 0 && D->H.nextHorzTouchY <= WINDOW_H)
+	while (D->H.nextHorzTouchX >= 0 && D->H.nextHorzTouchX <= g_window_w && D->H.nextHorzTouchY >= 0 && D->H.nextHorzTouchY <= g_window_h)
 	{
 		x_to_check = D->H.nextHorzTouchX;
 		y_to_check = D->H.nextHorzTouchY;
@@ -48,7 +48,7 @@ void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
 				y_to_check = 0;
 			D->H.horzWallHitX = D->H.nextHorzTouchX;
 			D->H.horzWallHitY = D->H.nextHorzTouchY;
-			D->H.horzWallContent = dt->Tmap.content[(int)floor(y_to_check / tileSize)][(int)floor(x_to_check / tileSize)];
+			D->H.horzWallContent = dt->Tmap.content[(int)floor(y_to_check / TILESIZE)][(int)floor(x_to_check / TILESIZE)];
 			D->H.foundHorzWallHit = true;
 			break ;
 		}

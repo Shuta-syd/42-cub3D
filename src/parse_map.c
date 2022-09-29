@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:06 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:20:20 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:40:12 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	fetch_map_info(t_map *map, t_list *lst)
 			else if (content[i] != ' ')
 			{
 				map->content[col][++row] = 0;
-				map->pX = row * tileSize;
-				map->pY = col * tileSize;
+				map->pX = row * TILESIZE;
+				map->pY = col * TILESIZE;
 			}
 			i++;
 		}

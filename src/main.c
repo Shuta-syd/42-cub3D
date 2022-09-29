@@ -6,12 +6,13 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:31:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:33:56 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:46:18 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
+/*
 void printMapStruct(t_map map)
 {
 	printf("WIN_W[%d] WIN_H[%d]\n", WINDOW_W, WINDOW_H);
@@ -27,6 +28,7 @@ void printMapStruct(t_map map)
 		putchar('\n');
 	}
 }
+*/
 
 int	main(int ac, char const *av[])
 {

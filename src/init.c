@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:49:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:29:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:50:05 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	init_image(t_data *dt, t_imgs *Timg, t_mlx *M)
 	map = &Timg->map;
 	p = &Timg->P;
 	map3d = &Timg->map3D;
-	map->img = mlx_new_image(M->mlx, WINDOW_W * MINIMAP_SCALE,
-			WINDOW_H * MINIMAP_SCALE);
+	map->img = mlx_new_image(M->mlx, g_window_w * MINIMAP_SCALE,
+			g_window_h * MINIMAP_SCALE);
 	map->addr = mlx_get_data_addr(map->img, &map->bpp,
 			&map->line_len, &map->endian);
 	p->img = mlx_new_image(M->mlx, dt->P.width * MINIMAP_SCALE,
 			dt->P.height * MINIMAP_SCALE);
 	p->addr = mlx_get_data_addr(p->img, &p->bpp, &p->line_len, &p->endian);
-	map3d->img = mlx_new_image(M->mlx, WINDOW_W, WINDOW_H);
+	map3d->img = mlx_new_image(M->mlx, g_window_w, g_window_h);
 	map3d->addr = mlx_get_data_addr(map3d->img, &map3d->bpp,
 			&map3d->line_len, &map3d->endian);
 }
@@ -36,7 +36,7 @@ void	init_image(t_data *dt, t_imgs *Timg, t_mlx *M)
 void	init_mlx(t_mlx *M)
 {
 	M->mlx = mlx_init();
-	M->win = mlx_new_window(M->mlx, WINDOW_W, WINDOW_H, "cub3D");
+	M->win = mlx_new_window(M->mlx, g_window_w, g_window_h, "cub3D");
 }
 
 void	init_player(t_data *dt, t_player *P)
@@ -54,10 +54,10 @@ void	init_player(t_data *dt, t_player *P)
 
 void	init(t_data *dt)
 {
-	WINDOW_W = dt->Tmap.row * tileSize;
-	WINDOW_H = dt->Tmap.col * tileSize;
-	NUM_RAYS = WINDOW_W;
-	dt->R = ft_calloc(NUM_RAYS, sizeof(t_ray));
+	g_window_w = dt->Tmap.row * TILESIZE;
+	g_window_h = dt->Tmap.col * TILESIZE;
+	g_num_rays = g_window_w;
+	dt->R = ft_calloc(g_num_rays, sizeof(t_ray));
 	init_mlx(&dt->Tmlx);
 	init_player(dt, &dt->P);
 	init_image(dt, &dt->Timg, &dt->Tmlx);

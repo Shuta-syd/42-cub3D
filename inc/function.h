@@ -6,14 +6,12 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:21:53 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:45:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCTION_H
 # define FUNCTION_H
-
-#include "struct.h"
 
 /**
  * @ render.c

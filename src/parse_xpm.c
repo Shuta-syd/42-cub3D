@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:26 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:33:35 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:39:40 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	parse_xpm_data(t_data *dt, t_tex *tex, char *path)
 	{
 		y = -1;
 		while (++y < tex->height)
-			tex->data[tileSize * y + x] = xpm.data[tileSize * y + x];
+			tex->data[TILESIZE * y + x] = xpm.data[TILESIZE * y + x];
 	}
 	return ;
 }

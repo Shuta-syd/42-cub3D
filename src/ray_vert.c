@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:20:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:27:57 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:50:05 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 	{
 		x_to_check = D->V.nextVertTouchX;
 		if (D->isRayFacingLeft)
-			x_to_check -= -1;
+			x_to_check -= 1;
 		y_to_check = D->V.nextVertTouchY;
 		if (map_has_wall_at(dt->Tmap, x_to_check, y_to_check))
 		{

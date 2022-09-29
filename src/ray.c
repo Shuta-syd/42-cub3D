@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:43:17 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:46:04 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,11 @@ void	cast_ray(t_data *dt, float rayAngle, int stripId)
 	t_dda	*dda;
 
 	dda = ft_calloc(1, sizeof(t_dda));
-	dda->isRayFacingDown = (rayAngle > 0 && rayAngle < M_PI);
+	dda->isRayFacingDown = rayAngle > 0
+		&& rayAngle < M_PI;
 	dda->isRayFacingUp = !dda->isRayFacingDown;
-	dda->isRayFacingRight = (((rayAngle < 0.5) * M_PI)
-			|| ((rayAngle > 1.5) * M_PI));
+	dda->isRayFacingRight = rayAngle < 0.5 * M_PI
+		|| rayAngle > 1.5 * M_PI;
 	dda->isRayFacingLeft = !dda->isRayFacingRight;
 	intersection_horz(dda, dt, rayAngle);
 	intersection_vert(dda, dt, rayAngle);

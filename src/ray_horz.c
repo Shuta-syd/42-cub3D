@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:19:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:26:41 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:49:04 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
 		x_to_check = D->H.nextHorzTouchX;
 		y_to_check = D->H.nextHorzTouchY;
 		if (D->isRayFacingUp)
-			y_to_check = D->H.nextHorzTouchY -1;
+			y_to_check -= 1;
 		if (map_has_wall_at(dt->Tmap, x_to_check, y_to_check))
 		{
 			D->H.horzWallHitX = D->H.nextHorzTouchX;

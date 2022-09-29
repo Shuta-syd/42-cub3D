@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 13:51:06 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 13:51:58 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,14 @@ void	render_map(t_data *dt)
 
 void	renderDrawLine(t_data *dt, float x, float y, float len, float angle, int color)
 {
+	int		l;
 	float	plotX;
 	float	plotY;
 
+	l = -1;
 	x = (x + dt->P.width / 2) * MINIMAP_SCALE;
 	y = (y + dt->P.height / 2) * MINIMAP_SCALE;
-	for (int l = 0; l < len * MINIMAP_SCALE; l++)
+	while (++l < len * MINIMAP_SCALE)
 	{
 		plotX = x + cos(angle) * l;
 		plotY = y + sin(angle) * l;

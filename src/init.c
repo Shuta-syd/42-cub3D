@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:49:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:11:43 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:13:52 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	init_mlx(t_mlx *M)
 
 void	init_player(t_data *dt, t_player *P)
 {
-	P->x = dt->t_map.pX;
-	P->y = dt->t_map.pY;
+	P->x = dt->t_map.px;
+	P->y = dt->t_map.py;
 	P->width = 20;
 	P->height = 20;
 	P->turn_direction = 0;

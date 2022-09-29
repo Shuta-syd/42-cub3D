@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:10:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:14:44 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ typedef struct s_map
 	char	*filepath[4];
 	int		floor;
 	int		ceiling;
-	int		pX;
-	int		pY;
-} t_map;
+	int		px;
+	int		py;
+}	t_map;
 
 typedef struct s_player
 {
@@ -88,8 +88,8 @@ typedef struct s_player
 	float	y;
 	float	width;
 	float	height;
-	int		turn_direction; // -1 for left, +1 for right
-	int		walk_direction; // -1 for back, +1 for front
+	int		turn_direction;
+	int		walk_direction;
 	float	rotation_angle;
 	float	walk_speed;
 	float	turn_speed;
@@ -113,7 +113,7 @@ typedef struct s_vert
 	float	wall_hit_y;
 	float	next_x;
 	float	next_y;
-} t_vert;
+}	t_vert;
 
 typedef struct s_dda
 {
@@ -125,8 +125,8 @@ typedef struct s_dda
 	float	y_intercept;
 	float	x_step;
 	float	y_step;
-	t_horz	H;
-	t_vert	V;
+	t_horz	t_h;
+	t_vert	t_v;
 }	t_dda;
 
 typedef struct s_ray

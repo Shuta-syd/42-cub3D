@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:11:26 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 19:17:29 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,31 @@ void	cpm_distance(t_dda *D, t_data *dt, int stripId)
 	float	horz_hit_distance;
 	float	vert_hit_distance;
 
-	if (D->H.wall_hit)
+	if (D->t_h.wall_hit)
 		horz_hit_distance = distance_between_points(dt->t_p.x, dt->t_p.y,
-				D->H.wall_hit_x, D->H.wall_hit_y);
+				D->t_h.wall_hit_x, D->t_h.wall_hit_y);
 	else
 		horz_hit_distance = INT_MAX;
-	if (D->V.wall_hit)
+	if (D->t_v.wall_hit)
 		vert_hit_distance = distance_between_points(dt->t_p.x, dt->t_p.y,
-				D->V.wall_hit_x, D->V.wall_hit_y);
+				D->t_v.wall_hit_x, D->t_v.wall_hit_y);
 	else
 		vert_hit_distance = INT_MAX;
 	if (vert_hit_distance <= horz_hit_distance && vert_hit_distance != INT_MAX)
 	{
 		dt->t_r[stripId].distance = vert_hit_distance;
-		dt->t_r[stripId].wall_hit_y = D->V.wall_hit_y;
-		dt->t_r[stripId].wall_hit_x = D->V.wall_hit_x;
-		dt->t_r[stripId].wall_hit_content = D->V.wall_content;
+		dt->t_r[stripId].wall_hit_y = D->t_v.wall_hit_y;
+		dt->t_r[stripId].wall_hit_x = D->t_v.wall_hit_x;
+		dt->t_r[stripId].wall_hit_content = D->t_v.wall_content;
 		dt->t_r[stripId].was_hit_vertical = true;
 	}
 	else if (vert_hit_distance >= horz_hit_distance
 		&& horz_hit_distance != INT_MAX)
 	{
 		dt->t_r[stripId].distance = horz_hit_distance;
-		dt->t_r[stripId].wall_hit_x = D->H.wall_hit_x;
-		dt->t_r[stripId].wall_hit_y = D->H.wall_hit_y;
-		dt->t_r[stripId].wall_hit_content = D->H.wall_content;
+		dt->t_r[stripId].wall_hit_x = D->t_h.wall_hit_x;
+		dt->t_r[stripId].wall_hit_y = D->t_h.wall_hit_y;
+		dt->t_r[stripId].wall_hit_content = D->t_h.wall_content;
 		dt->t_r[stripId].was_hit_vertical = false;
 	}
 }

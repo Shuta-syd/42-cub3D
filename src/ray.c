@@ -6,13 +6,13 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:48:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:59:58 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
-void	printMapStruct(t_map map);
+void	print_mapStruct(t_map map);
 
 /**
  * @ compress between 0~2π
@@ -45,20 +45,20 @@ void	cpm_distance(t_dda *D, t_data *dt, int stripId)
 		vert_hit_distance = INT_MAX;
 	if (vert_hit_distance <= horz_hit_distance && vert_hit_distance != INT_MAX)
 	{
-		dt->R[stripId].distance = vert_hit_distance;
-		dt->R[stripId].wallHitY = D->V.vertWallHitY;
-		dt->R[stripId].wallHitX = D->V.vertWallHitX;
-		dt->R[stripId].wallHitContent = D->V.vertWallContent;
-		dt->R[stripId].wasHitVertical = true;
+		dt->t_r[stripId].distance = vert_hit_distance;
+		dt->t_r[stripId].wallHitY = D->V.vertWallHitY;
+		dt->t_r[stripId].wallHitX = D->V.vertWallHitX;
+		dt->t_r[stripId].wallHitContent = D->V.vertWallContent;
+		dt->t_r[stripId].wasHitVertical = true;
 	}
 	else if (vert_hit_distance >= horz_hit_distance
 		&& horz_hit_distance != INT_MAX)
 	{
-		dt->R[stripId].distance = horz_hit_distance;
-		dt->R[stripId].wallHitX = D->H.horzWallHitX;
-		dt->R[stripId].wallHitY = D->H.horzWallHitY;
-		dt->R[stripId].wallHitContent = D->H.horzWallContent;
-		dt->R[stripId].wasHitVertical = false;
+		dt->t_r[stripId].distance = horz_hit_distance;
+		dt->t_r[stripId].wallHitX = D->H.horzWallHitX;
+		dt->t_r[stripId].wallHitY = D->H.horzWallHitY;
+		dt->t_r[stripId].wallHitContent = D->H.horzWallContent;
+		dt->t_r[stripId].wasHitVertical = false;
 	}
 }
 
@@ -76,11 +76,11 @@ void	cast_ray(t_data *dt, float rayAngle, int stripId)
 	intersection_horz(dda, dt, rayAngle);
 	intersection_vert(dda, dt, rayAngle);
 	cpm_distance(dda, dt, stripId);
-	dt->R[stripId].rayAngle = rayAngle;
-	dt->R[stripId].isRayFacingUp = dda->isRayFacingUp;
-	dt->R[stripId].isRayFacingDown = dda->isRayFacingDown;
-	dt->R[stripId].isRayFacingLeft = dda->isRayFacingLeft;
-	dt->R[stripId].isRayFacingRight = dda->isRayFacingRight;
+	dt->t_r[stripId].rayAngle = rayAngle;
+	dt->t_r[stripId].isRayFacingUp = dda->isRayFacingUp;
+	dt->t_r[stripId].isRayFacingDown = dda->isRayFacingDown;
+	dt->t_r[stripId].isRayFacingLeft = dda->isRayFacingLeft;
+	dt->t_r[stripId].isRayFacingRight = dda->isRayFacingRight;
 	free(dda);
 }
 

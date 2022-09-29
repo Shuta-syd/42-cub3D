@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:48:40 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:00:06 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	*set_texture_direction(t_data *dt, t_ray ray)
 void	init_wall_projection(t_data *dt, t_3d *wall, int i)
 {
 	wall->distanceProjPlane = (g_window_w / 2) / tan(FOV_ANGLE / 2);
-	wall->correctWallDistance = dt->R[i].distance
-		* cos(dt->R[i].rayAngle - dt->P.rotationAngle);
+	wall->correctWallDistance = dt->t_r[i].distance
+		* cos(dt->t_r[i].rayAngle - dt->P.rotationAngle);
 	wall->projectedWallHeight = (TILESIZE / wall->correctWallDistance
 			* wall->distanceProjPlane);
 	wall->wallStripHeight = (int)wall->projectedWallHeight;
@@ -48,13 +48,13 @@ void	render_cr(t_data *dt, t_3d *wall, int i, bool wasCeiling)
 	{
 		y = -1;
 		while (++y < wall->wallTopPixel)
-			my_mlx_pixel_put(&dt->Timg.map3D, i, y, dt->Tmap.ceiling);
+			my_mlx_pixel_put(&dt->t_img.map3D, i, y, dt->t_map.ceiling);
 	}
 	else
 	{
 		y = wall->wallBottomPixel - 1;
 		while (++y < g_window_h)
-			my_mlx_pixel_put(&dt->Timg.map3D, i, y, dt->Tmap.floor);
+			my_mlx_pixel_put(&dt->t_img.map3D, i, y, dt->t_map.floor);
 	}
 }
 
@@ -71,9 +71,9 @@ void	render_3d_wall(t_data *dt, t_3d *wall, int i, int offsetX)
 		// why is TILESIZE casting by float type ?
 		offset_y = distance_from_top * ((float)TILESIZE
 				/ wall->wallStripHeight);
-		wall->texture = set_texture_direction(dt, dt->R[i]);
+		wall->texture = set_texture_direction(dt, dt->t_r[i]);
 		wall->texelColor = wall->texture[TILESIZE * offset_y + offsetX];
-		my_mlx_pixel_put(&dt->Timg.map3D, i, y, wall->texelColor);
+		my_mlx_pixel_put(&dt->t_img.map3D, i, y, wall->texelColor);
 	}
 }
 
@@ -88,10 +88,10 @@ void	generate3d_projection(t_data *dt)
 	{
 		init_wall_projection(dt, &wall, i);
 		render_cr(dt, &wall, i, true);
-		if (dt->R[i].wasHitVertical)
-			offset_x = (int)dt->R[i].wallHitY % TILESIZE;
+		if (dt->t_r[i].wasHitVertical)
+			offset_x = (int)dt->t_r[i].wallHitY % TILESIZE;
 		else
-			offset_x = (int)dt->R[i].wallHitX % TILESIZE;
+			offset_x = (int)dt->t_r[i].wallHitX % TILESIZE;
 		render_3d_wall(dt, &wall, i, offset_x);
 		render_cr(dt, &wall, i, false);
 	}

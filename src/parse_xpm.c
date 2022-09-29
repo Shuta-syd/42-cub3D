@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:26 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:39:40 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:57:18 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	parse_xpm_data(t_data *dt, t_tex *tex, char *path)
 
 	x = -1;
 	y = -1;
-	xpm.img = mlx_xpm_file_to_image(dt->Tmlx.mlx, path,
+	xpm.img = mlx_xpm_file_to_image(dt->t_mlx.mlx, path,
 			&xpm.width, &xpm.height);
 	tex->width = xpm.width;
 	tex->height = xpm.height;
@@ -43,7 +43,7 @@ void	parse_xpm(t_data *dt)
 	i = 0;
 	while (i < 4)
 	{
-		parse_xpm_data(dt, &dt->tex[i], dt->Tmap.filepath[i]);
+		parse_xpm_data(dt, &dt->tex[i], dt->t_map.filepath[i]);
 		i++;
 	}
 }

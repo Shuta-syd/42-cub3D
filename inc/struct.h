@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:28:48 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:01:13 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_3d
 	int		wallBottomPixel;
 	int		*texture;
 	int		texelColor;
-} t_3d;
+}	t_3d;
 
 typedef struct s_mlx
 {
@@ -49,7 +49,7 @@ typedef struct s_tex
 	int	width;
 	int	height;
 	int	*data;
-} t_tex;
+}	t_tex;
 
 typedef struct s_img
 {
@@ -61,7 +61,7 @@ typedef struct s_img
 	int		endian;
 	int		width;
 	int		height;
-} t_img;
+}	t_img;
 
 typedef struct s_imgs
 {
@@ -69,7 +69,7 @@ typedef struct s_imgs
 	t_img	P;
 	t_img	map3D;
 	t_img texture[4];
-} t_imgs;
+}	t_imgs;
 
 typedef struct s_map
 {
@@ -95,7 +95,7 @@ typedef struct s_player
 	float	rotationAngle;
 	float	walkSpeed;
 	float	turnSpeed;
-} t_player;
+}	t_player;
 
 typedef struct s_horz
 {
@@ -105,7 +105,7 @@ typedef struct s_horz
 	float nextHorzTouchX;
 	float nextHorzTouchY;
 	int horzWallContent;
-} t_horz;
+}	t_horz;
 
 typedef struct s_vert
 {
@@ -115,7 +115,7 @@ typedef struct s_vert
 	float nextVertTouchX;
 	float nextVertTouchY;
 	int vertWallContent;
-} t_vert;
+}	t_vert;
 
 typedef struct s_dda
 {
@@ -129,7 +129,7 @@ typedef struct s_dda
 	float	yStep;
 	t_horz H;
 	t_vert V;
-} t_dda;
+}	t_dda;
 
 typedef struct s_ray
 {
@@ -143,19 +143,19 @@ typedef struct s_ray
 	int		isRayFacingRight;
 	int		isRayFacingLeft;
 	int		wallHitContent;
-} t_ray;
+}	t_ray;
 
 /**
  * @ comprehensive data
  */
 typedef struct s_data
 {
-	t_mlx		Tmlx;
-	t_map		Tmap;
-	t_imgs		Timg;
-	t_ray		*R;
+	t_mlx		t_mlx;
+	t_map		t_map;
+	t_imgs		t_img;
+	t_ray		*t_r;
 	t_player	P;
 	t_tex		tex[4];
-} t_data;
+}	t_data;
 
 #endif

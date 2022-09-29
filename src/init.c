@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:49:48 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:50:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:03:49 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	init_mlx(t_mlx *M)
 
 void	init_player(t_data *dt, t_player *P)
 {
-	P->x = dt->Tmap.pX;
-	P->y = dt->Tmap.pY;
+	P->x = dt->t_map.pX;
+	P->y = dt->t_map.pY;
 	P->width = 20;
 	P->height = 20;
 	P->turnDirection = 0;
@@ -54,11 +54,11 @@ void	init_player(t_data *dt, t_player *P)
 
 void	init(t_data *dt)
 {
-	g_window_w = dt->Tmap.row * TILESIZE;
-	g_window_h = dt->Tmap.col * TILESIZE;
+	g_window_w = dt->t_map.row * TILESIZE;
+	g_window_h = dt->t_map.col * TILESIZE;
 	g_num_rays = g_window_w;
-	dt->R = ft_calloc(g_num_rays, sizeof(t_ray));
-	init_mlx(&dt->Tmlx);
+	dt->t_r = ft_calloc(g_num_rays, sizeof(t_ray));
+	init_mlx(&dt->t_mlx);
 	init_player(dt, &dt->P);
-	init_image(dt, &dt->Timg, &dt->Tmlx);
+	init_image(dt, &dt->t_img, &dt->t_mlx);
 }

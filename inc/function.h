@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:45:22 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:56:50 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle);
 /**
  * @ parse_map.c & parse_map_utils.c
  */
-void parse_map(t_data *dt, const char *filepath);
+void	parse_map(t_data *dt, const char *filepath);
 void	allocate_map_mem(t_map *map);
 void	count_row_col(t_map *map, t_list *lst);
 int		count_line(char *line);
@@ -52,24 +52,25 @@ int		count_line(char *line);
 /**
  * parse_xpm.c
  */
-void parse_xpm(t_data *dt);
+void	parse_xpm(t_data *dt);
 
 /**
  * @ hook_action.c
  */
-int key_action(int keycode, t_data *dt);
-int destroy_window(t_data *dt);
+int		key_action(int keycode, t_data *dt);
+int		destroy_window(t_data *dt);
 
 /**
  * @ utils.c
  */
-bool map_has_wall_at(t_map map, float x, float y);
-float distance_between_points(float x1, float y1, float x2, float y2);
+bool	map_has_wall_at(t_map map, float x, float y);
+float	distance_between_points(float x1, float y1, float x2, float y2);
 
 /**
  * @ mlx_utils.c
  */
-int		calc_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
+int		calc_trgb(unsigned char t, unsigned char r,
+			unsigned char g, unsigned char b);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 /**

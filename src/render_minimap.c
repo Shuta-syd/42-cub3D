@@ -6,13 +6,13 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:59:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:48:33 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 18:00:01 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
-void	render_tile(t_imgs *Timg, int tileX, int tileY, int color)
+void	render_tile(t_imgs *t_img, int tileX, int tileY, int color)
 {
 	int	x;
 	int	y;
@@ -26,7 +26,7 @@ void	render_tile(t_imgs *Timg, int tileX, int tileY, int color)
 	{
 		x = tileX - 1;
 		while (++x < end_x)
-			my_mlx_pixel_put(&Timg->map, x, y, color);
+			my_mlx_pixel_put(&t_img->map, x, y, color);
 	}
 }
 
@@ -39,23 +39,23 @@ void	render_map(t_data *dt)
 	int	tile_y;
 
 	i = -1;
-	while (++i < dt->Tmap.col)
+	while (++i < dt->t_map.col)
 	{
 		j = -1;
-		while (++j < dt->Tmap.row)
+		while (++j < dt->t_map.row)
 		{
 			tile_x = j * TILESIZE * MINIMAP_SCALE;
 			tile_y = i * TILESIZE * MINIMAP_SCALE;
-			if (dt->Tmap.content[i][j] == 1)
+			if (dt->t_map.content[i][j] == 1)
 				color = calc_trgb(0, 255, 255, 255);
-			else if (dt->Tmap.content[i][j] != 9)
+			else if (dt->t_map.content[i][j] != 9)
 				color = calc_trgb(0, 0, 0, 0);
 			else
 				color = 0xafafb0;
-			render_tile(&dt->Timg, tile_x, tile_y, color);
+			render_tile(&dt->t_img, tile_x, tile_y, color);
 		}
 	}
-	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win, dt->Timg.map.img, 0, 0);
+	mlx_put_image_to_window(dt->t_mlx.mlx, dt->t_mlx.win, dt->t_img.map.img, 0, 0);
 }
 
 void	render_drawline(t_data *dt, float len, float angle)
@@ -73,7 +73,7 @@ void	render_drawline(t_data *dt, float len, float angle)
 	{
 		plot_x = x + cos(angle) * l;
 		plot_y = y + sin(angle) * l;
-		mlx_pixel_put(dt->Tmlx.mlx, dt->Tmlx.win, plot_x, plot_y, 0x00ff00);
+		mlx_pixel_put(dt->t_mlx.mlx, dt->t_mlx.win, plot_x, plot_y, 0x00ff00);
 	}
 }
 
@@ -91,10 +91,10 @@ void	render_player(t_data *dt, float startX, float startY)
 	{
 		x = -1;
 		while (++x < end_x)
-			my_mlx_pixel_put(&dt->Timg.P, x, y, 0xFF0000);
+			my_mlx_pixel_put(&dt->t_img.P, x, y, 0xFF0000);
 	}
-	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win,
-		dt->Timg.P.img, startX, startY);
+	mlx_put_image_to_window(dt->t_mlx.mlx, dt->t_mlx.win,
+		dt->t_img.P.img, startX, startY);
 }
 
 void	render_rays(t_data *dt)
@@ -104,5 +104,5 @@ void	render_rays(t_data *dt)
 
 	i = -1;
 	while (++i < g_num_rays)
-		render_drawline(dt, dt->R[i].distance, dt->R[i].rayAngle);
+		render_drawline(dt, dt->t_r[i].distance, dt->t_r[i].rayAngle);
 }

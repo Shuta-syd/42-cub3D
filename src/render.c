@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 16:43:29 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:58:12 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	render_minimap(t_data *dt)
 int	render(t_data *dt)
 {
 	generate3d_projection(dt);
-	mlx_put_image_to_window(dt->Tmlx.mlx, dt->Tmlx.win,
-		dt->Timg.map3D.img, 0, 0);
+	mlx_put_image_to_window(dt->t_mlx.mlx, dt->t_mlx.win,
+		dt->t_img.map3D.img, 0, 0);
 	render_minimap(dt);
 	return (0);
 }

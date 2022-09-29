@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:06 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:40:12 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:57:15 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	parse_map(t_data *dt, const char *filepath)
 	char	*line;
 	t_map	*map;
 
-	map = &dt->Tmap;
+	map = &dt->t_map;
 	fd = open(filepath, O_RDONLY);
 	while (1)
 	{

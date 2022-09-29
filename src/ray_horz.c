@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:19:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:47:43 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:57:20 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
 		y_to_check = D->H.nextHorzTouchY;
 		if (D->isRayFacingUp)
 			y_to_check -= 1;
-		if (map_has_wall_at(dt->Tmap, x_to_check, y_to_check))
+		if (map_has_wall_at(dt->t_map, x_to_check, y_to_check))
 		{
 			if (y_to_check < 0)
 				y_to_check = 0;
 			D->H.horzWallHitX = D->H.nextHorzTouchX;
 			D->H.horzWallHitY = D->H.nextHorzTouchY;
-			D->H.horzWallContent = dt->Tmap.content[(int)floor(y_to_check / TILESIZE)][(int)floor(x_to_check / TILESIZE)];
+			D->H.horzWallContent = dt->t_map.content[(int)floor(y_to_check / TILESIZE)][(int)floor(x_to_check / TILESIZE)];
 			D->H.foundHorzWallHit = true;
 			break ;
 		}

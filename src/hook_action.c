@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 15:17:42 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:57:05 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	move_player(t_data *dt, t_player *P)
 	move_step = P->walkDirection * P->walkSpeed;
 	new_x = P->x + cos(P->rotationAngle) * move_step;
 	new_y = P->y + sin(P->rotationAngle) * move_step;
-	if (map_has_wall_at(dt->Tmap, new_x, new_y) == false)
+	if (map_has_wall_at(dt->t_map, new_x, new_y) == false)
 	{
 		P->x = new_x;
 		P->y = new_y;
@@ -82,7 +82,7 @@ int	key_action(int keycode, t_data *dt)
  */
 int	destroy_window(t_data *dt)
 {
-	mlx_destroy_window(dt->Tmlx.mlx, dt->Tmlx.win);
+	mlx_destroy_window(dt->t_mlx.mlx, dt->t_mlx.win);
 	ft_putstr_fd("[EXIT]\n", 2);
 	exit(1);
 	return (1);

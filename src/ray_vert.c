@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:20:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:47:45 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:57:22 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 		if (D->isRayFacingLeft)
 			x_to_check -= 1;
 		y_to_check = D->V.nextVertTouchY;
-		if (map_has_wall_at(dt->Tmap, x_to_check, y_to_check))
+		if (map_has_wall_at(dt->t_map, x_to_check, y_to_check))
 		{
 			D->V.vertWallHitX = D->V.nextVertTouchX;
 			D->V.vertWallHitY = D->V.nextVertTouchY;
 			D->V.foundVertWallHit = true;
-			D->V.vertWallContent = dt->Tmap.content[(int)floor(y_to_check / TILESIZE)][(int)floor(x_to_check / TILESIZE)];
+			D->V.vertWallContent = dt->t_map.content[(int)floor(y_to_check / TILESIZE)][(int)floor(x_to_check / TILESIZE)];
 			break ;
 		}
 		else

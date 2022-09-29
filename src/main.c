@@ -6,14 +6,14 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:31:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 17:46:18 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:57:09 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
 /*
-void printMapStruct(t_map map)
+void print_mapStruct(t_map map)
 {
 	printf("WIN_W[%d] WIN_H[%d]\n", WINDOW_W, WINDOW_H);
 	printf("rowX[%d] colY[%d] C[%d] F[%d]\n", map.row, map.col, map.ceiling, map.floor);
@@ -42,8 +42,8 @@ int	main(int ac, char const *av[])
 	parse_xpm(dt);
 	cast_all_rays(dt);
 	render(dt);
-	mlx_hook(dt->Tmlx.win, 2, 1L << 0, key_action, dt);
-	mlx_hook(dt->Tmlx.win, 17, 1L << 2, destroy_window, dt);
-	mlx_loop(dt->Tmlx.mlx);
+	mlx_hook(dt->t_mlx.win, 2, 1L << 0, key_action, dt);
+	mlx_hook(dt->t_mlx.win, 17, 1L << 2, destroy_window, dt);
+	mlx_loop(dt->t_mlx.mlx);
 	return (0);
 }

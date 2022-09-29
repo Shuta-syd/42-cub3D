@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:43:29 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 13:49:12 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 13:51:06 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,15 @@ void	render_tile(t_imgs *Timg, int tileX, int tileY, int color)
 
 void	render_map(t_data *dt)
 {
+	int	i;
+	int	j;
 	int	color;
 
-	for (int i = 0; i < dt->Tmap.col; i++)
+	i = -1;
+	while (++i < dt->Tmap.col)
 	{
-		for (int j = 0; j < dt->Tmap.row; j++)
+		j = -1;
+		while (++j < dt->Tmap.row)
 		{
 			int tileX = j * tileSize * MINIMAP_SCALE;
 			int tileY = i * tileSize * MINIMAP_SCALE;

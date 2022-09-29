@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 14:04:21 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:43:43 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,37 +25,50 @@ int *set_texture_direction(t_data *dt, t_ray ray)
 		return (dt->tex[SOUTH].data);
 }
 
+void	init_wall_projection(t_data *dt, t_3d *wall, int i)
+{
+	wall->distanceProjPlane = (WINDOW_W / 2) / tan(FOV_ANGLE / 2);
+	wall->correctWallDistance = dt->R[i].distance * cos(dt->R[i].rayAngle - dt->P.rotationAngle);
+	wall->projectedWallHeight = (tileSize / wall->correctWallDistance * wall->distanceProjPlane);
+	wall->wallStripHeight = (int)wall->projectedWallHeight;
+	wall->wallTopPixel = (WINDOW_H / 2) - (wall->wallStripHeight / 2);
+	if (wall->wallTopPixel < 0)
+		wall->wallTopPixel = 0;
+	wall->wallBottomPixel = (WINDOW_H / 2) + (wall->wallStripHeight / 2);
+	if (wall->wallBottomPixel > WINDOW_H)
+		wall->wallBottomPixel = WINDOW_H;
+}
+
+void	render_cr(t_data *dt, t_3d *wall, int i, bool wasCeiling)
+{
+	int	y;
+
+	if (wasCeiling)
+	{
+		y = -1;
+		while (++y < wall->wallTopPixel)
+			my_mlx_pixel_put(&dt->Timg.map3D, i, y, dt->Tmap.ceiling);
+	}
+	else
+	{
+		y = wall->wallBottomPixel - 1;
+		while (++y < WINDOW_H)
+			my_mlx_pixel_put(&dt->Timg.map3D, i, y, dt->Tmap.floor);
+	}
+
+}
+
 void	generate3d_projection(t_data *dt)
 {
+	int		i;
+	int		textureOffsetX;
+	t_3d	wall;
 
-	for (int i = 0; i < NUM_RAYS; i++)
+	i = -1;
+	while (++i < NUM_RAYS)
 	{
-		float distanceProjPlane = (WINDOW_W / 2) / tan(FOV_ANGLE / 2); // distance from player to projection plane
-		float correctWallDistance = dt->R[i].distance * cos(dt->R[i].rayAngle - dt->P.rotationAngle);
-		float projectedWallHeight = (tileSize / correctWallDistance * distanceProjPlane); // tileSize of the projection plane
-
-		int wallStripHeight = (int)projectedWallHeight;
-
-		int wallTopPixel = (WINDOW_H / 2) - (wallStripHeight / 2); // what does it mean???
-		wallTopPixel = wallTopPixel < 0 ? 0 : wallTopPixel;
-
-		int wallBottomPixel = (WINDOW_H / 2) + (wallStripHeight / 2);
-		wallBottomPixel = wallBottomPixel > WINDOW_H ? WINDOW_H : wallBottomPixel;
-
-		/**
-		 * render the wall from wallTopPixel to wallBottomPixel
-		 */
-		int color;
-		if (dt->R[i].wasHitVertical)
-			color = calc_trgb(0, 255, 255, 255);
-		else
-			color = calc_trgb(0, 204, 204, 204);
-
-		// sailing
-		for (int y = 0; y < wallTopPixel; y++)
-			my_mlx_pixel_put(&dt->Timg.map3D, i, y, 0x99CCFF);
-
-		int textureOffsetX;
+		init_wall_projection(dt, &wall, i);
+		render_cr(dt, &wall, i, true);
 		// calculate textureOffsetX
 		if (dt->R[i].wasHitVertical)
 			textureOffsetX = (int)dt->R[i].wallHitY % tileSize; // same 0
@@ -63,13 +76,13 @@ void	generate3d_projection(t_data *dt)
 			textureOffsetX = (int)dt->R[i].wallHitX % tileSize;
 
 		// wall
-		for (int y = wallTopPixel; y < wallBottomPixel; y++)
+		for (int y = wall.wallTopPixel; y < wall.wallBottomPixel; y++)
 		{
 			// calculate textureOffsetY
 			int textureOffsetY;
-			int distanceFromTop = y + (wallStripHeight / 2) - (WINDOW_H / 2);
+			int distanceFromTop = y + (wall.wallStripHeight / 2) - (WINDOW_H / 2);
 			// why is tilesize casting by float type ?
-			textureOffsetY = distanceFromTop * ((float)tileSize / wallStripHeight);
+			textureOffsetY = distanceFromTop * ((float)tileSize / wall.wallStripHeight);
 
 			int *texture = set_texture_direction(dt, dt->R[i]);
 
@@ -77,8 +90,6 @@ void	generate3d_projection(t_data *dt)
 			my_mlx_pixel_put(&dt->Timg.map3D, i, y, texelColor);
 		}
 
-		// floor
-		for (int y = wallBottomPixel; y < WINDOW_H; y++)
-			my_mlx_pixel_put(&dt->Timg.map3D, i, y, 0x9ecccc);
+		render_cr(dt, &wall, i, false);
 	}
 }

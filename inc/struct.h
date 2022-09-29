@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/25 20:30:35 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:33:30 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,26 @@
 
 #include <cub3D.h>
 #define uint unsigned int
+
+/**
+ * @ struct required for 3d wall
+ *
+ * distanceProjPlane: distance from player to projection plane
+ * correctWallDistance: distance from player to correct wall
+ * projectedWallHeight: type of float height of the wall on the window
+ * wallStripHeight: type of int height of the wall on the window
+ * wallTopPixel: 
+ * wallBottomPixel:
+ */
+typedef struct s_3d
+{
+	float	distanceProjPlane;
+	float	correctWallDistance;
+	float	projectedWallHeight;
+	int		wallStripHeight;
+	int		wallTopPixel;
+	int		wallBottomPixel;
+} t_3d;
 
 typedef struct s_mlx
 {

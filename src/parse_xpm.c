@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:26 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 14:14:56 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 15:43:21 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	parse_xpm_data(t_data *dt, t_tex *tex, char *path)
 			tex->data[TILESIZE * y + x] = xpm.data[TILESIZE * y + x];
 	}
 	mlx_destroy_image(dt->t_mlx.mlx, xpm.img);
-	return;
+	return ;
 }
 
 void	parse_xpm(t_data *dt)

@@ -6,11 +6,44 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:14:13 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 14:48:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 15:53:30 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+
+void	fetch_line_content(t_map *map, char *line)
+{
+	char *str;
+
+	str = ft_strdup(line);
+	if (str == NULL)
+		ft_error(NULL, M_ERROR);
+	ft_lstadd_back(&map->list, ft_lstnew(str));
+}
+
+void	dup_content_line(t_map *map, char *content, int col)
+{
+	int	i;
+	int	row;
+
+	i = 0;
+	row = -1;
+	while (content[i] && content[i] != '\n')
+	{
+		if (ft_isdigit(content[i]) && content[i] != ' ')
+			map->content[col][++row] = content[i] - '0';
+		else if (content[i] != ' ')
+		{
+			map->content[col][++row] = 0;
+			map->px = row * TILESIZE;
+			map->py = col * TILESIZE;
+		}
+		i++;
+	}
+	while (i++ < map->row)
+		map->content[col][++row] = NONE;
+}
 
 void	count_row_col(t_map *map, t_list *lst)
 {

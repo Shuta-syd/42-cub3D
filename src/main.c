@@ -6,31 +6,11 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:31:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 14:35:02 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 15:44:00 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
-
-/*
-void print_mapStruct(t_map map)
-{
-	printf("WIN_W[%d] WIN_H[%d]\n", WINDOW_W, WINDOW_H);
-	printf("rowX[%d] colY[%d] C[%d] F[%d]\n", map.row, map.col, map.ceiling, map.floor);
-	for (size_t i = 0; i < 4; i++)
-		printf("filepath[%zu] -> [%s]\n", i, map.filepath[i]);
-	for (size_t i = 0; i < map.col; i++)
-	{
-		for (size_t j = 0; j < map.row; j++)
-		{
-			printf("%d", map.content[i][j]);
-		}
-		putchar('\n');
-	}
-}
-*/
-
-
 
 int	main(int ac, char const *av[])
 {

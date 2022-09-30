@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 14:57:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 15:53:29 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	parse_map(t_data *dt, const char *filepath);
 void	allocate_map_mem(t_map *map);
 void	count_row_col(t_map *map, t_list *lst);
 int		count_line(char *line);
+void	fetch_line_content(t_map *map, char *line);
+void	dup_content_line(t_map *map, char *content, int col);
 
 /**
  * parse_xpm.c

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:06 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 14:52:56 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 15:53:03 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	fetch_filepath(t_map *map, char *line, int dir)
 	len = count_line(&line[i]) + 1;
 	map->filepath[dir] = ft_calloc(len, sizeof(char));
 	if (map->filepath[dir] == NULL)
-		ft_error(NULL, M_ERROR); // check
+		ft_error(NULL, M_ERROR);
 	ft_strlcpy(map->filepath[dir], &line[i], len);
 	fd = open(map->filepath[dir], O_RDONLY);
 	if (fd < 0)
@@ -50,23 +50,13 @@ void	fetch_color(t_map *map, char *line, int type)
 		j++;
 		while (line[i] && ft_isdigit(line[i]))
 			i++;
-		while (line[i] && (line[i] == ','  || line[i] == ' '))
+		while (line[i] && (line[i] == ',' || line[i] == ' '))
 			i++;
 	}
 	if (type == 0)
 		map->floor = calc_trgb(0, rgb[0], rgb[1], rgb[2]);
 	else if (type == 1)
 		map->ceiling = calc_trgb(0, rgb[0], rgb[1], rgb[2]);
-}
-
-void	fetch_line_content(t_map *map, char *line)
-{
-	char	*str;
-
-	str = ft_strdup(line);
-	if (str == NULL)
-		ft_error(NULL, M_ERROR);
-	ft_lstadd_back(&map->list, ft_lstnew(str));
 }
 
 bool	adapt_map_element(t_map *map, char *line)
@@ -99,33 +89,14 @@ bool	adapt_map_element(t_map *map, char *line)
 
 void	fetch_map_info(t_map *map, t_list *lst)
 {
-	int		i;
-	int		row;
 	int		col;
-	char	*content;
 
 	col = 0;
 	count_row_col(map, lst);
 	allocate_map_mem(map);
 	while (lst)
 	{
-		i = 0;
-		row = -1;
-		content = (char *)lst->content;
-		while (content[i] && content[i] != '\n')
-		{
-			if (ft_isdigit(content[i]) && content[i] != ' ')
-				map->content[col][++row] = content[i] - '0';
-			else if (content[i] != ' ')
-			{
-				map->content[col][++row] = 0;
-				map->px = row * TILESIZE;
-				map->py = col * TILESIZE;
-			}
-			i++;
-		}
-		while (i++ < map->row)
-			map->content[col][++row] = NONE;
+		dup_content_line(map, (char *)lst->content, col);
 		col++;
 		lst = lst->next;
 	}

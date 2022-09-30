@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:33:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:37:15 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 13:44:54 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_error(t_data *dt, char *msg)
 {
+	(void)dt;
 	ft_putstr_fd(msg, 2);
 	exit(1);
 	return (1);

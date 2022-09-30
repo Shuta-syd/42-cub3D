@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:59:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:10:02 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 13:41:36 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	render_player(t_data *dt, float startX, float startY)
 void	render_rays(t_data *dt)
 {
 	int	i;
-	int	color;
 
 	i = -1;
 	while (++i < g_num_rays)

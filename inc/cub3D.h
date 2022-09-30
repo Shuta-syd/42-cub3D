@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 14:36:41 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:28:24 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@
  */
 # define POS 8;
 # define NONE 9;
-
-/**
- * @ angle of view & ray info
- */
-# define FOV_ANGLE (60 * M_PI / 180)
-# define DIST_PROJ_PLANE ((g_window_w / 2) / tan(FOV_ANGLE / 2))
 
 /**
  * @keycode (JIS)

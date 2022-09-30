@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 16:20:27 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:29:02 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,18 @@ void	cast_ray(t_data *dt, float rayAngle, int stripId)
 void	cast_all_rays(t_data *dt)
 {
 	int		col;
+	float	fov_angle;
 	float	ray_angle;
+	float	dist_proj_plane;
 
 	col = -1;
+	fov_angle = 60 * M_PI / 180;
+	dist_proj_plane = (g_window_w / 2) / tan(fov_angle / 2);
 	while (++col < g_num_rays)
 	{
 		ray_angle = dt->t_p.rotation_angle
-			+ atan((col - g_num_rays / 2) / DIST_PROJ_PLANE);
+			+ atan((col - g_num_rays / 2) / dist_proj_plane);
 		cast_ray(dt, normalize_angle(ray_angle), col);
-		ray_angle += FOV_ANGLE / g_num_rays;
+		ray_angle += fov_angle / g_num_rays;
 	}
 }

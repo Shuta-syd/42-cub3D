@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 16:21:39 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:30:28 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	*set_texture_direction(t_data *dt, t_ray ray)
 
 void	init_wall_projection(t_data *dt, t_3d *wall, int i)
 {
-	wall->distance_proj_plane = (g_window_w / 2) / tan(FOV_ANGLE / 2);
+	float	fov_angle;
+
+	fov_angle = (60 * M_PI / 180);
+	wall->distance_proj_plane = (g_window_w / 2) / tan(fov_angle / 2);
 	wall->correct_wall_distance = dt->t_r[i].distance
 		* cos(dt->t_r[i].ray_angle - dt->t_p.rotation_angle);
 	wall->projected_wall_height = (TILESIZE / wall->correct_wall_distance

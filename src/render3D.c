@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:31:45 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 14:13:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:21:39 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	render_cr(t_data *dt, t_3d *wall, int i, bool wasCeiling)
 	}
 }
 
+// line:73 why is TILESIZE casting by float type ?
 void	render_3d_wall(t_data *dt, t_3d *wall, int i, int offsetX)
 {
 	int	y;
@@ -67,8 +68,8 @@ void	render_3d_wall(t_data *dt, t_3d *wall, int i, int offsetX)
 	y = wall->wall_top_pixel - 1;
 	while (++y < wall->wall_bottom_pixel)
 	{
-		distance_from_top = y + (wall->wall_strip_height / 2) - (g_window_h / 2);
-		// why is TILESIZE casting by float type ?
+		distance_from_top = y + (wall->wall_strip_height / 2)
+			- (g_window_h / 2);
 		offset_y = distance_from_top * ((float)TILESIZE
 				/ wall->wall_strip_height);
 		wall->texture = set_texture_direction(dt, dt->t_r[i]);

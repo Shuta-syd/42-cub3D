@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 20:29:31 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 13:34:46 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	move_player(t_data *dt, t_player *P)
 	}
 }
 
-void	switch_direction(int keycode, t_player *P)
+void	wasd(int keycode, t_player *P)
 {
 	if (keycode == UP)
 	{
@@ -44,7 +44,21 @@ void	switch_direction(int keycode, t_player *P)
 		P->turn_direction = 0;
 		P->walk_direction = -1;
 	}
-	else if (keycode == ARROW_L)
+	else if (keycode == RIGHT)
+	{
+		P->turn_direction = -0.5;
+		P->walk_direction = 1;
+	}
+	else if (keycode == LEFT)
+	{
+		P->turn_direction = 0.5;
+		P->walk_direction = 1;
+	}
+}
+
+void	arrow_key(int keycode, t_player *P)
+{
+	if (keycode == ARROW_L)
 	{
 		P->walk_direction = 0;
 		P->turn_direction = +1;
@@ -56,6 +70,12 @@ void	switch_direction(int keycode, t_player *P)
 	}
 }
 
+void	switch_direction(int keycode, t_player *P)
+{
+	wasd(keycode, P);
+	arrow_key(keycode, P);
+}
+
 /**
  * @ Key action to operate WSAD key
  */
@@ -64,8 +84,7 @@ int	key_action(int keycode, t_data *dt)
 	t_player	*p;
 
 	p = &dt->t_p;
-	if (keycode == UP || keycode == DOWN || keycode == RIGHT
-		|| keycode == LEFT || keycode == ARROW_L || keycode == ARROW_R)
+	if (keycode == UP || keycode == DOWN || keycode == RIGHT || keycode == LEFT || keycode == ARROW_L || keycode == ARROW_R)
 	{
 		switch_direction(keycode, p);
 		move_player(dt, p);
@@ -82,13 +101,6 @@ int	key_action(int keycode, t_data *dt)
  */
 int	destroy_window(t_data *dt)
 {
-	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.map.img);
-	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.map_3d.img);
-	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.p.img);
-	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.texture[0].img);
-	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.texture[1].img);
-	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.texture[2].img);
-	mlx_destroy_image(dt->t_mlx.mlx, dt->t_img.texture[3].img);
 	mlx_destroy_window(dt->t_mlx.mlx, dt->t_mlx.win);
 	ft_putstr_fd("[EXIT]\n", 2);
 	exit(1);

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:14:44 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 13:25:58 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_player
 	float	y;
 	float	width;
 	float	height;
-	int		turn_direction;
+	float	turn_direction;
 	int		walk_direction;
 	float	rotation_angle;
 	float	walk_speed;

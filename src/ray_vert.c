@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:20:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:15:43 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:12:33 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,30 @@ void	calc_vert_delta(t_dda *D, t_data *dt, float rayAngle)
 	D->t_v.next_y = D->y_intercept;
 }
 
+bool	search_vert_intersection(t_dda *D, t_data *dt,
+		float x_to_check, float y_to_check)
+{
+	int	x;
+	int	y;
+
+	if (map_has_wall_at(dt->t_map, x_to_check, y_to_check))
+	{
+		D->t_v.wall_hit_x = D->t_v.next_x;
+		D->t_v.wall_hit_y = D->t_v.next_y;
+		D->t_v.wall_hit = true;
+		y = (int)floor(y_to_check / TILESIZE);
+		x = (int)floor(x_to_check / TILESIZE);
+		D->t_v.wall_content = dt->t_map.content[y][x];
+		return (true);
+	}
+	else
+	{
+		D->t_v.next_x += D->x_step;
+		D->t_v.next_y += D->y_step;
+	}
+	return (false);
+}
+
 void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 {
 	float	x_to_check;
@@ -44,18 +68,7 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 		if (D->facing_left)
 			x_to_check -= 1;
 		y_to_check = D->t_v.next_y;
-		if (map_has_wall_at(dt->t_map, x_to_check, y_to_check))
-		{
-			D->t_v.wall_hit_x = D->t_v.next_x;
-			D->t_v.wall_hit_y = D->t_v.next_y;
-			D->t_v.wall_hit = true;
-			D->t_v.wall_content = dt->t_map.content[(int)floor(y_to_check / TILESIZE)][(int)floor(x_to_check / TILESIZE)];
-			break ;
-		}
-		else
-		{
-			D->t_v.next_x += D->x_step;
-			D->t_v.next_y += D->y_step;
-		}
+		if (search_vert_intersection(D, dt, x_to_check, y_to_check))
+			return ;
 	}
 }

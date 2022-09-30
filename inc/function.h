@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 15:53:29 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 15:56:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	parse_xpm(t_data *dt);
  */
 int		key_action(int keycode, t_data *dt);
 int		destroy_window(t_data *dt);
+void	wasd(int keycode, t_player *P);
+void	arrow_key(int keycode, t_player *P);
 
 /**
  * @ utils.c

@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:14:13 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 15:53:30 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 15:54:14 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	fetch_line_content(t_map *map, char *line)
 {
-	char *str;
+	char	*str;
 
 	str = ft_strdup(line);
 	if (str == NULL)

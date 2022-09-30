@@ -6,13 +6,11 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 14:06:19 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:00:42 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
-
-void	print_mapStruct(t_map map);
 
 /**
  * @ compress between 0~2π
@@ -71,8 +69,7 @@ void	cast_ray(t_data *dt, float rayAngle, int stripId)
 		ft_error(dt, M_ERROR);
 	dda->facing_down = rayAngle > 0 && rayAngle < M_PI;
 	dda->facing_up = !dda->facing_down;
-	dda->facing_right = rayAngle < 0.5 * M_PI
-		|| rayAngle > 1.5 * M_PI;
+	dda->facing_right = rayAngle < 0.5 * M_PI || rayAngle > 1.5 * M_PI;
 	dda->facing_left = !dda->facing_right;
 	intersection_horz(dda, dt, rayAngle);
 	intersection_vert(dda, dt, rayAngle);

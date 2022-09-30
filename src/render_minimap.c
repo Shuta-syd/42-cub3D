@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:59:56 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 13:41:36 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 15:54:23 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	render_map(t_data *dt)
 			render_tile(&dt->t_img, tile_x, tile_y, color);
 		}
 	}
-	mlx_put_image_to_window(dt->t_mlx.mlx, dt->t_mlx.win, dt->t_img.map.img, 0, 0);
+	mlx_put_image_to_window(dt->t_mlx.mlx,
+		dt->t_mlx.win, dt->t_img.map.img, 0, 0);
 }
 
 void	render_drawline(t_data *dt, float len, float angle)

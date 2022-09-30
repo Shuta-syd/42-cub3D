@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:58:18 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 14:09:06 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 15:55:18 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,44 +32,6 @@ void	move_player(t_data *dt, t_player *P)
 	}
 }
 
-void	wasd(int keycode, t_player *P)
-{
-	if (keycode == UP)
-	{
-		P->turn_direction = 0;
-		P->walk_direction = +1;
-	}
-	else if (keycode == DOWN)
-	{
-		P->turn_direction = 0;
-		P->walk_direction = -1;
-	}
-	else if (keycode == RIGHT)
-	{
-		P->turn_direction = -0.5;
-		P->walk_direction = 1;
-	}
-	else if (keycode == LEFT)
-	{
-		P->turn_direction = 0.5;
-		P->walk_direction = 1;
-	}
-}
-
-void	arrow_key(int keycode, t_player *P)
-{
-	if (keycode == ARROW_L)
-	{
-		P->walk_direction = 0;
-		P->turn_direction = +1;
-	}
-	else if (keycode == ARROW_R)
-	{
-		P->walk_direction = 0;
-		P->turn_direction = -1;
-	}
-}
-
 void	switch_direction(int keycode, t_player *P)
 {
 	wasd(keycode, P);
@@ -84,7 +46,8 @@ int	key_action(int keycode, t_data *dt)
 	t_player	*p;
 
 	p = &dt->t_p;
-	if (keycode == UP || keycode == DOWN || keycode == RIGHT || keycode == LEFT || keycode == ARROW_L || keycode == ARROW_R)
+	if (keycode == UP || keycode == DOWN || keycode == RIGHT
+		|| keycode == LEFT || keycode == ARROW_L || keycode == ARROW_R)
 	{
 		switch_direction(keycode, p);
 		move_player(dt, p);

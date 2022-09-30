@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 16:00:42 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:20:27 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,26 @@ float	normalize_angle(float angle)
 	if (angle < 0)
 		angle = M_PI * 2.0 + angle;
 	return (angle);
+}
+
+void	copy_ray_info(t_dda *D, t_ray *R, float distance, bool isVert)
+{
+	if (isVert)
+	{
+		R->distance = distance;
+		R->wall_hit_y = D->t_v.wall_hit_y;
+		R->wall_hit_x = D->t_v.wall_hit_x;
+		R->wall_hit_content = D->t_v.wall_content;
+		R->was_hit_vertical = true;
+	}
+	else
+	{
+		R->distance = distance;
+		R->wall_hit_x = D->t_h.wall_hit_x;
+		R->wall_hit_y = D->t_h.wall_hit_y;
+		R->wall_hit_content = D->t_h.wall_content;
+		R->was_hit_vertical = false;
+	}
 }
 
 /**
@@ -42,22 +62,10 @@ void	cpm_distance(t_dda *D, t_data *dt, int stripId)
 	else
 		vert_hit_distance = INT_MAX;
 	if (vert_hit_distance <= horz_hit_distance && vert_hit_distance != INT_MAX)
-	{
-		dt->t_r[stripId].distance = vert_hit_distance;
-		dt->t_r[stripId].wall_hit_y = D->t_v.wall_hit_y;
-		dt->t_r[stripId].wall_hit_x = D->t_v.wall_hit_x;
-		dt->t_r[stripId].wall_hit_content = D->t_v.wall_content;
-		dt->t_r[stripId].was_hit_vertical = true;
-	}
+		copy_ray_info(D, &dt->t_r[stripId], vert_hit_distance, true);
 	else if (vert_hit_distance >= horz_hit_distance
 		&& horz_hit_distance != INT_MAX)
-	{
-		dt->t_r[stripId].distance = horz_hit_distance;
-		dt->t_r[stripId].wall_hit_x = D->t_h.wall_hit_x;
-		dt->t_r[stripId].wall_hit_y = D->t_h.wall_hit_y;
-		dt->t_r[stripId].wall_hit_content = D->t_h.wall_content;
-		dt->t_r[stripId].was_hit_vertical = false;
-	}
+		copy_ray_info(D, &dt->t_r[stripId], horz_hit_distance, false);
 }
 
 void	cast_ray(t_data *dt, float rayAngle, int stripId)
@@ -67,9 +75,15 @@ void	cast_ray(t_data *dt, float rayAngle, int stripId)
 	dda = ft_calloc(1, sizeof(t_dda));
 	if (dda == NULL)
 		ft_error(dt, M_ERROR);
-	dda->facing_down = rayAngle > 0 && rayAngle < M_PI;
+	if (rayAngle > 0 && rayAngle < M_PI)
+		dda->facing_down = 1;
+	else
+		dda->facing_down = 0;
 	dda->facing_up = !dda->facing_down;
-	dda->facing_right = rayAngle < 0.5 * M_PI || rayAngle > 1.5 * M_PI;
+	if (rayAngle < 0.5 * M_PI || rayAngle > 1.5 * M_PI)
+		dda->facing_right = 1;
+	else
+		dda->facing_right = 0;
 	dda->facing_left = !dda->facing_right;
 	intersection_horz(dda, dt, rayAngle);
 	intersection_vert(dda, dt, rayAngle);

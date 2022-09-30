@@ -1,0 +1,7 @@
+NO ./asset/xpm/wall02_north.xpm
+SO        ./asset/xpm/wall02_south.xpm
+WE ./asset/xpm/wall02_west.xpm
+EA ./asset/xpm/wall02_east.xpm
+
+F   253,100,   0
+C   137,  189,   222

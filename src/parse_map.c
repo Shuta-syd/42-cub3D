@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:06 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 13:56:13 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 14:52:56 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	fetch_filepath(t_map *map, char *line, int dir)
 {
 	int	i;
 	int	len;
+	int	fd;
 
 	i = 0;
 	while (line[i] && line[i] == ' ')
@@ -25,6 +26,10 @@ void	fetch_filepath(t_map *map, char *line, int dir)
 	if (map->filepath[dir] == NULL)
 		ft_error(NULL, M_ERROR); // check
 	ft_strlcpy(map->filepath[dir], &line[i], len);
+	fd = open(map->filepath[dir], O_RDONLY);
+	if (fd < 0)
+		ft_error(NULL, F_ERROR);
+	close(fd);
 }
 
 void	fetch_color(t_map *map, char *line, int type)
@@ -39,10 +44,14 @@ void	fetch_color(t_map *map, char *line, int type)
 		i++;
 	while (line[i] && line[i] != '\n')
 	{
-		rgb[j++] = ft_atoi(&line[i]);
-		while (ft_isdigit(line[i]))
+		rgb[j] = ft_atoi(&line[i]);
+		if (rgb[j] > 255)
+			ft_error(NULL, "[ERROR] rgb num is out of range \n");
+		j++;
+		while (line[i] && ft_isdigit(line[i]))
 			i++;
-		i++;
+		while (line[i] && (line[i] == ','  || line[i] == ' '))
+			i++;
 	}
 	if (type == 0)
 		map->floor = calc_trgb(0, rgb[0], rgb[1], rgb[2]);
@@ -130,8 +139,6 @@ void	parse_map(t_data *dt, const char *filepath)
 
 	map = &dt->t_map;
 	fd = open(filepath, O_RDONLY);
-	if (fd < 0)
-		ft_error(dt, "[ERROR] can not open file.");
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -140,5 +147,9 @@ void	parse_map(t_data *dt, const char *filepath)
 		free(line);
 	}
 	fetch_map_info(map, map->list);
+	is_map_closed_walls(map);
+	if (fd < 0)
+		ft_error(dt, F_ERROR);
+	close(fd);
 	return ;
 }

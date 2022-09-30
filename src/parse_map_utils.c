@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:14:13 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 13:39:15 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 14:48:05 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	count_row_col(t_map *map, t_list *lst)
 		lst = lst->next;
 	}
 	map->col = col;
+	if (col == 0)
+		ft_error(NULL, "[ERROR] map content is nothing\n");
 }
 
 int	count_line(char *line)

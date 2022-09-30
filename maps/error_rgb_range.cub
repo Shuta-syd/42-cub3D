@@ -3,7 +3,7 @@ SO        ./asset/xpm/wall02_south.xpm
 WE ./asset/xpm/wall02_west.xpm
 EA ./asset/xpm/wall02_east.xpm
 
-F   220,100,   0
+F   10000,100,   0
 C   137,  189,   222
 
 1111111111111111111111111

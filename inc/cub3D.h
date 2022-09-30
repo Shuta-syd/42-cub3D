@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 20:43:27 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 14:36:41 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@
 # define EAST 3
 
 # define M_ERROR "[ERROR] fail to allocate memory\n"
+# define F_ERROR "[ERROR] fail to open file\n"
 
 int	g_window_w;
 int	g_window_h;

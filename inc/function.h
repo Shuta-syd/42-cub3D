@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:27:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/29 19:35:55 by shogura          ###   ########.fr       */
+/*   Updated: 2022/09/30 14:57:05 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
  * @ error.c
  */
 int		ft_error(t_data *dt, char *msg);
+void	is_map_closed_walls(t_map *map);
 
 /**
  * @ init.c

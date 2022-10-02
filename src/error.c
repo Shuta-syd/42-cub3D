@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:33:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/02 20:31:10 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/02 21:36:34 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	is_map_closed_walls(t_map *map)
 			if (map->content[i][j] == 1)
 				wall_index = j;
 		}
-		if (wall_index_prev < wall_index && i > 0 && wall_index == wall_index_prev)
+		if (wall_index_prev < wall_index
+			&& i > 0 && wall_index == wall_index_prev)
 			if (map->content[i][wall_index_prev] != 1)
 				ft_error(NULL, "[ERROR] map content is something wrong!\n");
 		wall_index_prev = wall_index;

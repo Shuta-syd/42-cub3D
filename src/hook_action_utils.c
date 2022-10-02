@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:55:32 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 15:55:46 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/02 21:35:21 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	wasd(int keycode, t_player *P)
 	}
 	else if (keycode == RIGHT)
 	{
-		P->turn_direction = -0.5;
+		P->turn_direction = 0;
 		P->walk_direction = 1;
 	}
 	else if (keycode == LEFT)
 	{
-		P->turn_direction = 0.5;
-		P->walk_direction = 1;
+		P->turn_direction = 0;
+		P->walk_direction = -1;
 	}
 }
 

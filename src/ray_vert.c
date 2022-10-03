@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:20:23 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/03 19:40:16 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/03 21:44:54 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	intersection_vert(t_dda *D, t_data *dt, float rayAngle)
 
 	calc_vert_delta(D, dt, rayAngle);
 	while (D->t_v.next_x >= 0 && D->t_v.next_x
-		<= D->map_width && D->t_v.next_y >= 0
-		&& D->t_v.next_y <= D->map_height)
+		<= dt->t_map.map_width && D->t_v.next_y >= 0
+		&& D->t_v.next_y <= dt->t_map.map_height)
 	{
 		x_to_check = D->t_v.next_x;
 		if (D->facing_left)

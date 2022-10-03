@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:19:02 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/03 19:37:58 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/03 21:43:40 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	intersection_horz(t_dda *D, t_data *dt, float rayAngle)
 	float	y_to_check;
 
 	calc_horz_delta(D, dt, rayAngle);
-	while (D->t_h.next_x >= 0 && D->t_h.next_x <= D->map_width
-		&& D->t_h.next_y >= 0 && D->t_h.next_y <= D->map_height)
+	while (D->t_h.next_x >= 0 && D->t_h.next_x <= dt->t_map.map_width
+		&& D->t_h.next_y >= 0 && D->t_h.next_y <= dt->t_map.map_height)
 	{
 		x_to_check = D->t_h.next_x;
 		y_to_check = D->t_h.next_y;

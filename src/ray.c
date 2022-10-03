@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:52:53 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/03 19:39:25 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/03 21:15:44 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ void	cast_ray(t_data *dt, float rayAngle, int stripId)
 	dda = ft_calloc(1, sizeof(t_dda));
 	if (dda == NULL)
 		ft_error(dt, M_ERROR);
-	dda->map_height = dt->t_map.col * TILESIZE;
-	dda->map_width = dt->t_map.row * TILESIZE;
 	if (rayAngle > 0 && rayAngle < M_PI)
 		dda->facing_down = 1;
 	else

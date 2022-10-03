@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/03 19:35:54 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/03 21:14:03 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct s_map
 	int		ceiling;
 	int		px;
 	int		py;
+	int		map_width;
+	int		map_height;
 }	t_map;
 
 typedef struct s_player

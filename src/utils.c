@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:47:31 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/03 19:40:07 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/03 21:17:11 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	map_has_wall_at(t_map map, float x, float y)
 	int	map_x;
 	int	map_y;
 
-	if (x <= 0 || x >= g_window_w || y <= 0 || y > g_window_h)
+	if (x <= 0 || x >= map.map_width || y <= 0 || y > map.map_height)
 		return (true);
 	map_x = floor(x / (float)TILESIZE);
 	map_y = floor(y / (float)TILESIZE);

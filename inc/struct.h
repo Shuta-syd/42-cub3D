@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:34:35 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/02 21:16:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/03 19:35:54 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ typedef struct s_vert
 
 typedef struct s_dda
 {
+	int		map_width;
+	int		map_height;
 	int		facing_up;
 	int		facing_down;
 	int		facing_right;

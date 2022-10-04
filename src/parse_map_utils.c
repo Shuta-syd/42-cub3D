@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:14:13 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/03 22:02:17 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:33:05 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,17 @@ void	dup_content_line(t_map *map, char *content, int col)
 	row = -1;
 	while (content[i] && content[i] != '\n')
 	{
-		if (ft_isdigit(content[i]) && content[i] != ' ')
+		if (ft_isdigit(content[i]))
 			map->content[col][++row] = content[i] - '0';
-		else if (content[i] != ' ' && (content[i] == 'N'
-				|| content[i] == 'S' || content[i] == 'E'
-				|| content[i] == 'W'))
+		else if (content[i] == 'N' || content[i] == 'S'
+		|| content[i] == 'E' || content[i] == 'W')
 		{
 			map->content[col][++row] = 0;
 			map->px = row * TILESIZE;
 			map->py = col * TILESIZE;
 		}
-		else if (content[i] != ' ')
-			ft_error(NULL, ERROR);
+		else if (content[i] == ' ')
+			map->content[col][++row] = NONE;
 		i++;
 	}
 	while (i++ < map->row)
@@ -64,8 +63,7 @@ void	count_row_col(t_map *map, t_list *lst)
 		content = (char *)lst->content;
 		while (content[i] && content[i] != '\n')
 		{
-			if (content[i] != ' ')
-				row++;
+			row++;
 			i++;
 		}
 		col++;

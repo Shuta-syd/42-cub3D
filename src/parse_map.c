@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:06 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/04 17:45:00 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/04 19:07:11 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,10 @@ void	parse_map(t_data *dt, const char *filepath)
 
 	map = &dt->t_map;
 	fd = open(filepath, O_RDONLY);
+	if (fd < 0)
+		ft_error(dt, F_ERROR);
+	else if (ft_strnstr(&filepath[ft_strlen(filepath) - 4], ".cub", 4) == NULL)
+		ft_error(dt, "[ERROR] file name doesn't include '.cub'\n");
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -122,8 +126,6 @@ void	parse_map(t_data *dt, const char *filepath)
 	}
 	fetch_map_info(map, map->list);
 	is_map_closed_walls(map);
-	if (fd < 0)
-		ft_error(dt, F_ERROR);
 	close(fd);
 	return ;
 }

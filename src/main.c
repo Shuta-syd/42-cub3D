@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:31:41 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/04 17:45:59 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/04 20:40:33 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char const *av[])
 	t_data	*dt;
 
 	if (ac != 2)
-		return (1);
+		ft_error(NULL, "[ERROR] argument error\n");
 	dt = ft_calloc(1, sizeof(t_data));
 	if (dt == NULL)
 		return (ft_error(NULL, M_ERROR));

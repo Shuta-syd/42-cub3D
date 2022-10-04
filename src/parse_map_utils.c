@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:14:13 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/04 17:33:05 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:39:57 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	dup_content_line(t_map *map, char *content, int col)
 		if (ft_isdigit(content[i]))
 			map->content[col][++row] = content[i] - '0';
 		else if (content[i] == 'N' || content[i] == 'S'
-		|| content[i] == 'E' || content[i] == 'W')
+			|| content[i] == 'E' || content[i] == 'W')
 		{
 			map->content[col][++row] = 0;
 			map->px = row * TILESIZE;

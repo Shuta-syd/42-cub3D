@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:33:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/04 17:02:07 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:44:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@ void	is_all_wall(int *content, int row)
 void	wall_gap_check(int now, int prev, int i, t_map *map)
 {
 	if (prev <= now && i > 0)
+	{
 		while (prev++ < now)
-		{
 			if (map->content[i][prev] != 1)
 				ft_error(NULL, "[ERROR] map content is something wrong!\n");
-		}
+	}
 	else if (prev >= now && i > 0)
+	{
 		while (prev-- > now)
 			if (map->content[i - 1][prev] != 1)
 				ft_error(NULL, "[ERROR] map content is something wrong!\n");
+	}
 }
 
 void	is_map_closed_walls(t_map *map)

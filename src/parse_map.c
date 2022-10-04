@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:06 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/04 17:33:26 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:45:00 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ bool	adapt_map_element(t_map *map, char *line)
 	j = 0;
 	if (line == NULL)
 		return (false);
-	else if (line[i] == '\n' || line[i] == '\0')
-		return (true);
 	j = i;
 	while (line[i] && line[i] == ' ')
 		i++;
@@ -116,7 +114,9 @@ void	parse_map(t_data *dt, const char *filepath)
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (adapt_map_element(map, line) == false)
+		if (line && (line[0] == '\n' || line[0] == '\0'))
+			;
+		else if (adapt_map_element(map, line) == false)
 			break ;
 		free(line);
 	}

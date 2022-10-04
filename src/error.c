@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:33:05 by shogura           #+#    #+#             */
-/*   Updated: 2022/10/02 21:36:34 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:02:07 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ void	is_all_wall(int *content, int row)
 	}
 	if (wall == false)
 		ft_error(NULL, "[ERROR] map content is something wrong\n");
+}
+
+void	wall_gap_check(int now, int prev, int i, t_map *map)
+{
+	if (prev <= now && i > 0)
+		while (prev++ < now)
+		{
+			if (map->content[i][prev] != 1)
+				ft_error(NULL, "[ERROR] map content is something wrong!\n");
+		}
+	else if (prev >= now && i > 0)
+		while (prev-- > now)
+			if (map->content[i - 1][prev] != 1)
+				ft_error(NULL, "[ERROR] map content is something wrong!\n");
 }
 
 void	is_map_closed_walls(t_map *map)
@@ -49,10 +63,7 @@ void	is_map_closed_walls(t_map *map)
 			if (map->content[i][j] == 1)
 				wall_index = j;
 		}
-		if (wall_index_prev < wall_index
-			&& i > 0 && wall_index == wall_index_prev)
-			if (map->content[i][wall_index_prev] != 1)
-				ft_error(NULL, "[ERROR] map content is something wrong!\n");
+		wall_gap_check(wall_index, wall_index_prev, i, map);
 		wall_index_prev = wall_index;
 	}
 }

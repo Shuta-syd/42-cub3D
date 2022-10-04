@@ -6,7 +6,7 @@
 /*   By: shogura <shogura@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:35:06 by shogura           #+#    #+#             */
-/*   Updated: 2022/09/30 15:53:03 by shogura          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:17:25 by shogura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,15 @@ void	fetch_color(t_map *map, char *line, int type)
 bool	adapt_map_element(t_map *map, char *line)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	if (line == NULL)
 		return (false);
 	else if (line[i] == '\n' || line[i] == '\0')
 		return (true);
+	j = i;
 	while (line[i] && line[i] == ' ')
 		i++;
 	if (ft_strnstr(&line[i], "NO", 2))
@@ -83,7 +86,7 @@ bool	adapt_map_element(t_map *map, char *line)
 	else if (ft_strnstr(&line[i], "C", 1))
 		fetch_color(map, &line[i + 1], 1);
 	else
-		fetch_line_content(map, &line[i]);
+		fetch_line_content(map, &line[j]);
 	return (true);
 }
 

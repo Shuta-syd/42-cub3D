@@ -10,7 +10,7 @@ Compile the executable file with:
 ```bash
 make run
 ```
-Or use the following command to compile it with the bonus files:
+Or use the following command to clean files
 ```bash
 make clean
 ```
